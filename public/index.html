@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SolarGuard Space — know when to clean your solar plant</title>
-<meta name="description" content="SolarGuard Space turns satellite dust data into a simple answer for Saudi solar owners: how much the dust is costing you, and when cleaning pays. Live dashboard, forecasts per site, AI assistant.">
+<meta name="description" content="SolarGuard Space turns satellite dust data into a simple answer for Saudi solar owners: how much the dust is costing you, and when cleaning pays. Farm dashboards, per-site forecasts, an AI assistant.">
 <meta name="theme-color" content="#04060c">
 <meta property="og:title" content="SolarGuard Space">
 <meta property="og:description" content="You can't see the dust. We can. Know the day cleaning pays.">
@@ -28,7 +28,7 @@
       <a href="#orbit">How it works</a>
       <a href="#pricing">Pricing</a>
       <a href="technology.html">Technology</a>
-      <a class="btn primary sm" href="dashboard.html">Try it live</a>
+      <a class="btn primary sm" href="dashboard.html">Open the dashboard</a>
     </div>
   </div>
 </nav>
@@ -44,7 +44,7 @@
       <p class="sub reveal">Satellite forecasts that tell Saudi solar owners how much dust is
         costing them — and the day cleaning actually pays.</p>
       <div class="row-btns reveal">
-        <a class="btn primary" href="dashboard.html">Try it live</a>
+        <a class="btn primary" href="dashboard.html">Open the dashboard</a>
         <a class="btn" href="#orbit">See how it works</a>
       </div>
     </div>
@@ -65,17 +65,17 @@
   <div class="wrap triptych">
     <div class="reveal">
       <p class="kicker">The data</p>
-      <p class="one-liner">Twelve open satellite and weather feeds, <b id="mini-data">checking…</b>, plus the
-        accounts we would need for the rest.</p>
+      <p class="one-liner">Twelve open satellite and weather feeds are wired in — dust, aerosol, wind,
+        sun and rain — plus the eight paid accounts we would need for the rest.</p>
     </div>
     <div class="reveal">
       <p class="kicker">The model</p>
-      <p class="one-liner">Trained here, from scratch, on six years of Saudi conditions —
-        <b id="mini-model">loading…</b> <a href="technology.html">how it works</a>.</p>
+      <p class="one-liner">Trained here, from scratch, on four years of Saudi dust and weather across
+        twelve sites — and scored on days it never saw. <a href="technology.html">How it works</a>.</p>
     </div>
     <div class="reveal">
       <p class="kicker">The agent</p>
-      <p class="one-liner">Ten tools, live data, sources cited — and it can
+      <p class="one-liner">Ten tools, real data, sources cited — and it can
         <b>act on the dashboard</b> for you.</p>
     </div>
   </div>
@@ -124,19 +124,14 @@
 
 <!-- ══════════════════════════════ agent ══════════════════════════════ -->
 <section class="band" id="agent">
-  <div class="wrap two-col">
+  <div class="wrap narrow">
     <div class="reveal">
       <p class="kicker">Included</p>
       <h2>Ask your site a question.</h2>
       <p>SolarGuard comes with an assistant that has your site's numbers. Ask it what to do, and it
-        answers with the data — then does the work on the dashboard.</p>
-      <div class="row-btns"><a class="btn" href="dashboard.html#agent">Try the assistant <span class="arw">→</span></a></div>
-    </div>
-    <div class="reveal">
-      <div class="chat" id="home-chat"></div>
-      <div class="ask-row">
-        <input id="home-ask" type="text" placeholder="Should we clean Dammam this week?" autocomplete="off">
-        <button class="btn primary sm" id="home-ask-go">Ask</button>
+        answers with the data — then does the work on the dashboard for you.</p>
+      <div class="row-btns">
+        <a class="btn primary" href="dashboard.html#agent">Open the assistant <span class="arw">→</span></a>
       </div>
     </div>
   </div>
@@ -152,7 +147,6 @@
       <div class="stat reveal"><span class="v" id="stat-sar">—</span><span class="k">saved per year vs a fixed calendar</span></div>
       <div class="stat reveal"><span class="v" id="stat-mwh">—</span><span class="k">cleaning passes avoided each year</span></div>
       <div class="stat reveal"><span class="v" id="stat-water">—</span><span class="k">litres of washing water avoided</span></div>
-      <div class="stat reveal"><span class="v" id="stat-feeds">—</span><span class="k">open satellite and weather feeds</span></div>
     </div>
   </div>
 </section>
@@ -187,7 +181,7 @@
   <div class="wrap narrow">
     <h2 class="reveal">Stop guessing. Start cleaning on time.</h2>
     <div class="row-btns reveal">
-      <a class="btn primary" href="dashboard.html">Try it live</a>
+      <a class="btn primary" href="dashboard.html">Open the dashboard</a>
       <a class="btn" href="technology.html">Technology &amp; data</a>
     </div>
   </div>
@@ -197,18 +191,14 @@
   <div class="wrap foot-grid">
     <div>
       <a class="brand" href="./">Solar<span>Guard</span></a>
-      <p class="small dim">Team space-Marines · Riyadh.</p>
+      <p class="small dim">Team space-Marines · Dammam.</p>
     </div>
     <div>
       <p class="kicker">Product</p>
-      <p class="small"><a href="dashboard.html">Live dashboard</a><br>
+      <p class="small"><a href="dashboard.html">Dashboard</a><br>
         <a href="#pricing">Pricing</a><br>
         <a href="technology.html">Technology &amp; data</a><br>
         <a href="mission/">Original team page</a></p>
-    </div>
-    <div>
-      <p class="kicker">Live status</p>
-      <p class="small dim" id="foot-status">checking feeds…</p>
     </div>
   </div>
 </footer>

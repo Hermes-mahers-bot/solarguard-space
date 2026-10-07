@@ -90,7 +90,7 @@ async function initMap() {
       obs.observe(host, { childList: true });
       setTimeout(() => obs.disconnect(), 20000);
     }
-    setMapMode("live satellite view");
+    setMapMode("satellite view");
     return;
   } catch (e) {
     console.warn("[solarguard] real map unavailable, using canvas map:", e.message);
@@ -248,7 +248,7 @@ async function aiPredict() {
     if (!r.ok) throw new Error(r.error || "unavailable");
     const set = (id, txt) => { const el = $(id); if (el) el.textContent = txt; };
 
-    if (chip) { chip.textContent = "AI · live"; chip.className = "chip ok"; }
+    if (chip) { chip.textContent = "AI"; chip.className = "chip ok"; }
     set("#ai-asof", `as of ${r.as_of}`);
     [1, 2, 3].forEach((h) => {
       const el = $(`#ai-storm-t${h}`);
@@ -292,14 +292,11 @@ async function refresh() {
       cost_per_mwp_sar: +costPerMwp().toFixed(2),
     });
     if (token !== inflight) return;
-    state.lastReport = rep;
     aiPredict();                    // fire and forget: the AI must never block the page
-    $("#nav-status").innerHTML = '<span class="dot"></span> live';
     render(rep);
   } catch (e) {
     if (token !== inflight) return;
     $("#param-error").textContent = "Could not price this location — " + e.message;
-    $("#nav-status").innerHTML = '<span class="dot" style="background:#ff5f6d"></span> offline';
   }
 }
 
@@ -421,7 +418,7 @@ function initChat() {
     $("#chat-input").value = "";
     add("user", `<p>${q.replace(/</g, "&lt;")}</p>`);
     const t = add("bot", `<span class="typing"><span></span><span></span><span></span></span>
-      <div class="small dim" style="margin-top:6px">reading the live feeds…</div>`);
+      <div class="small dim" style="margin-top:6px">reading the feeds…</div>`);
     try {
       const out = await jpost("/assistant", {
         question: q, history: state.history.slice(-6),

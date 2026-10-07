@@ -285,7 +285,7 @@ export function createPlumeStory(canvas, opts = {}) {
     ctx.fillText(`SITES AFFECTED ${affected}/${sites.length}`, 16, hudY + 18);
     if (data && typeof data.soilingLossPct === "number") {
       ctx.fillStyle = "rgba(55,224,255,0.9)";
-      ctx.fillText(`SOILING ${data.soilingLossPct.toFixed(1)}%   (live)`, 16, hudY + 36);
+      ctx.fillText(`SOILING ${data.soilingLossPct.toFixed(1)}%`, 16, hudY + 36);
     }
     ctx.textAlign = "right";
     ctx.fillStyle = "rgba(125,138,166,0.9)";

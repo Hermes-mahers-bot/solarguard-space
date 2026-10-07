@@ -9,8 +9,6 @@ const $ = (s) => document.querySelector(s);
 async function sources() {
   try {
     const src = await jget("/sources");
-    $("#feed-status").textContent =
-      `${src.open_live} of ${src.open_total} open feeds answered HTTP 200 · ${src.gated} key-gated datasets wired · checked ${src.checked_utc}`;
     $("#sources-table tbody").innerHTML = src.sources.map((s) => `
       <tr>
         <td>${s.name}${s.effective_date ? `<div class="dim small">effective ${s.effective_date}</div>` : ""}</td>
@@ -20,7 +18,7 @@ async function sources() {
         <td class="num"><span class="pill ${s.status === "live" ? "live" : s.status === "gated" ? "gated" : "warn"}">${s.status}</span></td>
       </tr>`).join("");
   } catch (e) {
-    $("#feed-status").textContent = "source probe failed: " + e.message;
+    console.warn("source probe failed:", e.message);
   }
 }
 
