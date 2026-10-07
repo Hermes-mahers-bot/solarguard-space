@@ -1,5 +1,22 @@
 # SolarGuard Space
 
+## Live
+
+| What | Where |
+|---|---|
+| Product site (homepage) | https://space-marines.aimaher.com/ |
+| Technology &amp; data page | https://space-marines.aimaher.com/technology.html |
+| Operator dashboard | https://space-marines.aimaher.com/dashboard.html |
+| Source code | https://github.com/Hermes-mahers-bot/solarguard-space |
+| Original team page (kept) | https://space-marines.aimaher.com/mission/ |
+
+**Note on paths.** SolarGuard was first mounted at `/solarguard/` and, as of
+2026-10-07, serves the **domain root**: the host FastAPI app mounts this
+application at `/` and moves its own mission-control page to `/mission/`. Paths
+inside the app are relative (`assets/...`, `api/...`) so they resolve under either
+mount. Sections below that mention `.../solarguard/...` describe that earlier
+mount and remain accurate for it — the app is reachable at both.
+
 Dust-soiling forecasting and cleaning-scheduling for Saudi solar plants. The app reads
 open satellite dust and weather feeds, estimates how much output an array is losing to
 soiling, prices the lost generation against the cost of a cleaning crew, and tells the
@@ -274,6 +291,22 @@ whose artifacts no longer load.
 
 ---
 
+## Which model actually serves
+
+Both trained ML models are present and evaluated (metrics above), and the live
+product is served by the **physics model**. That is a deliberate call, not an
+oversight: the ML feature set includes 3/7/30/90-day rolling dust means, and a
+14-day forecast horizon has no 90 days of history behind it. Handing the models a
+short-horizon vector makes them fall back to their training defaults and return
+unphysical numbers — measured: 20-45 % soiling loss on the day *after* a clean,
+and negative values from the MLP at longer intervals.
+
+So `sg_soiling.project()` calls the ML path only when `SOLARGUARD_ML=1` is set
+*and* the full rolling-feature vector is supplied; otherwise the rate-anchored
+physics model serves, and the API states which one is live
+(`/api/sg/status` → `soiling_model`, `ml_models_loaded`, `ml_note`). Wiring the
+archive path that builds the 90-day features is the first item in "would be next".
+
 ## The agent
 
 `backend/sg_agent.py` — a DeepSeek tool-calling agent named "Sol". Model id
@@ -324,6 +357,29 @@ HTTP 200 with an empty `content` field, which looks like a broken agent. Hence
 ---
 
 ## Deployment
+
+### Current mount (root)
+
+The host app (`/home/hermes2/space-marines/backend/app.py`) imports this
+application inside a `try/except` and mounts it at `/`:
+
+```python
+try:
+    sys.path.insert(0, "/home/hermes2/solarguard-space/backend")
+    from sg_app import sg_app                 # its own FastAPI sub-app
+    app.mount("/mission", StaticFiles(directory=PUBLIC, html=True))   # old page
+    app.mount("/", sg_app)                    # SolarGuard becomes the site
+except Exception as exc:
+    app.mount("/", StaticFiles(directory=PUBLIC, html=True))          # never blank
+```
+
+Route order is what keeps the host's contract intact: `/api/health`,
+`/api/version`, `/api/ai/status` and `/api/reason` are declared before the root
+mount, so they answer exactly as they always did, while every other path —
+including this app's own `/api/*` — falls through to SolarGuard. If SolarGuard
+fails to import, the domain serves the old site instead of erroring.
+
+### The earlier sub-path mount
 
 The app is a FastAPI **sub-application** (`sg_app = FastAPI(...)` in `backend/sg_app.py`,
 `docs_url=None`). The site host (the `space-marines` FastAPI app) mounts it at `/solarguard`,
@@ -421,6 +477,18 @@ front-end statements here were re-verified against the tree and the live site af
 edits (index.html 10,758 B, live `sg-scrollstory.js` → HTTP 200).
 
 ---
+
+## What shipped alongside this document
+
+| Path | Purpose |
+|---|---|
+| `public/technology.html` | Technology &amp; data page: live source table, calibration table, policy table, model metrics, agent inventory |
+| `public/assets/js/sg-scrollstory.js` | Scroll animation 1 — ground view: sun arc, tracker tilt, dust accumulation, cleaning pass, live HUD |
+| `public/assets/js/sg-plume-story.js` | Scroll animation 2 — orbital plot: satellite pass, shamal front crossing the Kingdom, sites reddening, clearing |
+| `public/assets/js/sg-realmaps.js` | Real map module (Leaflet + OSM/CARTO tiles + GIBS overlay); see `docs/REAL_MAP.md` |
+| `public/assets/js/sg-tech.js` | Controller for the technology page |
+| `public/map-test.html`, `public/story-test.html` | Standalone harnesses used to verify the map and the animations in a browser |
+| `docs/REAL_MAP.md`, `docs/SCROLL_STORY.md` | How the map and the animations work, and how to retune them |
 
 ## Files in this repository
 
