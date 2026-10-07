@@ -243,8 +243,11 @@ async def satellite_image(layer: str, date: str | None = None, lat: float = 24.2
 async def buckets():
     """Open S3 buckets we monitor (Himawari-9, GFS) — proof the geostationary
     imagery pipeline is reachable, without mirroring petabytes."""
-    h9, gfs, ec = await ds.s3_listing("noaa-himawari9", max_keys=3), \
-        ds.s3_listing("noaa-gfs-bdp-pds", max_keys=3), await ds.ecmwf_open_listing()
+    # Every call must be awaited: the tuple form awaited only the first and last,
+    # leaving the middle one a coroutine and raising "coroutine is not iterable".
+    h9 = await ds.s3_listing("noaa-himawari9", max_keys=3)
+    gfs = await ds.s3_listing("noaa-gfs-bdp-pds", max_keys=3)
+    ec = await ds.ecmwf_open_listing()
     return {"himawari9": h9, "gfs": gfs, "ecmwf": ec,
             "note": "Buckets are browsed live; we do not mirror them (the Himawari-9 "
                     "archive alone is petabytes). Tiles/fields we need are fetched on demand."}
