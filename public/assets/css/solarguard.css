@@ -343,6 +343,12 @@ footer.site a { display: inline-block; padding: 6px 0; }        /* 44px-ish touc
 .big-line:last-child { margin-bottom: 0; }
 .big-line b { color: var(--sand-2); font-weight: 600; }
 
+.triptych { display: grid; grid-template-columns: 1fr; gap: 22px; }
+.one-liner { font-size: 1.02rem; color: var(--ink-2); margin: 0; max-width: 34ch; }
+.one-liner b { color: var(--sand-2); }
+.band.tight { padding: clamp(38px, 7vw, 62px) 0; }
+@media (min-width: 760px) { .triptych { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 34px; } }
+
 .cards { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 26px; }
 .cards-2 { grid-template-columns: 1fr; }
 .card {

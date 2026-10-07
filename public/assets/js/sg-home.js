@@ -115,11 +115,22 @@ async function initNumbers() {
   try {
     const src = await jget("/sources");
     $("#stat-feeds").textContent = `${src.open_live}/${src.open_total}`;
+    const md = $("#mini-data");
+    if (md) md.textContent = `${src.open_live} of ${src.open_total} answering right now`;
     $("#foot-status").textContent =
       `${src.open_live} of ${src.open_total} open feeds answering · ${src.gated} key-gated datasets wired and waiting on credentials · checked ${src.checked_utc}`;
   } catch (e) {
     $("#foot-status").textContent = "status unavailable";
   }
+  try {
+    const m = await jget("/model");
+    const g = m.ml?.time_split?.gbrt?.soiling_loss_pct, p = m.ml?.time_split?.mlp?.soiling_loss_pct;
+    const el = $("#mini-model");
+    if (el && g) {
+      el.textContent = `next-day soiling loss to ±${nf(Math.min(g.mae, p?.mae ?? g.mae) / 100 * 100, 1)} points ` +
+                       `(R² ${nf(Math.max(g.r2, p?.r2 ?? 0), 2)})`;
+    }
+  } catch (_) { /* the line stays generic */ }
 }
 
 /* ------------------------------------------------------------------ agent demo */
