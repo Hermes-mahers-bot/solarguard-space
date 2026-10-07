@@ -291,6 +291,13 @@ whose artifacts no longer load.
 
 ---
 
+## For judges
+
+`docs/PITCH.md` breaks the project into six parts — the product decision, the data
+layer, the models, the product surfaces, what we verified, and how it is deployed —
+with the steps taken in each and the evidence for each. Read that first if you are
+short on time.
+
 ## The AI, serving live
 
 Three models are trained here in numpy (no sklearn, no torch) on **17,772
