@@ -26,25 +26,36 @@ async function sources() {
 
 async function models() {
   try {
-    const m = await jget("/model");
-    const ml = m.ml || {};
-    const get = (s, mo, t) => ml?.[s]?.[mo]?.[t] || null;
+    const s = await jget("/ai/models");
+    const st1 = s.metrics?.storm_t1, st3 = s.metrics?.storm_t3;
+    const y = s.metrics?.yield_t1, so = s.metrics?.soiling_t1;
+    const loso = s.loso_mean;
+    const pctOr = (v) => (v === null || v === undefined ? "—" : `${nf(v, 1)} %`);
     const rows = [
-      ["Gradient-boosted trees", "soiling loss, next day", get("time_split", "gbrt", "soiling_loss_pct")],
-      ["Gradient-boosted trees", "dust deposition", get("time_split", "gbrt", "deposition_g_m2_day")],
-      ["Neural net (64-32)", "soiling loss, next day", get("time_split", "mlp", "soiling_loss_pct")],
-      ["GBRT · leave-one-site-out", "soiling loss, unseen site", get("leave_one_site_out", "gbrt", "soiling_loss_pct")],
-      ["MLP · leave-one-site-out", "soiling loss, unseen site", get("leave_one_site_out", "mlp", "soiling_loss_pct")],
-    ].filter(([, , v]) => v);
-    $("#model-table tbody").innerHTML = rows.map(([mo, t, v]) => `
-      <tr><td>${mo}</td><td class="dim">${t}</td>
-      <td class="num">${nf(v.mae, 2)} pct-pts</td><td class="num">${nf(v.r2, 3)}</td></tr>`).join("");
-    const cfg = ml.model_config || {};
-    $("#model-line").textContent = cfg.gbrt
-      ? `Active: ${m.active} · GBRT ${cfg.gbrt.n_trees} trees, depth ${cfg.gbrt.max_depth}, lr ${cfg.gbrt.learning_rate} · MLP ${cfg.mlp.hidden.join("-")}, ${cfg.mlp.optimiser}, ${cfg.mlp.epochs} epochs · hand-written numpy, CPU only`
-      : "Active: physics-empirical model";
+      ["Sandstorm, next day (" + (s.storm_definition ? "PM10 ≥ 3× site median" : "") + ")",
+       st1 ? `caught ${pctOr(st1.recall_pct)} of storms, ${pctOr(st1.precision_pct)} of alerts were real`
+           : null,
+       st1 ? `AUC ${nf(st1.auc, 3)} · Brier ${nf(st1.brier, 3)}` : null],
+      ["Sandstorm, 3 days ahead", st3 ? `caught ${pctOr(st3.recall_pct)}, ${pctOr(st3.precision_pct)} precision` : null,
+       st3 ? `AUC ${nf(st3.auc, 3)} · Brier ${nf(st3.brier, 3)}` : null],
+      ["Panel output, tomorrow (kWh/kWp)", y ? `±${nf(y.mae, 3)} kWh/kWp (${nf(y.mae_pct_of_mean, 1)} % of the mean)` : null,
+       y ? `R² ${nf(y.r2, 3)}` : null],
+      ["Soiling loss, tomorrow (% points)", so ? `±${nf(so.mae, 2)} points` : null,
+       so ? `R² ${nf(so.r2, 3)}` : null],
+      ["Output, a site the models never saw", loso ? `±${nf(loso.yield_mae, 3)} kWh/kWp` : null,
+       loso ? `R² ${nf(loso.yield_r2, 3)}` : null],
+    ].filter((r) => r[1]);
+    $("#model-table tbody").innerHTML = rows.map(([t, e, k]) => `
+      <tr><td>${t}</td><td class="num">${e}</td><td class="num dim">${k || ""}</td></tr>`).join("");
+    const b = s.baselines || {};
+    $("#model-line").textContent = s.available
+      ? `Trained ${String(s.trained_utc || "").slice(0, 10)} on ${nf(s.samples)} site-days across ${s.sites} sites `
+        + `(${s.date_range?.[0]} to ${s.date_range?.[1]}); ${s.n_features || 37} features from the live 92-day window `
+        + `+ forecast. Gradient-boosted trees + a small neural net, blended by measured skill.`
+      : "models are still training";
   } catch (e) {
-    $("#model-table tbody").innerHTML = `<tr><td colspan="4" class="dim">model card unavailable: ${e.message}</td></tr>`;
+    $("#model-table tbody").innerHTML =
+      `<tr><td colspan="3" class="dim">AI report card unavailable: ${e.message}</td></tr>`;
   }
 }
 

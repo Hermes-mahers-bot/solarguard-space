@@ -126,46 +126,25 @@ class _MLAdapter:
         return self._module.predict(features, self._models)
 
 
-def _ml_model():
-    global _ML, _ML_TRIED
-    if _ML_TRIED:
-        return _ML
-    _ML_TRIED = True
-    if not (MODELS / "gbrt.npz").exists():
-        return None
-    try:
-        sys.path.insert(0, str(ROOT / "ml"))
-        import predict as ml_predict            # type: ignore
-        models = ml_predict.load_models(str(MODELS))
-        _ML = _MLAdapter(ml_predict, models)
-        print("[solarguard] trained ML model loaded from models/gbrt.npz")
-    except Exception as e:
-        _ML = None
-        print(f"[solarguard] ML model unavailable, physics model serving: {type(e).__name__}: {e}")
-    return _ML
-
-
+# ---------------------------------------------------------------------------
+# There is deliberately no ML loader here any more.
+#
+# The first generation of models (models/gbrt.npz + mlp.npz) was trained on
+# features this module's 14-day horizon cannot supply, so it was retired along
+# with its artifacts. Predictions now live in backend/sg_ai.py, which is trained
+# and evaluated separately and rebuilt from the same feature code as its trainer.
+# This file is the physics + economics engine: soiling accumulation, PV yield,
+# cleaning cost and the policy optimiser. Keeping the two apart is what lets the
+# dashboard say "predicted by the AI" and "priced by the model" honestly.
+# ---------------------------------------------------------------------------
 def ml_available() -> bool:
-    """Whether the trained ML models could be served (files present + loadable).
-
-    Note the distinction from `ml_serving()`: the models were trained on features
-    that include 3/7/30/90-day rolling dust means. A 14-day forecast horizon has no
-    90 days of history behind it, so feeding them a short-horizon feature vector
-    silently falls back to their training defaults and produces unphysical numbers
-    (a measured example: 20-45 % soiling loss on the day after a clean). The
-    physics model is therefore what serves the product, and it is what the
-    calibration and the API report. The ML path stays available behind
-    SOLARGUARD_ML=1 for work that has the full rolling-feature history.
-    """
-    return _ml_model() is not None
+    """Retired. The live AI is backend/sg_ai.py (see /api/ai/models)."""
+    return False
 
 
 def ml_serving() -> bool:
-    """True only when explicitly enabled AND the models load."""
-    import os
-    if os.environ.get("SOLARGUARD_ML") not in ("1", "true", "yes"):
-        return False
-    return _ml_model() is not None
+    """Retired. Physics serves the decision; the AI serves the predictions."""
+    return False
 
 
 # --------------------------------------------------------------- daily drivers

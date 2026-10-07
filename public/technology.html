@@ -84,21 +84,26 @@
   </section>
 
   <section class="band">
-    <h2>The models</h2>
+    <h2>The AI</h2>
     <div class="two-col">
       <div>
-        <p>Two models are trained from scratch in numpy — gradient-boosted trees and a small neural net — on six years
-          of satellite meteorology and dust for twelve Saudi sites. Labels come from the physics model above, not from
-          inverter data we do not have; that limitation is on the model card and in the repository.</p>
+        <p>Three things are predicted by models trained here, from scratch in numpy, on four years of CAMS dust and
+          ERA5 meteorology across twelve Saudi sites. Every prediction below ships with the error it made on data it
+          had never seen — a forecast without an error bar is a guess with better marketing.</p>
         <p class="mono small" id="model-line"></p>
       </div>
       <div class="table-wrap">
-        <table class="data" id="model-table">
-          <thead><tr><th>Model</th><th>Target</th><th class="num">MAE</th><th class="num">R²</th></tr></thead>
-          <tbody><tr><td colspan="4" class="dim">loading…</td></tr></tbody>
+        <table class="data compact" id="model-table">
+          <thead><tr><th>Predicts</th><th class="num">Error on unseen data</th><th class="num">Skill</th></tr></thead>
+          <tbody><tr><td colspan="3" class="dim">loading…</td></tr></tbody>
         </table>
       </div>
     </div>
+    <p class="src">A "sandstorm" day means daily maximum PM10 at least three times that site's own median and at least
+      300&nbsp;µg/m³ — a definition, stated because the word is not objective. That gives a 10&nbsp;% event rate across
+      17,772 site-days, with the monthly peak in the Feb–May shamal season. Skill is measured against two baselines so
+      it can be judged: guessing the climatology every day, and assuming tomorrow looks like today. The AI predicts;
+      the physics model and policy optimiser above make the cleaning decision.</p>
   </section>
 
   <section class="band">

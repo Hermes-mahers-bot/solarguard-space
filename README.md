@@ -291,21 +291,42 @@ whose artifacts no longer load.
 
 ---
 
-## Which model actually serves
+## The AI, serving live
 
-Both trained ML models are present and evaluated (metrics above), and the live
-product is served by the **physics model**. That is a deliberate call, not an
-oversight: the ML feature set includes 3/7/30/90-day rolling dust means, and a
-14-day forecast horizon has no 90 days of history behind it. Handing the models a
-short-horizon vector makes them fall back to their training defaults and return
-unphysical numbers — measured: 20-45 % soiling loss on the day *after* a clean,
-and negative values from the MLP at longer intervals.
+Three models are trained here in numpy (no sklearn, no torch) on **17,772
+site-days across 12 Saudi sites, Sep 2022 – Oct 2026**, rebuilt from Open-Meteo's
+CAMS dust history and the ERA5 archive, and they serve the product:
 
-So `sg_soiling.project()` calls the ML path only when `SOLARGUARD_ML=1` is set
-*and* the full rolling-feature vector is supplied; otherwise the rate-anchored
-physics model serves, and the API states which one is live
-(`/api/sg/status` → `soiling_model`, `ml_models_loaded`, `ml_note`). Wiring the
-archive path that builds the 90-day features is the first item in "would be next".
+    GET /api/ai?site=dammam&capacity_kwp=100000     live predictions
+    GET /api/ai/models                              the report card, machine-readable
+
+| Predicts | Measured error on the held-out test block |
+|---|---|
+| Sandstorm probability, +1 / +2 / +3 days | recall 68.8 / 60.6 / 69.3 %, precision 75.4 / 84.5 / 74.0 %, **AUC 0.952 / 0.929 / 0.931**, Brier 0.062 vs 0.132 climatology |
+| Panel output tomorrow (kWh/kWp) | **MAE 0.234 kWh/kWp = 7.7 % of the mean**, R² 0.949 (baseline: 2.572) |
+| Soiling loss tomorrow (% points) | **MAE 3.17 points = 8.4 %**, R² 0.974 (baseline: 26.1) |
+| Any of those, at a site the models never saw | output MAE 0.429 (R² 0.513), soiling MAE 9.3, storm AUC 0.785 |
+
+The full card, including the storm definition and its failure modes, is in
+`docs/MODEL_CARD.md`. Three things are worth repeating here:
+
+* **A storm is a definition**: daily max PM10 ≥ 3× that site's own median, floored
+  at 300 µg/m³. Three alternatives were tried and rejected — the numbers are in the
+  card, because "sandstorm" is not an objective word.
+* **The AI predicts; the physics engine decides.** Predictions come from the
+  models; the cleaning verdict and its economics come from the calibrated physics
+  model and policy optimiser in `backend/sg_soiling.py`. Both numbers are shown,
+  labelled, never blended.
+* **It is honest about the baseline**: at +1 day the naive "tomorrow looks like
+  today" rule scores a slightly better F1 (0.743 vs 0.719) because dust episodes
+  last days. The model wins at +2/+3 and is much better calibrated.
+
+The **first generation** (`models/gbrt.npz`, `mlp.npz`, now deleted) is described
+in the model card: it was trained on 90-day rolling features the serving path could
+not build, silently answered from its training defaults, and reported 20–45 %
+soiling loss the day after a clean. Its replacement is guarded by
+`tests/test_ai.py`, which asserts that the served feature vector matches the
+trained one for all five bundles — the check that would have caught it.
 
 ## The agent
 

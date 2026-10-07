@@ -1,0 +1,221 @@
+{
+  "generated_utc": "2026-10-07T13:29:33Z",
+  "requested_range": {
+    "start": "2022-08-01",
+    "end": "2026-10-07"
+  },
+  "sites_requested": 12,
+  "rows": 18348,
+  "unique_site_date": 18348,
+  "duplicate_site_date": 0,
+  "overall": {
+    "storm_days_pm10_ge200": 6591,
+    "storm_days_label_pm10ge200_or_dustge100": 13896,
+    "pm10_max": {
+      "min": 1.2,
+      "mean": 300.1124781564009,
+      "max": 3270.8,
+      "nonnull": 18312
+    },
+    "ghi_mj_m2": {
+      "min": 2.9,
+      "mean": 21.407637889688363,
+      "max": 30.93,
+      "nonnull": 18348
+    },
+    "gust_max_ms": {
+      "min": 2.7,
+      "mean": 10.791574013516549,
+      "max": 25.2,
+      "nonnull": 18348
+    }
+  },
+  "column_nonnull_pct": {
+    "site": 100.0,
+    "date": 100.0,
+    "lat": 100.0,
+    "lon": 100.0,
+    "elevation_m": 100.0,
+    "ghi_mj_m2": 100.0,
+    "tmax_c": 100.0,
+    "tmin_c": 100.0,
+    "tmean_c": 100.0,
+    "rh_mean_pct": 100.0,
+    "wind_max_ms": 100.0,
+    "gust_max_ms": 100.0,
+    "precip_mm": 100.0,
+    "wind_dir_deg": 100.0,
+    "pm10_max": 99.804,
+    "pm10_mean": 99.804,
+    "dust_max": 99.804,
+    "dust_mean": 99.804,
+    "aod_max": 99.804,
+    "aod_mean": 99.804,
+    "pm25_mean": 99.804
+  },
+  "per_site": {
+    "sakaka": {
+      "name": "Sakaka Solar PV",
+      "lat": 29.97,
+      "lon": 40.2,
+      "elevation_m": 559.0,
+      "rows": 1529,
+      "first_date": "2022-08-01",
+      "last_date": "2026-10-07",
+      "pm10_max_days": 1526,
+      "storm_days_pm10_ge200": 998,
+      "storm_days_label_pm10ge200_or_dustge100": 1442
+    },
+    "sudair": {
+      "name": "Sudair Solar PV",
+      "lat": 25.55,
+      "lon": 45.55,
+      "elevation_m": 807.0,
+      "rows": 1529,
+      "first_date": "2022-08-01",
+      "last_date": "2026-10-07",
+      "pm10_max_days": 1526,
+      "storm_days_pm10_ge200": 960,
+      "storm_days_label_pm10ge200_or_dustge100": 1470
+    },
+    "riyadh": {
+      "name": "Riyadh (industrial)",
+      "lat": 24.71,
+      "lon": 46.67,
+      "elevation_m": 629.0,
+      "rows": 1529,
+      "first_date": "2022-08-01",
+      "last_date": "2026-10-07",
+      "pm10_max_days": 1526,
+      "storm_days_pm10_ge200": 1231,
+      "storm_days_label_pm10ge200_or_dustge100": 1481
+    },
+    "jeddah": {
+      "name": "Jeddah (Red Sea)",
+      "lat": 21.49,
+      "lon": 39.19,
+      "elevation_m": 13.0,
+      "rows": 1529,
+      "first_date": "2022-08-01",
+      "last_date": "2026-10-07",
+      "pm10_max_days": 1526,
+      "storm_days_pm10_ge200": 542,
+      "storm_days_label_pm10ge200_or_dustge100": 945
+    },
+    "yanbu": {
+      "name": "Yanbu Industrial City",
+      "lat": 24.09,
+      "lon": 38.06,
+      "elevation_m": 7.0,
+      "rows": 1529,
+      "first_date": "2022-08-01",
+      "last_date": "2026-10-07",
+      "pm10_max_days": 1526,
+      "storm_days_pm10_ge200": 144,
+      "storm_days_label_pm10ge200_or_dustge100": 747
+    },
+    "dammam": {
+      "name": "Dammam / Eastern Prov",
+      "lat": 26.43,
+      "lon": 50.1,
+      "elevation_m": 9.0,
+      "rows": 1529,
+      "first_date": "2022-08-01",
+      "last_date": "2026-10-07",
+      "pm10_max_days": 1526,
+      "storm_days_pm10_ge200": 529,
+      "storm_days_label_pm10ge200_or_dustge100": 1171
+    },
+    "jubail": {
+      "name": "Al Jubail",
+      "lat": 27.0,
+      "lon": 49.66,
+      "elevation_m": 3.0,
+      "rows": 1529,
+      "first_date": "2022-08-01",
+      "last_date": "2026-10-07",
+      "pm10_max_days": 1526,
+      "storm_days_pm10_ge200": 683,
+      "storm_days_label_pm10ge200_or_dustge100": 1233
+    },
+    "neom": {
+      "name": "NEOM",
+      "lat": 27.99,
+      "lon": 35.25,
+      "elevation_m": 11.0,
+      "rows": 1529,
+      "first_date": "2022-08-01",
+      "last_date": "2026-10-07",
+      "pm10_max_days": 1526,
+      "storm_days_pm10_ge200": 51,
+      "storm_days_label_pm10ge200_or_dustge100": 505
+    },
+    "alula": {
+      "name": "AlUla",
+      "lat": 26.61,
+      "lon": 37.92,
+      "elevation_m": 696.0,
+      "rows": 1529,
+      "first_date": "2022-08-01",
+      "last_date": "2026-10-07",
+      "pm10_max_days": 1526,
+      "storm_days_pm10_ge200": 306,
+      "storm_days_label_pm10ge200_or_dustge100": 1357
+    },
+    "tabuk": {
+      "name": "Tabuk",
+      "lat": 28.38,
+      "lon": 36.57,
+      "elevation_m": 767.0,
+      "rows": 1529,
+      "first_date": "2022-08-01",
+      "last_date": "2026-10-07",
+      "pm10_max_days": 1526,
+      "storm_days_pm10_ge200": 129,
+      "storm_days_label_pm10ge200_or_dustge100": 1100
+    },
+    "abha": {
+      "name": "Abha (Asir highlands)",
+      "lat": 18.22,
+      "lon": 42.5,
+      "elevation_m": 2219.0,
+      "rows": 1529,
+      "first_date": "2022-08-01",
+      "last_date": "2026-10-07",
+      "pm10_max_days": 1526,
+      "storm_days_pm10_ge200": 70,
+      "storm_days_label_pm10ge200_or_dustge100": 980
+    },
+    "shaqra": {
+      "name": "Shaqra",
+      "lat": 25.25,
+      "lon": 45.25,
+      "elevation_m": 710.0,
+      "rows": 1529,
+      "first_date": "2022-08-01",
+      "last_date": "2026-10-07",
+      "pm10_max_days": 1526,
+      "storm_days_pm10_ge200": 948,
+      "storm_days_label_pm10ge200_or_dustge100": 1465
+    }
+  },
+  "dropped_variables": [],
+  "missing_windows": [],
+  "fetch_counts": {
+    "hit": 2,
+    "cache": 0,
+    "fail": 0
+  },
+  "api": {
+    "weather_daily": "https://archive-api.open-meteo.com/v1/archive?latitude={lat}&longitude={lon}&start_date={s}&end_date={e}&daily=shortwave_radiation_sum,temperature_2m_max,temperature_2m_min,temperature_2m_mean,wind_speed_10m_max,wind_gusts_10m_max,precipitation_sum,wind_direction_10m_dominant&timezone=UTC&wind_speed_unit=ms",
+    "rh_hourly": "https://archive-api.open-meteo.com/v1/archive?latitude={lat}&longitude={lon}&start_date={s}&end_date={e}&hourly=relative_humidity_2m&timezone=UTC",
+    "air_quality_hourly": "https://air-quality-api.open-meteo.com/v1/air-quality?latitude={lat}&longitude={lon}&start_date={s}&end_date={e}&hourly=pm10,dust,aerosol_optical_depth,pm2_5&timezone=UTC",
+    "window_days": 90,
+    "air_quality_vars_requested": "pm10,dust,aerosol_optical_depth,pm2_5",
+    "weather_daily_vars_requested": "shortwave_radiation_sum,temperature_2m_max,temperature_2m_min,temperature_2m_mean,wind_speed_10m_max,wind_gusts_10m_max,precipitation_sum,wind_direction_10m_dominant"
+  },
+  "notes": [
+    "site key = sg_config.SITES 'id'; sg_config has no elevation_m field, so elevation_m is the grid elevation returned by the Open-Meteo weather request.",
+    "CAMS air-quality history was observed to begin ~2022-08-04 (2022-08-01..03 came back all-null), so the first few days of the requested range have no dust data."
+  ]
+}

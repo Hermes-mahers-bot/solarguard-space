@@ -233,24 +233,17 @@ label.field .lbl b { color: var(--sand-2); }
 .livetile .u { font-size: 0.78rem; color: var(--ink-4); }
 .map-shell { position: relative; border-radius: var(--r); overflow: hidden; border: 1px solid var(--line-soft); background: var(--bg-soft); }
 #sg-map, #realmap { display: block; width: 100%; height: clamp(300px, 46svh, 560px); }
-.map-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-.map-tools > * { flex: 1 1 170px; min-width: 0; }
-#cost-preset, #site-select { text-overflow: ellipsis; }
+.map-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.map-tools .btn { flex: 0 0 auto; }
 .map-hint { display: flex; justify-content: space-between; gap: 10px; font-size: 0.72rem; color: var(--ink-4); margin-top: 8px; }
 .spinner { width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,.15); border-top-color: var(--sand); animation: spin .8s linear infinite; display: inline-block; vertical-align: -2px; }
 @keyframes spin { to { transform: rotate(360deg) } }
 
-/* the real-map module renders its own floating cluster; on a phone that cluster
-   clips against the map edge, so there we hide it and drive the same functions
-   from the page's own control row */
-@media (max-width: 719px) {
-  .sg-ctrls { display: none !important; }
-}
-@media (min-width: 720px) {
-  /* desktop with the real map: its own cluster is the better UI */
-  #map-controls { display: none; }
-  body.map-canvas #map-controls { display: flex; }
-}
+/* The map is a place-picker, so it carries no floating GIS cluster of its own:
+   the dashboard strips the module's built-in cluster from the DOM and the two
+   plain buttons under the map are the whole toolbar, at every width. This rule
+   is the belt to that braces, so the cluster can never flash on screen first. */
+.sg-ctrls { display: none !important; }
 
 /* leaflet (real map) tuned to the theme */
 .leaflet-container { background: #060a13; font-family: var(--font); width: 100%; max-width: 100%; }
@@ -420,6 +413,9 @@ footer.site a { display: inline-block; padding: 6px 0; }        /* 44px-ish touc
   font-family: var(--mono); font-size: .67rem; letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-3); font-weight: 500; margin: 26px 0 8px;
   display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; row-gap: 3px;
+  /* the homepage's .sub caps itself at 46ch for prose; a chart label must not
+     inherit that or it wraps into a ragged column in the middle of a chart */
+  max-width: none;
 }
 /* anchors shouldn't land under the fixed nav */
 section[id], .band[id] { scroll-margin-top: 78px; }
@@ -445,12 +441,25 @@ section[id], .band[id] { scroll-margin-top: 78px; }
 .num-tile .u, .obs-tile .u { font-size: .8rem; color: var(--ink-4); }
 .obs-tile .v { font-size: clamp(1.1rem, 2.3vw, 1.4rem); font-weight: 500; color: var(--cyan); }
 .obs-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 20px; }
-.controls-inline { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 20px; }
-.model-note {
-  font-size: .84rem; color: var(--ink-3); margin: 22px 0 0;
-  border-left: 2px solid rgba(243, 167, 43, 0.45); padding-left: 13px;
-}
 .data .u { color: var(--ink-4); font-size: .72rem; }
+
+/* ── AI output states ─────────────────────────────────────────────────────── */
+.chip.ok { background: rgba(61, 220, 151, .16); color: #7ff0bd; border: 1px solid rgba(61, 220, 151, .4); }
+.ai .lvl, .lvl { font-weight: 600; }
+.lvl.quiet { color: var(--cyan); }
+.lvl.watch { color: var(--sand-2); }
+.lvl.storm { color: #ff7a86; }
+
+/* ---------------------------------------------------------------- the two inputs */
+.inputs-row { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 18px; }
+.inputs-row .field { margin-bottom: 0; }
+.in-wrap { display: flex; align-items: baseline; gap: 8px; }
+.in-wrap input { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 1.1rem; }
+.in-wrap .unit { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-3); }
+label.field .hint { display: block; margin-top: 6px; font-size: 0.78rem; }
+label.field .hint b { color: var(--sand-2); font-weight: 600; }
+#baseline-note, #param-error { max-width: 62ch; }
+#param-error:empty { display: none; }
 
 .urg {
   display: flex; justify-content: space-between; margin-top: 14px;
@@ -464,6 +473,67 @@ section[id], .band[id] { scroll-margin-top: 78px; }
 @media (min-width: 620px) { .obs-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (min-width: 760px) {
   .hero-nums { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 26px; }
-  .controls-inline { grid-template-columns: 1fr 1.35fr 1fr 1fr; }
+  .inputs-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px; }
   .obs-row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+/* ---------------------------------------------------------------- the answer */
+.verdict-main { min-width: 0; }
+.verdict-side { margin-left: auto; text-align: right; display: flex; flex-direction: column; gap: 3px; }
+.verdict-side .k {
+  font-family: var(--mono); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+}
+.verdict-side #reco-line { font-size: .95rem; color: var(--ink); white-space: nowrap; }
+
+/* ---------------------------------------------------------------- the year, priced */
+.water { margin-top: 18px; max-width: 640px; }
+
+/* ══════════════════════════════ AI output placeholder ══════════════════════
+   Empty on purpose. Laid out as if filled; the model team wires the ids. */
+#ai-out {
+  background: linear-gradient(180deg, rgba(55, 224, 255, 0.05), rgba(55, 224, 255, 0) 60%);
+  border-top: 1px solid rgba(55, 224, 255, 0.28);
+}
+.chip.pending { border: 1px solid var(--line); color: var(--ink-3); }
+.ai-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.ai-card {
+  border: 1px solid var(--line-soft); border-radius: var(--r); background: var(--panel);
+  padding: clamp(14px, 3vw, 20px); min-width: 0;
+}
+/* `.band h3.sub` is (0,2,1), so these card titles need to out-specify it. */
+.band .ai-card .ai-h {
+  font-family: var(--font); font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em;
+  text-transform: none; color: var(--ink); margin: 0 0 14px; max-width: none;
+}
+.ai-storm { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.ai-day {
+  display: flex; flex-direction: column; gap: 4px; min-width: 0;
+  border: 1px solid var(--line-soft); border-radius: var(--r-sm); padding: 10px 11px; background: var(--bg-soft);
+}
+.ai-day .k, .ai-num .k {
+  font-family: var(--mono); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+}
+.ai-day .v { font-size: clamp(1.02rem, 3.4vw, 1.2rem); font-weight: 600; color: var(--ink-3); line-height: 1.1; }
+.ai-nums { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.ai-num { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.ai-num .v { font-family: var(--mono); font-size: clamp(1.05rem, 3.4vw, 1.35rem); color: var(--ink-3); }
+.ai-num .u { font-size: .72rem; color: var(--ink-4); }
+.ai-note { margin-top: 16px; max-width: 70ch; }
+/* colour hooks for the storm tiles once a model fills them in */
+.lvl.quiet { color: var(--green); }
+.lvl.watch { color: var(--amber); }
+.lvl.storm { color: var(--red); }
+
+@media (min-width: 760px) {
+  .ai-grid { grid-template-columns: 1.15fr 1fr 1fr; }
+  .ai-nums { gap: 14px; }
+}
+@media (max-width: 719px) {
+  .verdict-side { margin-left: 0; text-align: left; }
+  .verdict-side #reco-line { white-space: normal; }
+  .ai-storm { gap: 8px; }
+  .ai-day { padding: 9px 8px; }
+  /* the four money rows must fit a 390 px phone without a sideways scroll, so
+     let the short headers wrap rather than force the column wider */
+  .table-wrap table.data.compact th { white-space: normal; }
 }

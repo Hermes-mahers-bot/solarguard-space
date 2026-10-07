@@ -19,6 +19,9 @@ env/
 
 # Runtime caches (regenerated on demand; 309 files, ~12 MB at time of writing)
 data/cache/
+# raw API responses cached by the AI harvest — provenance, but hundreds of files
+# and several MB. The distilled daily.csv and harvest_report.json are committed.
+data/ai/raw/
 
 # Logs and render working files
 logs/

@@ -23,6 +23,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 import sg_agent
+import sg_ai
 import sg_datasources as ds
 import sg_rag
 import sg_soiling as soil
@@ -74,7 +75,9 @@ def version():
     return {"service": SERVICE, "version": VERSION,
             "ai_model": sg_agent.DEEPSEEK_MODEL,
             "ai_configured": bool(sg_agent.DEEPSEEK_KEY),
-            "soiling_model": ("ml+physics" if soil.ml_available() else "physics")}
+            "prediction_model": ("solar-guard-ai (trained here)" if sg_ai.ai_available()
+                                 else "physics only"),
+            "decision_model": "physics-empirical + policy optimiser"}
 
 
 @sg_app.get("/api/sg/status")
@@ -87,11 +90,12 @@ def sg_status():
     rag = sg_rag.stats()
     return {"service": SERVICE, "version": VERSION,
             "ai_enabled": bool(sg_agent.DEEPSEEK_KEY), "model": sg_agent.DEEPSEEK_MODEL,
-            "soiling_model": ("ml+physics" if soil.ml_serving() else "physics-empirical"),
-            "ml_models_loaded": soil.ml_available(),
-            "ml_note": ("ML models are trained and evaluated but need 90-day rolling dust "
-                        "features the forecast horizon does not have; physics serves. "
-                        "See docs/MODEL_CARD.md."),
+            "decision_model": "physics-empirical soiling + cleaning-policy optimiser",
+            "prediction_model": ("solar-guard-ai" if sg_ai.ai_available() else None),
+            "prediction_models_loaded": sorted(sg_ai._all().keys()),
+            "prediction_note": ("Predictions come from AI models trained here on 4.2 years x 12 "
+                                "sites (see /api/ai/models for their measured error); the "
+                                "cleaning decision comes from the calibrated physics model."),
             "tools": [t["function"]["name"] for t in sg_agent.TOOLS],
             "tool_count": len(sg_agent.TOOLS),
             "rag": {"retriever": rag["retriever"], "chunks": rag["chunks"]},
@@ -105,6 +109,28 @@ def ai_status():
             "retriever": sg_rag.stats()["retriever"],
             "tools": [t["function"]["name"] for t in sg_agent.TOOLS],
             "key_source": "backend/.env (server-side only)"}
+
+
+@sg_app.get("/api/ai")
+def ai_predict(lat: float | None = None, lon: float | None = None,
+               site: str = "dammam", capacity_kwp: float = 100_000.0):
+    """Live AI predictions: P(sandstorm) for the next three days, tomorrow's energy
+    output, and tomorrow's soiling loss — each with the error measured on held-out
+    data. Never raises: a failed feed returns {ok: false, error: ...} so the
+    dashboard keeps rendering."""
+    if lat is None or lon is None:
+        s = next((x for x in SITES if x["id"] == site), None)
+        if s is None:
+            return JSONResponse({"ok": False, "error": "unknown site"}, status_code=400)
+        lat, lon = float(s["lat"]), float(s["lon"])
+    out = sg_ai.predict_site(float(lat), float(lon), float(capacity_kwp), site_id=site)
+    return out
+
+
+@sg_app.get("/api/ai/models")
+def ai_models():
+    """The trained AI's own report card: what it predicts and how wrong it is."""
+    return sg_ai.ai_status()
 
 
 @sg_app.get("/api/sites")

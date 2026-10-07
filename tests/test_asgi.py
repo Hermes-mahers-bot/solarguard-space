@@ -72,7 +72,8 @@ async def main():
         print("  answer preview:", (out.get("answer") or "")[:420].replace("\n", " "))
 
         # static pages
-        for page in ["/", "/dashboard.html", "/technology.html", "/assets/css/solarguard.css",
+        for page in ["/", "/dashboard.html", "/technology.html", "/api/ai", "/api/ai/models",
+                     "/assets/css/solarguard.css",
                      "/assets/js/sg-core.js", "/assets/js/sg-scrollstory.js",
                      "/assets/js/sg-plume-story.js", "/assets/js/sg-realmaps.js",
                      "/assets/data/borders.json", "/api/sg/status"]:
