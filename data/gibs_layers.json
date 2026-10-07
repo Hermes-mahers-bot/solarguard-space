@@ -1,0 +1,149 @@
+{
+  "source": "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/1.0.0/WMTSCapabilities.xml",
+  "catalog": {
+    "MODIS_Terra_Aerosol": {
+      "title": "Dark Target Aerosol Optical Depth (Land and Ocean, MODIS, Terra)",
+      "formats": "image/png",
+      "styles": [
+        "default"
+      ],
+      "tile_matrix_sets": [
+        ""
+      ],
+      "dimensions": {
+        "Time": {
+          "default": "2026-10-07",
+          "n_values": 8,
+          "first": "2000-02-24/2000-08-06/P1D",
+          "last": "2022-10-23/2026-10-07/P1D"
+        }
+      }
+    },
+    "MODIS_Aqua_Aerosol_Optical_Depth_3km": {
+      "title": "Aerosol Optical Depth (3km, MODIS, Aqua)",
+      "formats": "image/png",
+      "styles": [
+        "default"
+      ],
+      "tile_matrix_sets": [
+        ""
+      ],
+      "dimensions": {
+        "Time": {
+          "default": "2026-10-07",
+          "n_values": 5,
+          "first": "2002-07-03/2002-07-29/P1D",
+          "last": "2022-04-17/2026-10-07/P1D"
+        }
+      }
+    },
+    "MODIS_Combined_MAIAC_L2G_AerosolOpticalDepth": {
+      "title": "MAIAC Aerosol Optical Depth (MODIS, Combined Aqua and Terra)",
+      "formats": "image/png",
+      "styles": [
+        "default"
+      ],
+      "tile_matrix_sets": [
+        ""
+      ],
+      "dimensions": {
+        "Time": {
+          "default": "2026-10-06",
+          "n_values": 8,
+          "first": "2000-02-24/2000-04-25/P1D",
+          "last": "2002-09-15/2026-10-06/P1D"
+        }
+      }
+    },
+    "MODIS_Terra_AOD_Deep_Blue_Land": {
+      "title": "Deep Blue Aerosol Optical Depth (Land, MODIS, Terra)",
+      "formats": "image/png",
+      "styles": [
+        "default"
+      ],
+      "tile_matrix_sets": [
+        ""
+      ],
+      "dimensions": {
+        "Time": {
+          "default": "2026-10-07",
+          "n_values": 8,
+          "first": "2000-02-24/2000-08-06/P1D",
+          "last": "2022-10-23/2026-10-07/P1D"
+        }
+      }
+    },
+    "AIRS_L2_Dust_Score_Day": {
+      "title": "Dust Score (L2, Day, AIRS, Aqua)",
+      "formats": "image/png",
+      "styles": [
+        "default"
+      ],
+      "tile_matrix_sets": [
+        ""
+      ],
+      "dimensions": {
+        "Time": {
+          "default": "2026-10-07",
+          "n_values": 11,
+          "first": "2002-08-30/2002-10-19/P1D",
+          "last": "2026-08-13/2026-10-07/P1D"
+        }
+      }
+    },
+    "MERRA2_Dust_Surface_Mass_Concentration_Monthly": {
+      "title": "Dust Surface Mass Concentration (Monthly, MERRA2)",
+      "formats": "image/png",
+      "styles": [
+        "default"
+      ],
+      "tile_matrix_sets": [
+        ""
+      ],
+      "dimensions": {
+        "Time": {
+          "default": "2026-07-01",
+          "n_values": 60,
+          "first": "1980-01-01/2025-04-01/P1M",
+          "last": "2025-07-01/2026-07-01/P1M"
+        }
+      }
+    },
+    "MERRA2_Total_Aerosol_Optical_Thickness_550nm_Extinction_Monthly": {
+      "title": "Total Aerosol Optical Thickness Extinction 550nm (Monthly, MERRA2)",
+      "formats": "image/png",
+      "styles": [
+        "default"
+      ],
+      "tile_matrix_sets": [
+        ""
+      ],
+      "dimensions": {
+        "Time": {
+          "default": "2026-06-01",
+          "n_values": 63,
+          "first": "1980-01-01/2000-03-01/P1M",
+          "last": "2025-07-01/2026-06-01/P1M"
+        }
+      }
+    },
+    "MERRA2_Total_Dust_Deposition_Dry_Wet_Monthly": {
+      "title": "Total Dust Deposition, Dry+Wet All Bins (Monthly, MERRA2)",
+      "formats": "image/png",
+      "styles": [
+        "default"
+      ],
+      "tile_matrix_sets": [
+        ""
+      ],
+      "dimensions": {
+        "Time": {
+          "default": "2026-07-01",
+          "n_values": 71,
+          "first": "1980-01-01/2000-03-01/P1M",
+          "last": "2025-07-01/2026-07-01/P1M"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+Title: SOILING LOSS RATE MEASUREMENTS OF PHOTOVOLTAIC MODULES IN A HOT AND HUMID DESERT ENVIRONMENT
+Source: https://repository.kaust.edu.sa/handle/10754/665153
+
+Title: SOILING LOSS RATE MEASUREMENTS OF PHOTOVOLTAIC MODULES IN A HOT AND HUMID DESERT ENVIRONMENT
+
+URL Source: https://repository.kaust.edu.sa/handle/10754/665153
+
+Published Time: Tue, 05 Aug 2025 06:31:37 GMT
+
+Markdown Content:
+##### Abstract
+
+Abstract  
+ Power generation from renewable energy sources, in particular solar photovoltaics (PV), has become extremely attractive thanks to its very low levelized cost of electricity (LCoE). In desert-like environments, the energy yield is drastically reduced due to dust accumulation. While effective and affordable cleaning strategies can be implemented in large, MW-size PV power plants, soiling remains an economic and logistic challenge. In this paper, we analyze the soiling loss rates of PV modules for different tilt angles measured during a period of 15 months in the Western Region of Saudi Arabia. We observe a strong correlation between weather parameters like humidity and wind speed, and the mechanism of dust accumulation. Our measurements show that, for specific weather conditions, soiled modules undergo a partial cleaning process. As a consequence, and for the first time, the soiling loss rates are shown to have a clear dependence on the current soiling state of the modules, with clean modules soiling twice as fast as soiled ones. This dependency is key for predicting the correct cleaning frequency of a PV power plant. Finally, the results obtained for vertically mounted modules (90°), where dust accumulation is negligible, point to a favorable case for the use of bifacial PV modules.
+##### Citation
+
+Abdullah, M., Khayyat, A., Basaheeh, A., Kotsovos, K., Ballard, I., Alsaggaf, A., … Theron, R. (2020). SOILING LOSS RATE MEASUREMENTS OF PHOTOVOLTAIC MODULES IN A HOT AND HUMID DESERT ENVIRONMENT. Journal of Solar Energy Engineering, 1–20. doi:10.1115/1.4048406
+##### Acknowledgements
+
+We would like to thank KAUST’s New Energy Oasis – Research Park team for the utilization of their testing facility for our PV system installation and also Dr.Thodoros Katsaounis for his valuable suggestions and comments. Funding for this project was provided by Saudi Aramco’s Research and Development Center, as part of a research project to assess dust accumulation on solar modules and its impact on the performance of PV power plants.
+##### Publisher
+
+[ASME International]
+##### Journal
+
+[Journal of Solar Energy Engineering]
+##### DOI
+
+[10.1115/1.4048406]
+##### Additional Links
+
+[https://asmedigitalcollection.asme.org/solarenergyengineering/article/doi/10.1115/1.4048406/1086908/SOILING-LOSS-RATE-MEASUREMENTS-OF-PHOTOVOLTAIC]

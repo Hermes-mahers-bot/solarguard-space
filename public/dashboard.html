@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dashboard — SolarGuard Space</title>
+<meta name="description" content="Live dust, soiling and cleaning-decision dashboard for Saudi solar sites.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070b14'/%3E%3Cpath d='M16 6 L18 13 L25 16 L18 19 L16 26 L14 19 L7 16 L14 13 Z' fill='%23f3a72b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="assets/css/solarguard.css">
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap inner">
+    <a class="brand" href="./">Solar<span>Guard</span></a>
+    <div class="links">
+      <a href="./">← Overview</a>
+      <span class="pill live" id="nav-status"><span class="dot"></span> live</span>
+      <a class="btn primary sm" href="#agent">Ask the agent</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap" style="padding-top:88px;padding-bottom:64px">
+
+  <div class="head" style="max-width:none">
+    <p class="kicker">Live dashboard</p>
+    <h1 id="site-title" style="font-size:clamp(1.5rem,5vw,2.2rem)">Loading sites…</h1>
+    <p class="small dim" id="site-sub" style="margin:0"></p>
+  </div>
+
+  <!-- controls -->
+  <div class="panel" style="margin-top:18px">
+    <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+      <label class="field" style="margin:0">
+        <span class="lbl">Site <b id="cap-interest">—</b></span>
+        <select id="site-select"></select>
+      </label>
+      <label class="field" style="margin:0">
+        <span class="lbl">Cleaning cost per pass</span>
+        <select id="cost-preset" title="Cost of one cleaning pass"></select>
+      </label>
+      <label class="field" style="margin:0">
+        <span class="lbl">Array size <b id="cap-val">100 MWp</b></span>
+        <input type="range" id="cap-range" min="100" max="400000" step="100" value="100000">
+      </label>
+      <label class="field" style="margin:0">
+        <span class="lbl">Your cleaning interval <b id="ci-val">10 d</b></span>
+        <input type="range" id="ci-range" min="2" max="60" step="1" value="10">
+      </label>
+    </div>
+    <p class="small dim" id="param-error" style="margin:10px 0 0"></p>
+  </div>
+
+  <div class="dash" style="margin-top:16px">
+
+    <!-- ------------------------------------------------ left: map + charts -->
+    <div>
+      <div class="panel">
+        <h3>Map <span class="spacer" id="map-mode"></span></h3>
+        <div class="map-shell">
+          <div id="realmap"></div>
+          <canvas id="sg-map" style="display:none"></canvas>
+        </div>
+        <div class="map-tools" id="map-controls">
+          <select id="basemap">
+            <option value="dark">Basemap: dark labels</option>
+            <option value="osm">Basemap: streets</option>
+          </select>
+          <select id="layer-select"></select>
+          <input type="date" id="layer-date">
+          <button class="btn sm" id="layer-toggle">Hide dust</button>
+          <button class="btn sm" id="reset-view">Reset view</button>
+        </div>
+        <div class="map-hint">
+          <span id="map-coords">tap the map to test your own site</span>
+          <span>NASA GIBS · © OpenStreetMap · © CARTO</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Soiling loss and money lost <span class="spacer" id="proj-note"></span></h3>
+        <canvas id="chart-projection" style="width:100%;height:230px"></canvas>
+        <div class="legend">
+          <span><i style="background:#37e0ff"></i>soiling loss %</span>
+          <span><i style="background:#f3a72b"></i>value lost that day</span>
+          <span><i style="background:#3ddc97"></i>cleaning event</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Energy delivered vs lost to dust <span class="spacer" id="energy-note"></span></h3>
+        <canvas id="chart-energy" style="width:100%;height:160px"></canvas>
+        <div class="legend">
+          <span><i style="background:rgba(55,224,255,.55)"></i>delivered</span>
+          <span><i style="background:rgba(255,95,109,.72)"></i>lost to dust</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Dust, wind and aerosol drivers</h3>
+        <canvas id="chart-series" style="width:100%;height:180px"></canvas>
+      </div>
+
+      <div class="panel">
+        <h3>Day by day <span class="spacer">scroll sideways on a phone</span></h3>
+        <div class="table-wrap" style="max-height:360px;overflow:auto">
+          <table class="data" id="plan-table">
+            <thead><tr>
+              <th>Date</th><th>Risk</th><th class="num">PM10</th><th class="num">Gust</th>
+              <th class="num">kWh/m²</th><th class="num">Loss</th><th class="num">kWh lost</th>
+              <th class="num">SAR</th><th>Clean</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ------------------------------------------------ right -->
+    <div>
+      <div class="panel">
+        <h3>Verdict <span class="spacer" id="verdict-stamp"></span></h3>
+        <div class="verdict" id="verdict-box">
+          <div>
+            <div class="big" id="verdict-word">—</div>
+            <div class="small dim" id="verdict-sub">loading…</div>
+          </div>
+        </div>
+        <div style="margin-top:14px">
+          <div class="lbl" style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)">
+            <span>urgency</span><span id="urgency-val">—</span>
+          </div>
+          <div class="bar" style="margin-top:6px"><i id="urgency-bar" style="width:0%"></i></div>
+        </div>
+        <div id="verdict-reason" style="margin-top:14px"></div>
+      </div>
+
+      <div class="panel">
+        <h3>Key numbers</h3>
+        <div class="tiles">
+          <div class="livetile"><span class="k">soiling now</span><span class="v" id="k-loss">—</span><span class="u" id="k-mass">—</span></div>
+          <div class="livetile"><span class="k">lost today</span><span class="v" id="k-lost">—</span><span class="u" id="k-lost-sar">—</span></div>
+          <div class="livetile"><span class="k">7-day risk</span><span class="v" id="k-risk">—</span><span class="u" id="k-cost">—</span></div>
+          <div class="livetile"><span class="k">since clean</span><span class="v" id="k-exposure">—</span><span class="u" id="k-trigger">—</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Your habit vs the tuned policy <span class="spacer">one simulated year</span></h3>
+        <div class="table-wrap">
+          <table class="data" id="habits-table">
+            <thead><tr><th>Policy</th><th class="num">Cleans</th><th class="num">Mean loss</th><th class="num">Net / yr</th></tr></thead>
+            <tbody><tr><td colspan="4" class="dim">computing…</td></tr></tbody>
+          </table>
+        </div>
+        <p class="small dim" id="habits-note" style="margin-top:10px"></p>
+      </div>
+
+      <div class="panel">
+        <h3>Water</h3>
+        <div class="kv"><span class="k">wet pass</span><span class="v" id="w-pass">—</span></div>
+        <div class="kv"><span class="k">your habit, per year</span><span class="v" id="w-habit">—</span></div>
+        <div class="kv"><span class="k">tuned policy, per year</span><span class="v" id="w-tuned">—</span></div>
+        <div class="kv"><span class="k">avoided</span><span class="v" id="w-saved">—</span></div>
+      </div>
+
+      <div class="panel">
+        <h3>Model card</h3>
+        <div id="model-card" class="small dim">loading…</div>
+      </div>
+
+      <div class="panel">
+        <h3>Feed health <span class="spacer">live probe</span></h3>
+        <div id="feed-health" class="small dim">probing…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================= agent -->
+  <div class="panel" id="agent" style="margin-top:16px">
+    <h3>The agent <span class="spacer" id="copilot-meta"></span></h3>
+    <div class="dash">
+      <div>
+        <div class="chat" id="chat"></div>
+        <div class="ask-row">
+          <input type="text" id="chat-input" placeholder="Ask, or say 'move the map to Sudair'" autocomplete="off">
+          <button class="btn primary" id="chat-send">Ask</button>
+        </div>
+        <div class="suggestions" id="chat-suggestions"></div>
+      </div>
+      <div class="panel" style="margin:0">
+        <h3 style="font-size:.8rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)">Capabilities</h3>
+        <ul class="small dim" style="padding-left:18px;margin:0">
+          <li>live forecast for any coordinate in the Kingdom</li>
+          <li>soiling and cleaning economics with a verdict</li>
+          <li>compare sites, e.g. Jeddah against Dammam</li>
+          <li>search the harvested soiling literature</li>
+          <li><b style="color:var(--ink-2)">act on this page</b>: move the map, switch the satellite layer</li>
+        </ul>
+        <div class="kv" style="margin-top:12px"><span class="k">retriever</span><span class="v" id="cm-retriever">—</span></div>
+        <div class="kv"><span class="k">chunks</span><span class="v" id="cm-chunks">—</span></div>
+        <div class="kv"><span class="k">model</span><span class="v" id="cm-model">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site" style="margin-top:30px">
+    <p class="small dim">Every number here comes from a live pull or a stated assumption.
+      Data: NASA GIBS/EOSDIS, NASA POWER, AERONET, NOAA Himawari-9 &amp; GFS, ECMWF open data, Open-Meteo, AEMET SDS-WAS.
+      Basemap © OpenStreetMap contributors, © CARTO.</p>
+  </footer>
+</main>
+
+<script type="module" src="assets/js/sg-dashboard.js"></script>
+</body>
+</html>

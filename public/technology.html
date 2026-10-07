@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Technology &amp; data — SolarGuard Space</title>
+<meta name="description" content="How SolarGuard Space works: the twelve open data feeds, the soiling model and its calibration, the trained ML models, the retrieval layer and the agent.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070b14'/%3E%3Cpath d='M16 6 L18 13 L25 16 L18 19 L16 26 L14 19 L7 16 L14 13 Z' fill='%23f3a72b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/solarguard.css">
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap inner">
+    <a class="brand" href="./">Solar<span>Guard</span></a>
+    <div class="links">
+      <a href="./">← Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a class="btn primary sm" href="dashboard.html">Try it</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap" style="padding-top:104px;padding-bottom:80px">
+
+  <div class="head">
+    <p class="kicker">Technology &amp; data</p>
+    <h1 style="font-size:clamp(1.9rem,5.4vw,3rem)">How it works, in detail.</h1>
+    <p class="sub" style="max-width:62ch">Everything below is measured live, in public, from open sources — no mock data and
+      no black boxes. If a number is an assumption, it is labelled as one.</p>
+  </div>
+
+  <section class="band" style="border-top:0;padding-top:34px">
+    <h2>The data</h2>
+    <p class="narrow">Twelve open feeds are probed on every page load. Datasets that need an account are wired,
+      listed, and marked with the exact credential they need — we would rather show what we are missing.</p>
+    <p class="mono small" id="feed-status" style="margin:14px 0"></p>
+    <div class="table-wrap">
+      <table class="data" id="sources-table">
+        <thead><tr><th>Source</th><th>Access</th><th>Provides</th><th>Used for</th><th class="num">Status</th></tr></thead>
+        <tbody><tr><td colspan="5" class="dim">probing…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="band">
+    <h2>The soiling model</h2>
+    <div class="two-col">
+      <div>
+        <p>Loss grows as an exponential approach to a ceiling, in <i>effective dust days</i>: each day contributes a
+          factor built from airborne dust concentration, wind (deposition rises with wind, then high wind scours the
+          glass), humidity (dew cements particles so wind cannot lift them) and irradiance. Rain above 5&nbsp;mm washes
+          the array, as does a cleaning event.</p>
+        <p>The daily soiling rate is the anchor, not the annual headline: published Saudi rates sit around
+          0.1–0.5&nbsp;%/day, with dust events well above that. Ask the dashboard and it will show the rate it used,
+          per site, alongside the published annual figures for that climate.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="data" id="calib-table">
+          <thead><tr><th>Climate class</th><th class="num">Rate %/day</th><th class="num">Ceiling</th><th class="num">Published annual</th></tr></thead>
+          <tbody><tr><td colspan="4" class="dim">loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <h2>The cleaning decision</h2>
+    <p class="narrow">For each site we simulate a full year against its own dust seasonality and economics, then score
+      every candidate policy — fixed intervals from 5 to 60 days, plus a sweep of loss thresholds — on total cost:
+      lost generation plus cleaning spend. The winner becomes that site's trigger. The operator's current calendar is
+      one of the candidates, so if adaptive cannot beat it, the dashboard says so.</p>
+    <div class="table-wrap" style="margin-top:18px">
+      <table class="data" id="policy-table">
+        <thead><tr><th>Policy</th><th class="num">Cleans / yr</th><th class="num">Mean loss</th><th class="num">Energy lost</th><th class="num">Cleaning spend</th><th class="num">Total / yr</th></tr></thead>
+        <tbody><tr><td colspan="6" class="dim">computing…</td></tr></tbody>
+      </table>
+    </div>
+    <p class="src" id="policy-note"></p>
+  </section>
+
+  <section class="band">
+    <h2>The models</h2>
+    <div class="two-col">
+      <div>
+        <p>Two models are trained from scratch in numpy — gradient-boosted trees and a small neural net — on six years
+          of satellite meteorology and dust for twelve Saudi sites. Labels come from the physics model above, not from
+          inverter data we do not have; that limitation is on the model card and in the repository.</p>
+        <p class="mono small" id="model-line"></p>
+      </div>
+      <div class="table-wrap">
+        <table class="data" id="model-table">
+          <thead><tr><th>Model</th><th>Target</th><th class="num">MAE</th><th class="num">R²</th></tr></thead>
+          <tbody><tr><td colspan="4" class="dim">loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <h2>The agent</h2>
+    <div class="two-col">
+      <div>
+        <p>Questions are answered by an agent with ten tools: it can pull a forecast, run the economics, compare sites,
+          check AERONET ground truth, list satellite layers, report feed health, and search the harvested soiling
+          literature. Retrieval is BM25 over the corpus — no embedding key required — so every claim returns with a
+          citation.</p>
+        <div class="mini"><span class="k">Tools</span><span class="v" id="agent-tools">—</span></div>
+        <div class="mini"><span class="k">Model</span><span class="v" id="agent-model">—</span></div>
+        <div class="mini"><span class="k">Retrieval</span><span class="v" id="agent-rag">—</span></div>
+        <div class="mini"><span class="k">Corpus</span><span class="v" id="agent-corpus">—</span></div>
+      </div>
+      <div>
+        <p class="src">Every number the agent quotes traces to a tool call, and the tool trace is shown with the answer
+          in the dashboard. It can also act: moving the map, or switching the satellite layer you asked about.</p>
+        <p class="src">Published figures are reproduced with attribution: KAUST (west 15&nbsp;% / east 45&nbsp;%),
+          Middle East regional studies (12–36&nbsp;%), IEA-PVPS T13-21:2022 (cleaning costs, 0.2&nbsp;€/m²),
+          Energies 2022 Saudi review (2–50&nbsp;% performance range; 20&nbsp;% loss after a single sandstorm).</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site">
+    <p class="small dim">Team space-Marines, Riyadh. <a href="./">Home</a> · <a href="dashboard.html">Dashboard</a> ·
+      <a href="api/model">Model card (JSON)</a> · <a href="api/sources">Source status (JSON)</a></p>
+  </footer>
+</main>
+
+<script type="module" src="assets/js/sg-tech.js"></script>
+</body>
+</html>

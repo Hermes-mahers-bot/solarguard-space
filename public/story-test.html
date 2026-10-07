@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SolarGuard — scroll storyboard test bench</title>
+<!--
+  story-test.html — standalone bench for assets/js/sg-scrollstory.js
+  · tall spacer so real scrolling drives the scene
+  · fixed control panel to force progress / data for screenshots
+  · live API wiring: https://space-marines.aimaher.com/solarguard/api/report
+  Query params:  ?clean=1   hide the control panel (for clean screenshots)
+                 ?reduced=1 force the reduced-motion static path
+                 ?p=0.62    pin progress (any params also pin the slider mode)
+-->
+<style>
+  :root{
+    --bg-0:#04060c; --bg-1:#070b14; --bg-2:#0b1120; --bg-3:#111a2e;
+    --line:rgba(148,180,255,.14); --line-strong:rgba(158,195,255,.28);
+    --sand:#f3a72b; --sand-2:#ffcd6b; --cyan:#37e0ff; --cyan-2:#8ff2ff;
+    --green:#3ddc97; --red:#ff5f6d; --amber:#ffb020;
+    --ink:#eaf1ff; --ink-2:#b9c6e0; --ink-3:#7f8dab; --ink-4:#5a6683;
+    --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    --font:"Inter","Space Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:auto}
+  body{margin:0;background:var(--bg-0);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(1200px 700px at 78% -10%,rgba(243,167,43,.10),transparent 60%),
+               radial-gradient(1100px 800px at 8% 8%,rgba(55,224,255,.08),transparent 62%),
+               linear-gradient(180deg,#04060c,#05070e 60%,#04060c)}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+  /* ---------------------------------------------------------------- stage */
+  #scroller{position:relative;height:520vh;z-index:1}
+  #sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+  #sg-story{display:block;width:100%;height:100%;background:#04060c}
+
+  /* caption rail that sits over the scene */
+  .caps{position:absolute;inset:auto auto 42px 50%;transform:translateX(-50%);width:min(92vw,760px);
+        display:flex;justify-content:space-between;gap:10px;pointer-events:none;z-index:3}
+  .cap{flex:1;text-align:center;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+       color:var(--ink-4);padding:6px 4px;border-top:1px solid rgba(148,180,255,.16);transition:color .25s,border-color .25s}
+  .cap.on{color:var(--sand-2);border-top-color:var(--sand)}
+  .eyebrow{position:absolute;top:calc(18px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);
+    font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-4);z-index:3;pointer-events:none}
+  .eyebrow b{color:var(--sand-2)}
+
+  /* --------------------------------------------------------------- panel */
+  #panel{position:fixed;right:14px;bottom:14px;z-index:20;width:328px;max-width:calc(100vw - 28px);
+    background:linear-gradient(170deg,rgba(17,25,43,.94),rgba(8,12,22,.96));
+    border:1px solid var(--line-strong);border-radius:16px;padding:14px 15px;
+    box-shadow:0 24px 70px -30px rgba(0,0,0,.95);backdrop-filter:blur(14px);max-height:calc(100vh - 28px);overflow:auto}
+  body.clean #panel,body.clean .caps,body.clean .eyebrow{display:none}
+  #panel h4{margin:0 0 10px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);font-weight:600;
+    display:flex;align-items:center;gap:8px}
+  #panel h4 .sp{margin-left:auto;color:var(--cyan);letter-spacing:.06em}
+  .row{display:flex;gap:8px;align-items:center;margin:8px 0}
+  .row label{font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);flex:none;width:74px}
+  .row output,.row .val{font-family:var(--mono);font-size:.78rem;color:var(--sand-2);margin-left:auto}
+  input[type=range]{width:100%;accent-color:var(--sand);height:18px}
+  .btns{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:11px}
+  button{font:inherit;font-size:.76rem;font-weight:600;letter-spacing:.02em;padding:8px 10px;border-radius:10px;cursor:pointer;
+    background:rgba(255,255,255,.04);border:1px solid var(--line-strong);color:var(--ink);transition:.18s}
+  button:hover{border-color:var(--sand);color:var(--sand-2)}
+  button.on{background:linear-gradient(96deg,#ffd27a,var(--sand) 45%,#ff7f2a);color:#1b1206;border-color:transparent}
+  button.wide{grid-column:1 / -1}
+  .hr{height:1px;background:linear-gradient(90deg,transparent,var(--line-strong),transparent);margin:11px 0}
+  .kv{display:flex;justify-content:space-between;font-size:.74rem;padding:2px 0;color:var(--ink-3)}
+  .kv b{font-family:var(--mono);color:var(--ink-2);font-weight:600}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:.68rem;padding:3px 9px;border-radius:999px;
+    border:1px solid var(--line-strong);background:rgba(255,255,255,.04);color:var(--ink-3)}
+  .pill.live{border-color:rgba(61,220,151,.4);color:#b6f5d8;background:rgba(61,220,151,.1)}
+  .pill.err{border-color:rgba(255,95,109,.42);color:#ffc9ce;background:rgba(255,95,109,.12)}
+  .pill .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+  .note{font-size:.68rem;color:var(--ink-4);margin-top:9px;line-height:1.5}
+
+  /* ------------------------------------------------------------- afterword */
+  section.after{position:relative;z-index:2;padding:70px 26px 90px;max-width:900px;margin:0 auto}
+  section.after h2{font-size:1.6rem;letter-spacing:-.02em;margin:0 0 10px}
+  section.after p{color:var(--ink-2)}
+  code{font-family:var(--mono);font-size:.84em;color:var(--cyan-2)}
+</style>
+</head>
+<body>
+
+<div id="scroller">
+  <div id="sticky">
+    <canvas id="sg-story" aria-label="Scroll storyboard: the sun arcs over a desert solar array that is buried by a dust storm and then cleaned." role="img"></canvas>
+    <div class="eyebrow">SolarGuard <b>·</b> scroll storyboard test bench</div>
+    <div class="caps">
+      <div class="cap" data-cap="0">Dawn</div>
+      <div class="cap" data-cap="1">Trackers</div>
+      <div class="cap" data-cap="2">Dust front</div>
+      <div class="cap" data-cap="3">Buried</div>
+      <div class="cap" data-cap="4">Cleaning</div>
+    </div>
+  </div>
+</div>
+
+<section class="after">
+  <h2>Bench notes</h2>
+  <p>The scene above is <code>createScrollStory(canvas)</code> from
+     <code>assets/js/sg-scrollstory.js</code> — canvas&nbsp;2D, its own 3D→2D projection,
+     no three.js and no external assets. Scroll position is the only input; the module
+     never touches the DOM for measurement except on <code>resize()</code>.</p>
+  <p class="mono" style="color:var(--ink-3);font-size:.82rem">
+     setProgress(0…1) → dawn → noon → dust storm → buried → cleaning pass.
+  </p>
+</section>
+
+<div id="panel">
+  <h4>Storyboard bench <span class="sp mono" id="fps">—</span></h4>
+
+  <div class="row"><label>Progress</label><input id="p-slider" type="range" min="0" max="1000" value="0"></div>
+  <div class="row"><label>p</label><span class="val mono" id="p-out">0.000</span>
+       <span class="pill" id="p-state">scroll</span></div>
+  <div class="row" style="margin-top:2px"><button id="b-pin" style="flex:1">PIN SLIDER (ignore scroll)</button></div>
+
+  <div class="hr"></div>
+  <div class="row"><label>Soiling</label><input id="d-soil" type="range" min="0" max="400" value="124"></div>
+  <div class="row"><label>Dust</label><input id="d-dust" type="range" min="0" max="400" value="30"></div>
+  <div class="row"><label>Site</label>
+    <input id="d-site" type="text" value="Dammam / Eastern Prov"
+      style="flex:1;font:inherit;font-size:.76rem;color:var(--ink);background:rgba(8,13,24,.92);
+      border:1px solid var(--line-strong);border-radius:8px;padding:5px 8px"></div>
+  <div class="row" style="margin-top:2px">
+    <button id="b-data" style="flex:1">FEED SLIDER DATA → HUD</button>
+  </div>
+
+  <div class="hr"></div>
+  <div class="btns">
+    <button id="b-start">▶ START</button>
+    <button id="b-stop">⏸ STOP</button>
+    <button id="b-static">⦿ STATIC FRAME</button>
+    <button id="b-reset">↺ RESET</button>
+    <button id="b-api" class="wide">⟳ FETCH LIVE API NUMBERS</button>
+  </div>
+
+  <div class="hr"></div>
+  <div class="kv"><span>API</span><b id="api-state">idle</b></div>
+  <div class="kv"><span>soiling_loss_pct</span><b id="api-soil">—</b></div>
+  <div class="kv"><span>dust_ugm3</span><b id="api-dust">—</b></div>
+  <div class="kv"><span>runner</span><b id="run-state">running</b></div>
+  <div class="kv"><span>reduced motion</span><b id="rm-state">no</b></div>
+  <div class="note">Real numbers come from
+    <span class="mono">space-marines.aimaher.com/solarguard/api/report</span>.
+    FETCH pulls them and feeds them to the HUD; without them the HUD interpolates from progress.</div>
+</div>
+
+<script>
+  /* test-bench error capture: the module is imported below, so any failure
+     during evaluation lands here instead of vanishing into the console. */
+  window.__errors = [];
+  addEventListener("error", (e) => window.__errors.push(String((e && (e.message || e.error)) || e)));
+  addEventListener("unhandledrejection", (e) => window.__errors.push("rejection: " + String(e && e.reason)));
+</script>
+<script type="module">
+import { createScrollStory } from "./assets/js/sg-scrollstory.js";
+
+const $ = (s) => document.querySelector(s);
+const params = new URLSearchParams(location.search);
+const clean = params.has("clean");
+if (clean) document.body.classList.add("clean");
+
+const canvas = $("#sg-story");
+const story = createScrollStory(canvas, {
+  siteName: "Dammam / Eastern Prov",
+  reducedMotion: params.has("reduced"),
+  staticProgress: params.has("p") ? parseFloat(params.get("p")) : 0.42,
+});
+
+/* ---------------------------------------------------------- scroll wiring */
+const scroller = $("#scroller");
+let maxScroll = 1;
+function measure() {
+  maxScroll = Math.max(1, scroller.offsetHeight - window.innerHeight);
+  story.resize();                        // size read happens inside the module
+}
+addEventListener("resize", measure, { passive: true });
+measure();
+
+let pinned = params.has("p") || params.has("pin");
+function onScroll() {
+  if (pinned) return;
+  const p = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+  story.setProgress(p);
+}
+addEventListener("scroll", onScroll, { passive: true });
+
+/* --------------------------------------------------------------- controls */
+const pSlider = $("#p-slider"), pOut = $("#p-out"), pState = $("#p-state");
+const caps = Array.from(document.querySelectorAll(".cap"));
+
+function syncCaps(p) {
+  const idx = p < 0.14 ? 0 : p < 0.40 ? 1 : p < 0.62 ? 2 : p < 0.74 ? 3 : 4;
+  caps.forEach((c, i) => c.classList.toggle("on", i === idx));
+}
+function showProgress(p) {
+  pOut.textContent = p.toFixed(3);
+  pSlider.value = String(Math.round(p * 1000));
+  pState.textContent = pinned ? "pinned" : "scroll";
+  pState.classList.toggle("live", pinned);
+  syncCaps(p);
+}
+function setP(p, instant = true) {
+  p = Math.min(1, Math.max(0, p));
+  story.setProgress(p, instant);
+  showProgress(p);
+}
+pSlider.addEventListener("input", () => { pinned = true; setP(+pSlider.value / 1000); });
+$("#b-pin").addEventListener("click", (e) => {
+  pinned = !pinned;
+  e.target.classList.toggle("on", pinned);
+  if (!pinned) onScroll(); else setP(story.getProgress());
+});
+$("#b-pin").classList.toggle("on", pinned);
+
+/* ------------------------------------------------------------- data feed */
+let dataOn = false;
+function feed() {
+  if (!dataOn) return;
+  const soil = +$("#d-soil").value / 10;
+  story.setData({
+    soilingLossPct: soil,
+    outputPct: 100 - soil,
+    dustUgm3: +$("#d-dust").value,
+    siteName: $("#d-site").value,
+  });
+}
+["d-soil", "d-dust", "d-site"].forEach((id) =>
+  $("#" + id).addEventListener("input", feed));
+$("#b-data").addEventListener("click", (e) => {
+  dataOn = !dataOn;
+  e.target.classList.toggle("on", dataOn);
+  if (dataOn) feed(); else story.setData(null);
+});
+
+/* ---------------------------------------------------------------- buttons */
+$("#b-start").addEventListener("click", () => { story.start(); refreshRun(); });
+$("#b-stop").addEventListener("click", () => { story.stop(); refreshRun(); });
+$("#b-static").addEventListener("click", () => {
+  story.stop();
+  setP(pinned ? +pSlider.value / 1000 : story.getProgress(), true);
+  refreshRun();
+});
+$("#b-reset").addEventListener("click", () => {
+  window.scrollTo(0, 0);
+  pinned = false; $("#b-pin").classList.remove("on");
+  dataOn = false; $("#b-data").classList.remove("on");
+  story.setData(null);
+  showProgress(0);
+  $("#api-state").textContent = "idle"; $("#api-state").className = "";
+  story.start(); refreshRun();
+});
+function refreshRun() { $("#run-state").textContent = story.isRunning() ? "running" : "stopped"; }
+$("#rm-state").textContent = story.isReduced() ? "yes (static)" : "no";
+
+/* ------------------------------------------------------------- live API */
+const API = "https://space-marines.aimaher.com/solarguard/api/report?site=dammam&capacity_kwp=100000&horizon_days=10";
+async function loadApi() {
+  const st = $("#api-state");
+  st.textContent = "fetching…"; st.className = "pill";
+  try {
+    const r = await fetch(API, { headers: { accept: "application/json" } });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const j = await r.json();
+    const soil = j?.report?.fixed_schedule?.rows?.[0]?.soiling_loss_pct;
+    const dust = j?.days?.[0]?.dust_ugm3;
+    const site = j?.site?.name;
+    $("#api-soil").textContent = soil != null ? soil + " %" : "null";
+    $("#api-dust").textContent = dust != null ? dust + " µg/m³" : "null";
+    st.textContent = "live"; st.className = "pill live";
+    window.__api = { soilingLossPct: soil, outputPct: soil != null ? 100 - soil : null, dustUgm3: dust, siteName: site, raw: j };
+    return window.__api;
+  } catch (err) {
+    st.textContent = "failed: " + err.message; st.className = "pill err";
+    window.__apiError = String(err);
+    return null;
+  }
+}
+$("#b-api").addEventListener("click", async () => {
+  const d = await loadApi();
+  if (!d || d.soilingLossPct == null) return;
+  /* mirror the live values into the sliders, then hand them to the HUD */
+  $("#d-soil").value = String(Math.round(d.soilingLossPct * 10));
+  $("#d-dust").value = String(Math.min(400, Math.round(d.dustUgm3 ?? 0)));
+  if (d.siteName) $("#d-site").value = d.siteName;
+  dataOn = true; $("#b-data").classList.add("on");
+  story.setData({ soilingLossPct: d.soilingLossPct, outputPct: d.outputPct, dustUgm3: d.dustUgm3, siteName: d.siteName });
+});
+
+/* -------------------------------------------------------- fps + test hooks */
+let frames = 0, t0 = performance.now();
+(function tick() {
+  frames++;
+  const now = performance.now();
+  if (now - t0 >= 1000) {
+    $("#fps").textContent = Math.round((frames * 1000) / (now - t0)) + " fps";
+    frames = 0; t0 = now;
+  }
+  requestAnimationFrame(tick);
+})();
+
+window.__story = story;
+window.__setProgress = (p, instant = true) => setP(p, instant);
+window.__setData = (d) => { story.setData(d); };
+window.__loadApi = loadApi;
+window.__pin = (v) => { pinned = !!v; $("#b-pin").classList.toggle("on", pinned); };
+window.__ready = true;
+
+story.start();
+showProgress(pinned ? story.getProgress() : 0);
+refreshRun();
+if (pinned) setP(story.getProgress(), true);
+</script>
+</body>
+</html>

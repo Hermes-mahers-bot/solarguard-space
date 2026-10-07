@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "iea-pvps-t13-21-2022-soiling-losses-pv-plants",
+    "source_file": "IEA-PVPS-T13-21-2022-Soiling-Losses-PV-Plants.pdf",
+    "url": "https://iea-pvps.org/wp-content/uploads/2023/01/IEA-PVPS-T13-21-2022-REPORT-Soiling-Losses-PV-Plants.pdf",
+    "pages": 129,
+    "chars": 316724,
+    "extractor": "pymupdf 1.26 (fitz)",
+    "bytes": 320557,
+    "pdf_bytes": 4914682
+  },
+  {
+    "slug": "energies-15-08033",
+    "source_file": "energies-15-08033.pdf",
+    "url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+    "pages": 26,
+    "chars": 76809,
+    "extractor": "pymupdf 1.26 (fitz)",
+    "bytes": 77100,
+    "pdf_bytes": 2062209
+  },
+  {
+    "slug": "energies-19-04373",
+    "source_file": "energies-19-04373.pdf",
+    "url": "https://res.mdpi.com/d_attachment/energies/energies-19-04373/article_deploy/energies-19-04373.pdf",
+    "pages": 30,
+    "chars": 99099,
+    "extractor": "pymupdf 1.26 (fitz)",
+    "bytes": 99541,
+    "pdf_bytes": 2154176
+  }
+]

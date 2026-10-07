@@ -1,0 +1,366 @@
+Title: DustIQ Soiling Monitoring System (Kipp & Zonen)
+Source: https://www.kippzonen.com/products/dustiq-soiling-monitoring-system
+
+DustIQ Soiling Monitoring System for Solar PV | Kipp & Zonen
+Skip to content
+FAQ
+News & Announcements
+Careers
+About
+This is a search field with an auto-suggest feature attached.
+There are no suggestions because the search field is empty.
+Close
+Products
+Find the right products to solve your measurement challenges.
+Solar Radiation
+PV Monitoring & Soiling
+Weather & Environmental
+Transportation Weather
+Atmospheric Analytics
+Accessories
+Pyranometers
+Pyrgeometers
+Pyrheliometers
+Sunshine Duration Sensors
+Net Radiometers
+UV Radiometers
+Albedometers
+Soiling Instruments
+Reference Cells
+Performance Measuring Instruments
+All-in-One Weather Sensors
+Wind Sensors
+Precipitation Sensors
+Snow Depth Sensors
+Visibility Sensors
+Other Meteorological Sensors
+Mobile Surface Condition
+Stationary Surface Condition
+Stationary Systems
+Visibility Sensors
+Software
+Scintillometers
+Ceilometers
+Sun Trackers
+Cables & Plugs
+Masts & Mounts
+Interfaces
+Sensors
+Dataloggers
+Ventilation Units
+All Accessories
+Services
+Explore our comprehensive services for seamless integration and lifecycle support.
+Installation & Maintenance
+Calibration & Repair
+Mixed-Brand Pyranometer Calibration
+Technical Support
+Warranty
+Applications
+Utility‑Scale Solar & PV Performance
+Solar Resource Assessment & Prospecting
+Soiling & Loss Monitoring
+PV Degradation & Long‑Term Performance
+Research & Solar Radiation Science
+Meteorology & Climatology Networks
+Road & Transportation Weather
+Resources
+Knowledge Center
+Find resources to expand your expertise
+Downloads
+Download resources for your products and solutions.
+FAQs
+Blog
+Theoretical Information
+Product Equivalence
+Glossary
+Cables & Connections
+Case Studies
+Data Sheets
+Manuals
+Software & Firmware
+All Downloads
+Obsolete Resources
+Company
+About Us
+Learn who we are.
+Partnerships
+Partner with us. Contact us to learn more about partnership opportunities.
+Events & Trainings
+See planned events for opportunities to  learn and collaborate.
+News & Announcements
+Find important information to keep you up to date.
+Global Locations
+Learn where we operate and find a representative near you.
+Careers
+Picture yourself on our team and find job openings.
+Support
+Contact Us
+Reach out to us for any non-technical support.
+Technical Support
+Get technical expertise fast.
+Customer Service
+Receive guidance from our team.
+Products
+Services
+Applications
+Resources
+Company
+Support
+About
+News
+Contact Us
+Back
+Products
+Solar Radiation
+PV Monitoring & Soiling
+Weather & Environmental
+Transportation Weather
+Atmospheric Analytics
+Accessories
+Back
+Solar Radiation
+Pyranometers
+Pyrgeometers
+Pyrheliometers
+Sunshine Duration Sensors
+Net Radiometers
+UV Radiometers
+Albedometers
+Back
+PV Monitoring & Soiling
+Soiling Instruments
+Reference Cells
+Performance Measuring Instruments
+Back
+Weather & Environmental
+All-in-One Weather Sensors
+Wind Sensors
+Precipitation Sensors
+Snow Depth Sensors
+Visibility Sensors
+Other Meteorological Sensors
+Back
+Transportation Weather
+Mobile Surface Condition
+Stationary Surface Condition
+Stationary Systems
+Visibility Sensors
+Software
+Back
+Atmospheric Analytics
+Scintillometers
+Ceilometers
+Sun Trackers
+Back
+Accessories
+Cables & Plugs
+Masts & Mounts
+Interfaces
+Sensors
+Dataloggers
+Ventilation Units
+All Accessories
+Back
+Services
+Installation & Maintenance
+Calibration & Repair
+Mixed-Brand Pyranometer Calibration
+Technical Support
+Warranty
+Back
+Applications
+Utility‑Scale Solar & PV Performance
+Solar Resource Assessment & Prospecting
+Soiling & Loss Monitoring
+PV Degradation & Long‑Term Performance
+Research & Solar Radiation Science
+Meteorology & Climatology Networks
+Road & Transportation Weather
+Back
+Resources
+Knowledge Center
+Find resources to expand your expertise
+Downloads
+Download resources for your products and solutions.
+Back
+Knowledge Center
+FAQs
+Blog
+Theoretical Information
+Product Equivalence
+Glossary
+Cables & Connections
+Back
+Downloads
+Case Studies
+Data Sheets
+Manuals
+Software & Firmware
+All Downloads
+Obsolete Resources
+Back
+Company
+About Us
+Learn who we are.
+Partnerships
+Partner with us. Contact us to learn more about partnership opportunities.
+Events & Trainings
+See planned events for opportunities to  learn and collaborate.
+News & Announcements
+Find important information to keep you up to date.
+Global Locations
+Learn where we operate and find a representative near you.
+Careers
+Picture yourself on our team and find job openings.
+Back
+Support
+Contact Us
+Reach out to us for any non-technical support.
+Technical Support
+Get technical expertise fast.
+Customer Service
+Receive guidance from our team.
+Contact Us
+Kipp & Zonen DustIQ Soiling Monitoring System, Mounting Clips, Panel Temperature Sensor
+Product Number: 386915
+Soiling monitoring system that measures light transmission losses on PV modules caused by dust and other airborne particles.
+Talk to a Specialist
+Overview
+Overview
+Specifications
+Resources
+Overview
+DustIQ monitors the loss of light transmission caused by dust, sand, pollen, or any other particles on PV panels using Kipp & Zonen’s new and innovative Optical Soiling Measurement (OSM) technology. The DustIQ has no moving parts and it does not need sunlight to operate. Rather, it uses an internal light source to measures scattered and reflected light that is directly proportional to soiling accumulation on the surface of the DustIQ.
+Unique measuring principle
+The DustIQ is unique because it does not require routine cleaning and mechanical maintenance, it is easily mounted directly in between framed PV modules on fixed and tracked sites, and is cleaned only when the modules are cleaned.
+Clean your modules when it is most economically viable
+Module cleaning is most economically viable when the revenue losses and performance penalties caused by soiling exceed the operational costs of monitoring and cleaning. DustIQ provides the information for solar energy plant management systems so that you can decide exactly when and where to clean. The cost-effective price of the DustIQ makes it feasible to install a network of DustIQ units to monitor the variation in soiling over across an entire PV plant.
+Note: DustIQ is intended for front-side soiling monitoring only and is not designed for rear-side mounting or rear-side soiling assessment.
+Specifications
+-
+Technical Attributes
+Material enclosures
+Aluminum, anodized
+Standard storage temperature
+-4 to +176 ˚F (-20 to +80 °C)
+Interface
+2-wire RS-485 RTU using Modbus
+Maximum Voltage
+The maximum differential between either of the Modbus® RS-485 lines (yellow and grey) and the power ground / RS-485 common line (black) is 70 VDC.
+Power Consumption
+˂ 2.5 W
+Digital outputs
+RS485 Modbus RTU
+Power supply
+12 to 30 VDC, 70 to 200 mA;
+2 W
+Dimensions (free text)
+39 x 6 19/64 x 1 3/8 in (990 x 160 x 35 mm)
+Output Values
+Soiling Ratio (SR) 100 to 50% and Transmission Loss (TL) 0 to 50%
+Casing IP Rating
+IP65
+Outputs
+Percentage of sunlight that is blocked or scattered in such a way that it does not reach the actual solar cells 0 to 50%
+Daisy-chain Capability
+Three instruments max. in one chain.
+ Only the last device can have the PV panel temperature sensor attached.
+Measurement Range
+Back of module temperature sensor: -4 to +212 °F, ±1.8 °F (-20 to +100 °C, ±1 °C)
+Accuracy
+Transmission loss:
+ ±0.1 of reading ±1% (after local dust calibration)
+Operating temp range 1
+-4 to +140 °F (-20 to +60 °C)
+Tilt X and Y-axis
+-180° to 180° ; ±1°
+Cable
+No cable
+Resources
++
+Manuals (3)
+Kipp & Zonen DustIQ - Firmware Update Instructions
+Manuals
+Kipp & Zonen DustIQ - Instruction Sheet
+Manuals
+Kipp & Zonen Dust IQ - Operational Manual
+Manuals
++
+Software/Firmware (1)
+Kipp & Zonen DustIQ - Firmware
+Software/Firmware
++
+White Papers (2)
+Kipp & Zonen Newsletter 44
+White Papers
+Kipp & Zonen Newsletter 41
+White Papers
++
+Brochures (1)
+Kipp & Zonen DustIQ - Brochure
+Brochures
++
+Data Sheets (1)
+DustIQ Data Sheet
+Data Sheets
++
+Application Notes (1)
+DustiQ Data Reduction
+Application Notes
++
+Certificates (1)
+DustIQ - Declaration of Conformity - EN
+Certificates
+Germany
+OTT HydroMet Fellbach GmbH
+Kipp & Zonen - a trademark of
+OTT HydroMet B.V., used by
+OTT HydroMet Fellbach GmbH
+under license.
+Gutenbergstraße 20
+70736 Fellbach
++49 711 518 22 0
+The Netherlands
+OTT HydroMet B.V.
+Trading as Kipp & Zonen
+Delftechpark 36
+2628 XH Delft
+The Netherlands
++31 15 2755 210
+United States
+OTT HydroMet Corp.
+22400 Davis Drive
+Sterling, VA  20164
+United States
++1 703-406-2800
+Services
+Installation & Maintenance
+Calibration & Repair
+Mixed Brand Pyranometer Calibration
+Warranty
+Technical Support
+Resources
+Blog
+FAQ
+Obsolete Resources
+Company
+Contact Us
+About Us
+Partnerships
+Events
+News & Announcements
+Careers
+Follow Us
+Veralto Water Quality
+AI Policy
+Cookie Policy
+Do Not Sell or Share My Data
+Privacy Policy
+Product Security & Coordinated Vulnerability Disclosure (CVD) Process
+Terms and Conditions of Purchase
+Terms and Conditions of Sale (North America / Rest of World excluding Europe)
+Terms and Conditions of Sale (Europe)
+ChemTreat Europe Terms and Conditions of Sale
+Cookie Settings
+© 2026 All rights reserved.

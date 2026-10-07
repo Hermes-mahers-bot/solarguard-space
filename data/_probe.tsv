@@ -1,0 +1,40 @@
+01	https://ads.atmosphere.copernicus.eu/datasets/cams-global-atmospheric-composition-forecasts	200	387828	text/html; charset=utf-8	https://ads.atmosphere.copernicus.eu/datasets/cams-global-atmospheric-composition-forecasts?tab=overview	1	
+02	https://www.soda-pro.com/web-services/radiation/cams-radiation-service	200	78743	text/html;charset=UTF-8	https://www.soda-pro.com/web-services/radiation/cams-radiation-service	0	
+03	https://atmosphere.copernicus.eu/cams-aerosol-alerts-atmospheric-aerosol-data-your-fingertips	200	179932	text/html; charset=utf-8	https://atmosphere.copernicus.eu/cams-aerosol-alerts-atmospheric-aerosol-data-your-fingertips	0	
+04	https://noaa-himawari9.s3.amazonaws.com/?list-type=2&max-keys=3	200	1287	application/xml	https://noaa-himawari9.s3.amazonaws.com/?list-type=2&max-keys=3	0	
+05	https://registry.opendata.aws/noaa-himawari/	200	13292	text/html	https://registry.opendata.aws/noaa-himawari/	0	
+06	https://www.eorc.jaxa.jp/ptree/	200	17781	text/html	https://www.eorc.jaxa.jp/ptree/	0	
+07	https://himawari8.nict.go.jp/	200	8877	text/html	https://himawari8.nict.go.jp/	0	
+08	https://www.ospo.noaa.gov/Products/imagery/index.html	200	27369	text/html; charset=UTF-8	https://www.ospo.noaa.gov/products/imagery/index.html	1	
+09	https://disc.gsfc.nasa.gov/datasets?project=MERRA-2	200	2828	text/html; charset=UTF-8	https://disc.gsfc.nasa.gov/datasets?project=MERRA-2	0	
+10	https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/products/MCD19A2/	200	37642	text/html;charset=UTF-8	https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/products/MCD19A2/	0	
+11	https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-5p	200	85216	text/html; charset=UTF-8	https://dataspace.copernicus.eu/data-collections/copernicus-sentinel-missions/sentinel-5p	1	
+12	https://dust.aemet.es/	200	41458	text/html;charset=utf-8	https://dust.aemet.es/	0	
+13	https://aeronet.gsfc.nasa.gov/aeronet_locations_v3.txt	200	73929	text/plain	https://aeronet.gsfc.nasa.gov/aeronet_locations_v3.txt	0	
+14	https://aeronet.gsfc.nasa.gov/new_web/data.html	200	29749	text/html	https://aeronet.gsfc.nasa.gov/new_web/data.html	0	
+15	https://giovanni.gsfc.nasa.gov/giovanni/	200	19958	text/html; charset=UTF-8	https://giovanni.gsfc.nasa.gov/giovanni/	0	
+16	https://power.larc.nasa.gov/docs/services/api/temporal/hourly/	200	32713	text/html	https://power.larc.nasa.gov/docs/services/api/temporal/hourly/	0	
+17	https://noaa-gfs-bdp-pds.s3.amazonaws.com/?list-type=2&max-keys=3	200	1158	application/xml	https://noaa-gfs-bdp-pds.s3.amazonaws.com/?list-type=2&max-keys=3	0	
+18	https://data.ecmwf.int/forecasts/	200	430037	text/html	https://data.ecmwf.int/forecasts/	0	
+19	https://nsrdb.nrel.gov/	000	0		https://nsrdb.nrel.gov/	0	
+20	https://globalsolaratlas.info/	200	58154	text/html	https://globalsolaratlas.info/	0	
+21	https://pvlib-python.readthedocs.io/en/stable/	200	27319	text/html; charset=utf-8	https://pvlib-python.readthedocs.io/en/stable/	0	
+22	https://dataspace.copernicus.eu/	200	113797	text/html; charset=UTF-8	https://dataspace.copernicus.eu/	0	
+23	https://browser.dataspace.copernicus.eu/	200	3135	text/html	https://browser.dataspace.copernicus.eu/	0	
+24	https://search.asf.alaska.edu/	200	90083	text/html	https://search.asf.alaska.edu/	0	
+25	https://emergency.copernicus.eu/	200	20829	text/html; charset=utf-8	https://emergency.copernicus.eu/	0	
+26	https://iea-pvps.org/wp-content/uploads/2023/01/IEA-PVPS-T13-21-2022-REPORT-Soiling-Losses-PV-Plants.pdf	200	4914682	application/pdf	https://iea-pvps.org/wp-content/uploads/2023/01/IEA-PVPS-T13-21-2022-REPORT-Soiling-Losses-PV-Plants.pdf	0	
+27	https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf	200	2062209	application/pdf	https://mdpi-res.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf	1	
+28	https://res.mdpi.com/d_attachment/energies/energies-19-04373/article_deploy/energies-19-04373.pdf	200	2154176	application/pdf	https://mdpi-res.com/d_attachment/energies/energies-19-04373/article_deploy/energies-19-04373.pdf	1	
+29	https://www.mdpi.com/1996-1073/15/21/8033	403	398	text/html	https://www.mdpi.com/1996-1073/15/21/8033	0	
+30	https://www.mdpi.com/1996-1073/19/18/4373	403	400	text/html	https://www.mdpi.com/1996-1073/19/18/4373	0	
+31	https://www.sciencedirect.com/science/article/pii/S2238785425027103	403	832804	text/html; charset=UTF-8	https://www.sciencedirect.com/science/article/pii/S2238785425027103	0	
+32	https://repository.kaust.edu.sa/handle/10754/665153	200	212	text/html	https://repository.kaust.edu.sa/handle/10754/665153	0	
+33	https://repository.kaust.edu.sa/handle/10754/696394	200	212	text/html	https://repository.kaust.edu.sa/handle/10754/696394	0	
+34	https://www.kippzonen.com/products/dustiq-soiling-monitoring-system	200	207120	text/html;charset=utf-8	https://www.kippzonen.com/products/dustiq-soiling-monitoring-system	0	
+35	https://www.nrel.gov/pv/soiling.html	000	0		https://www.nrel.gov/pv/soiling.html	0	
+36	https://www.windy.com/?dustsm,24.7,46.6,6	200	8011	text/html	https://www.windy.com/?dustsm,24.7,46.6,6	0	
+37	https://www.ventusky.com/?p=24.7;46.6;5&l=dust	200	12169	text/html; charset=UTF-8	https://www.ventusky.com/?p=24.7;46.6;5&l=dust	0	
+38	https://api.open-meteo.com/v1/forecast?latitude=24.71&longitude=46.67	200	174	application/json; charset=utf-8	https://api.open-meteo.com/v1/forecast?latitude=24.71&longitude=46.67	0	
+39	https://air-quality-api.open-meteo.com/v1/air-quality?latitude=24.71&longitude=46.67&hourly=dust,aerosol_optical_depth,pm10&forecast_days=1	200	1194	application/json; charset=utf-8	https://air-quality-api.open-meteo.com/v1/air-quality?latitude=24.71&longitude=46.67&hourly=dust,aerosol_optical_depth,pm10&forecast_days=1	0	
+40	https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=T2M,WS10M&community=RE&longitude=46.67&latitude=24.71&start=20260101&end=20260101&format=JSON	200	1421	application/json	https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=T2M,WS10M&community=RE&longitude=46.67&latitude=24.71&start=20260101&end=20260101&format=JSON	0	

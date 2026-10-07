@@ -1,0 +1,134 @@
+{
+  "generated_utc": "2026-10-07T12:11:28Z",
+  "model": "physics_soiling v1 (literature-calibrated mass balance)",
+  "constants": {
+    "CLEANING_INTERVAL_DAYS": 7,
+    "CLEAN_EFFICIENCY": 0.95,
+    "RAIN_RESET_MM": 5.0,
+    "ALPHA_RAIN": 0.35,
+    "RESUSPEND_KMH": 45.0,
+    "V_SCALE": 0.08,
+    "P_EXP": 1.15,
+    "K_LOSS": 0.81,
+    "CEMENT_BETA": 0.35,
+    "CEMENT_RH_REF": 40.0
+  },
+  "region_targets_pct": {
+    "west": 15.0,
+    "east": 45.0,
+    "central": 28.0,
+    "north": 24.0,
+    "northwest": 23.0,
+    "southwest_highland": 14.0
+  },
+  "sites": {
+    "Abha": {
+      "region": "southwest_highland",
+      "target_annual_loss_pct": 14.0,
+      "site_factor": 1.548310285948364,
+      "achieved_annual_loss_pct": 14.000205222805736,
+      "cleaning_interval_days": 7,
+      "lat": 18.22,
+      "lon": 42.5
+    },
+    "AlJubail": {
+      "region": "east",
+      "target_annual_loss_pct": 45.0,
+      "site_factor": 2.0058596066151657,
+      "achieved_annual_loss_pct": 45.03220141719644,
+      "cleaning_interval_days": 7,
+      "lat": 27.0,
+      "lon": 49.66
+    },
+    "AlUla": {
+      "region": "northwest",
+      "target_annual_loss_pct": 23.0,
+      "site_factor": 1.5014724205154453,
+      "achieved_annual_loss_pct": 23.02689751313892,
+      "cleaning_interval_days": 7,
+      "lat": 26.61,
+      "lon": 37.92
+    },
+    "Dammam": {
+      "region": "east",
+      "target_annual_loss_pct": 45.0,
+      "site_factor": 2.228639730653018,
+      "achieved_annual_loss_pct": 44.97662484347779,
+      "cleaning_interval_days": 7,
+      "lat": 26.43,
+      "lon": 50.1
+    },
+    "Jeddah": {
+      "region": "west",
+      "target_annual_loss_pct": 15.0,
+      "site_factor": 0.25501860963942147,
+      "achieved_annual_loss_pct": 15.013833578854706,
+      "cleaning_interval_days": 7,
+      "lat": 21.49,
+      "lon": 39.19
+    },
+    "NEOM": {
+      "region": "west",
+      "target_annual_loss_pct": 15.0,
+      "site_factor": 2.095842241852136,
+      "achieved_annual_loss_pct": 14.982383624114973,
+      "cleaning_interval_days": 7,
+      "lat": 27.99,
+      "lon": 35.25
+    },
+    "Riyadh": {
+      "region": "central",
+      "target_annual_loss_pct": 28.0,
+      "site_factor": 0.19684724449846322,
+      "achieved_annual_loss_pct": 28.01992709676913,
+      "cleaning_interval_days": 7,
+      "lat": 24.71,
+      "lon": 46.67
+    },
+    "Sakaka": {
+      "region": "north",
+      "target_annual_loss_pct": 24.0,
+      "site_factor": 0.7407687423485111,
+      "achieved_annual_loss_pct": 24.024144806933066,
+      "cleaning_interval_days": 7,
+      "lat": 29.97,
+      "lon": 40.2
+    },
+    "Shaqra": {
+      "region": "central",
+      "target_annual_loss_pct": 28.0,
+      "site_factor": 0.8087210764828782,
+      "achieved_annual_loss_pct": 28.041221396029233,
+      "cleaning_interval_days": 7,
+      "lat": 25.25,
+      "lon": 45.25
+    },
+    "Sudair": {
+      "region": "central",
+      "target_annual_loss_pct": 28.0,
+      "site_factor": 0.8122777689368633,
+      "achieved_annual_loss_pct": 28.034075609788502,
+      "cleaning_interval_days": 7,
+      "lat": 25.55,
+      "lon": 45.55
+    },
+    "Tabuk": {
+      "region": "northwest",
+      "target_annual_loss_pct": 23.0,
+      "site_factor": 2.1707261326401426,
+      "achieved_annual_loss_pct": 22.974973489860997,
+      "cleaning_interval_days": 7,
+      "lat": 28.38,
+      "lon": 36.57
+    },
+    "Yanbu": {
+      "region": "west",
+      "target_annual_loss_pct": 15.0,
+      "site_factor": 1.1140958965525403,
+      "achieved_annual_loss_pct": 14.956951650445552,
+      "cleaning_interval_days": 7,
+      "lat": 24.09,
+      "lon": 38.06
+    }
+  }
+}

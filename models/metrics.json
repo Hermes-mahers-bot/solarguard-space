@@ -1,0 +1,683 @@
+{
+  "time_split": {
+    "gbrt": {
+      "soiling_loss_pct": {
+        "n": 6144,
+        "mae": 6.292267163998677,
+        "rmse": 10.06490517810721,
+        "r2": 0.8005794180472506,
+        "bias": -2.3905974124492615
+      },
+      "deposition_g_m2_day": {
+        "n": 6144,
+        "mae": 0.058395078830230075,
+        "rmse": 0.11023037147304647,
+        "r2": 0.331456427051136,
+        "bias": -0.03300326586358713,
+        "r2_logspace": 0.5964798457120151,
+        "note": "native units; r2_logspace is the R2 of log(pred) vs log(true)"
+      }
+    },
+    "mlp": {
+      "soiling_loss_pct": {
+        "n": 6144,
+        "mae": 6.1396166597167054,
+        "rmse": 10.013600369608902,
+        "r2": 0.8026072878103468,
+        "bias": -2.172568165481566
+      },
+      "deposition_g_m2_day": {
+        "n": 6144,
+        "mae": 0.06510957443374453,
+        "rmse": 0.1217318027303107,
+        "r2": 0.1846665066627099,
+        "bias": -0.038336847103410295,
+        "r2_logspace": 0.2591243620681476,
+        "note": "native units; r2_logspace is the R2 of log(pred) vs log(true)"
+      }
+    }
+  },
+  "leave_one_site_out": {
+    "gbrt": {
+      "soiling_loss_pct": {
+        "n": 30672,
+        "mae": 8.855545107216155,
+        "rmse": 12.895221447644404,
+        "r2": 0.5704229714790223,
+        "bias": 2.968324689761147
+      },
+      "deposition_g_m2_day": {
+        "n": 30672,
+        "mae": 0.04514352282104369,
+        "rmse": 0.07789710069243816,
+        "r2": 0.2771575685481903,
+        "bias": 0.007214767772240676,
+        "r2_logspace": 0.4792208912881947,
+        "note": "native units; r2_logspace is the R2 of log(pred) vs log(true)"
+      }
+    },
+    "mlp": {
+      "soiling_loss_pct": {
+        "n": 30672,
+        "mae": 6.714237207087025,
+        "rmse": 11.222942627093405,
+        "r2": 0.6746154514413425,
+        "bias": 2.438510580400911
+      },
+      "deposition_g_m2_day": {
+        "n": 30672,
+        "mae": 0.039235854114635815,
+        "rmse": 0.093523335042863,
+        "r2": -0.04193594695406366,
+        "bias": 0.01364862044810779,
+        "r2_logspace": 0.5892854792516633,
+        "note": "native units; r2_logspace is the R2 of log(pred) vs log(true)"
+      }
+    }
+  },
+  "model_config": {
+    "gbrt": {
+      "n_trees": 250,
+      "max_depth": 3,
+      "learning_rate": 0.06,
+      "subsample": 0.85,
+      "colsample": 0.7,
+      "max_bins": 32,
+      "min_samples_leaf": 25,
+      "loso_trees": 110
+    },
+    "mlp": {
+      "hidden": [
+        64,
+        32
+      ],
+      "activation": "relu",
+      "optimiser": "Adam",
+      "lr": 0.003,
+      "batch": 128,
+      "epochs": 150,
+      "l2": 1e-05,
+      "loso_epochs": 80
+    },
+    "target_transforms": {
+      "soiling_loss_pct": "none",
+      "deposition_g_m2_day": "log"
+    },
+    "evaluation": {
+      "time_split": "latest 20% of distinct calendar dates held out",
+      "leave_one_site_out": "each site held out in turn, trained on the other 11"
+    }
+  },
+  "target_transforms": {
+    "soiling_loss_pct": "none",
+    "deposition_g_m2_day": "log"
+  },
+  "leave_one_site_out_per_fold": {
+    "Abha": {
+      "n": 2556,
+      "gbrt": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 3.805304875664215,
+          "rmse": 5.205506669936162,
+          "r2": 0.7172698015338412,
+          "bias": -1.0279090120459002
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.013553157646116374,
+          "rmse": 0.021741178084764386,
+          "r2": 0.45120893936709117,
+          "bias": -0.01095881795536649
+        }
+      },
+      "mlp": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 8.300216646447964,
+          "rmse": 11.558446220586271,
+          "r2": -0.39394326146997805,
+          "bias": 0.05336016271989641
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.04446038858731481,
+          "rmse": 0.0587260889806513,
+          "r2": -3.0040827043012666,
+          "bias": 0.03759659463172207
+        }
+      }
+    },
+    "AlJubail": {
+      "n": 2556,
+      "gbrt": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 5.550034591819251,
+          "rmse": 7.530193031528319,
+          "r2": 0.905503430850607,
+          "bias": -0.1848165794579218
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.036565926512268296,
+          "rmse": 0.07251400288438387,
+          "r2": 0.6190604171105165,
+          "bias": -0.015110076348947609
+        }
+      },
+      "mlp": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 3.212200750265638,
+          "rmse": 4.961074863924127,
+          "r2": 0.9589838035947206,
+          "bias": -0.9637928810357044
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.032271064701516125,
+          "rmse": 0.06501986026684684,
+          "r2": 0.6937300366573471,
+          "bias": -0.011443038433077054
+        }
+      }
+    },
+    "AlUla": {
+      "n": 2556,
+      "gbrt": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 4.232334838354974,
+          "rmse": 6.473756535012943,
+          "r2": 0.816645428147341,
+          "bias": -1.8616272030394936
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.020153005850401393,
+          "rmse": 0.03651281362231933,
+          "r2": 0.40970154013813076,
+          "bias": -0.01407670264190622
+        }
+      },
+      "mlp": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 2.431033148073657,
+          "rmse": 3.525623310834796,
+          "r2": 0.9456185433318041,
+          "bias": 0.02266043478556034
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.016270649215687327,
+          "rmse": 0.029486826277562474,
+          "r2": 0.6150209364588497,
+          "bias": -0.005899021257025005
+        }
+      }
+    },
+    "Dammam": {
+      "n": 2556,
+      "gbrt": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 15.947334526226188,
+          "rmse": 18.754660639682147,
+          "r2": 0.39130740490712534,
+          "bias": -15.479078876048057
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.09187167661146954,
+          "rmse": 0.124843729536719,
+          "r2": -0.15348662965346316,
+          "bias": -0.08896386652486597
+        }
+      },
+      "mlp": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 3.649682987110562,
+          "rmse": 5.207929774360197,
+          "r2": 0.9530635934392184,
+          "bias": -2.0778268084547866
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.032997981364863815,
+          "rmse": 0.06980998023990301,
+          "r2": 0.6393265893186209,
+          "bias": -0.011402627224411876
+        }
+      }
+    },
+    "Jeddah": {
+      "n": 2556,
+      "gbrt": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 10.235894657527039,
+          "rmse": 12.914708157255482,
+          "r2": 0.5061324392744151,
+          "bias": 6.528455507459876
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.03996606746421137,
+          "rmse": 0.07023466349633169,
+          "r2": 0.44121809223974573,
+          "bias": 0.014164785895345757
+        }
+      },
+      "mlp": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 6.145258057503815,
+          "rmse": 8.440883357624893,
+          "r2": 0.7890317475020032,
+          "bias": -1.238891243271667
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.022696370893572772,
+          "rmse": 0.061662113193606684,
+          "r2": 0.5692987498105766,
+          "bias": -0.006472793772422152
+        }
+      }
+    },
+    "NEOM": {
+      "n": 2556,
+      "gbrt": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 4.976751004790933,
+          "rmse": 5.8843068147221835,
+          "r2": 0.6030616985842958,
+          "bias": 4.475936676510952
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.011537583012727354,
+          "rmse": 0.022750083219812735,
+          "r2": 0.3100788310837569,
+          "bias": 0.0035304537108435223
+        }
+      },
+      "mlp": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 3.358150165144937,
+          "rmse": 4.097389663671123,
+          "r2": 0.8075371451861383,
+          "bias": 3.0034299863746563
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.014683646312220569,
+          "rmse": 0.023763073277527656,
+          "r2": 0.247270900113562,
+          "bias": 0.007507226545565654
+        }
+      }
+    },
+    "Riyadh": {
+      "n": 2556,
+      "gbrt": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 28.779045061819932,
+          "rmse": 30.974678321245218,
+          "r2": -1.847830093883113,
+          "bias": 28.612204601737922
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.17905217116784342,
+          "rmse": 0.1868455107513724,
+          "r2": -3.3916417113697372,
+          "bias": 0.1694641278801878
+        }
+      },
+      "mlp": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 30.07395454340593,
+          "rmse": 31.708058745849872,
+          "r2": -1.9842814105906803,
+          "bias": 29.99980102440249
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.1863022323351621,
+          "rmse": 0.2805761769676053,
+          "r2": -8.902917308968519,
+          "bias": 0.1666631900481036
+        }
+      }
+    },
+    "Sakaka": {
+      "n": 2556,
+      "gbrt": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 9.956658077900595,
+          "rmse": 10.910520451940178,
+          "r2": 0.5156144948452024,
+          "bias": 9.37568342749057
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.04692677498818877,
+          "rmse": 0.05939755089839745,
+          "r2": -0.03222965208922446,
+          "bias": 0.03011158584810942
+        }
+      },
+      "mlp": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 9.346475631100702,
+          "rmse": 10.892701498032103,
+          "r2": 0.5171953900550711,
+          "bias": 8.998491626433621
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.043529968882326756,
+          "rmse": 0.059760326408522545,
+          "r2": -0.044877014787967795,
+          "bias": 0.027611921336826297
+        }
+      }
+    },
+    "Shaqra": {
+      "n": 2556,
+      "gbrt": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 3.9046130570825657,
+          "rmse": 5.855889240844625,
+          "r2": 0.8814253398723297,
+          "bias": 0.141960069490581
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.020721227434921725,
+          "rmse": 0.041445334935211665,
+          "r2": 0.48589478495436333,
+          "bias": -0.004866970117928896
+        }
+      },
+      "mlp": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 2.36280876581022,
+          "rmse": 3.927483325422118,
+          "r2": 0.9466622267702665,
+          "bias": -0.6770021585884018
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.018459668897310988,
+          "rmse": 0.035682873818403266,
+          "r2": 0.6189163200013386,
+          "bias": -0.0032528938262800125
+        }
+      }
+    },
+    "Sudair": {
+      "n": 2556,
+      "gbrt": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 3.808966472060489,
+          "rmse": 5.566720024678612,
+          "r2": 0.8882357648853849,
+          "bias": 1.0211847909899976
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.023904819885150124,
+          "rmse": 0.041889332126509096,
+          "r2": 0.43517456022792034,
+          "bias": 0.0057305629191044
+        }
+      },
+      "mlp": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 2.3471534056567593,
+          "rmse": 3.9887951297533224,
+          "r2": 0.9426164313088964,
+          "bias": 0.47372460944922595
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.017643654642715764,
+          "rmse": 0.03631180506119973,
+          "r2": 0.5755729515901521,
+          "bias": -0.0023849234543101027
+        }
+      }
+    },
+    "Tabuk": {
+      "n": 2556,
+      "gbrt": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 5.70267989686897,
+          "rmse": 7.451358876532544,
+          "r2": 0.7101847976208657,
+          "bias": -5.0260370275615935
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.028536452749484346,
+          "rmse": 0.038980475120173615,
+          "r2": -0.057524730836092,
+          "bias": -0.026066768143631073
+        }
+      },
+      "mlp": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 5.212797993737825,
+          "rmse": 6.751124369641129,
+          "r2": 0.7620956303611301,
+          "bias": -4.560119478866307
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.02484420061639508,
+          "rmse": 0.03668783107377525,
+          "r2": 0.06321408725059807,
+          "bias": -0.020434935137329278
+        }
+      }
+    },
+    "Yanbu": {
+      "n": 2556,
+      "gbrt": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 9.366924226478698,
+          "rmse": 10.830763647296404,
+          "r2": 0.00730333833870167,
+          "bias": 9.04393990160683
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.028933410529741636,
+          "rmse": 0.035828762122867786,
+          "r2": 0.09744321226418506,
+          "bias": 0.023618898745943456
+        }
+      },
+      "mlp": {
+        "soiling_loss_pct": {
+          "n": 2556,
+          "mae": 4.1311143907862915,
+          "rmse": 4.968748136773329,
+          "r2": 0.7910740572881493,
+          "bias": -3.7717083091376566
+        },
+        "deposition_g_m2_day": {
+          "n": 2556,
+          "mae": 0.016670422926543634,
+          "rmse": 0.030677828808894827,
+          "r2": 0.33830147173786107,
+          "bias": -0.01430525408006861
+        }
+      }
+    }
+  },
+  "calibration": {
+    "note": "labels are produced by the literature-calibrated physics model. 'physics_simulated' is the label generator's annual mean loss under weekly cleaning; 'ml_loso' is the GBRT's out-of-sample prediction for a site it was never trained on -> an honest test of geographic generalisation.",
+    "literature": {
+      "west_coast_pct": 15.0,
+      "east_coast_pct": 45.0,
+      "middle_east_weekly_range_pct": [
+        12,
+        36
+      ],
+      "sources": [
+        "KAUST PV soiling study: west coast ~15 %, east coast ~45 % annual soiling loss even with weekly cleaning",
+        "Middle-East soiling meta-study: 12-36 % with weekly cleaning"
+      ]
+    },
+    "simulated": {
+      "west_coast_mean_pct": 14.984,
+      "east_coast_mean_pct": 45.004,
+      "region_wide_mean_pct": 25.257,
+      "non_east_region_mean_pct": 21.307
+    },
+    "ml_loso_predicted": {
+      "west_coast_mean_pct": 23.35,
+      "east_coast_mean_pct": 37.307
+    },
+    "achieved": {
+      "west_vs_literature": "14.98 % vs 15 % target",
+      "east_vs_literature": "45.00 % vs 45 % target",
+      "within_middle_east_band_12_36": "21.31 % (non-Gulf-coast regions)"
+    },
+    "per_site": {
+      "Abha": {
+        "region": "southwest_highland",
+        "physics_simulated_annual_loss_pct": 14.0,
+        "ml_loso_predicted_annual_loss_pct": 15.733,
+        "site_factor": 1.5483,
+        "lat": 18.22,
+        "lon": 42.5
+      },
+      "AlJubail": {
+        "region": "east",
+        "physics_simulated_annual_loss_pct": 45.032,
+        "ml_loso_predicted_annual_loss_pct": 44.532,
+        "site_factor": 2.0059,
+        "lat": 27.0,
+        "lon": 49.66
+      },
+      "AlUla": {
+        "region": "northwest",
+        "physics_simulated_annual_loss_pct": 23.027,
+        "ml_loso_predicted_annual_loss_pct": 23.067,
+        "site_factor": 1.5015,
+        "lat": 26.61,
+        "lon": 37.92
+      },
+      "Dammam": {
+        "region": "east",
+        "physics_simulated_annual_loss_pct": 44.977,
+        "ml_loso_predicted_annual_loss_pct": 30.082,
+        "site_factor": 2.2286,
+        "lat": 26.43,
+        "lon": 50.1
+      },
+      "Jeddah": {
+        "region": "west",
+        "physics_simulated_annual_loss_pct": 15.014,
+        "ml_loso_predicted_annual_loss_pct": 24.84,
+        "site_factor": 0.255,
+        "lat": 21.49,
+        "lon": 39.19
+      },
+      "NEOM": {
+        "region": "west",
+        "physics_simulated_annual_loss_pct": 14.982,
+        "ml_loso_predicted_annual_loss_pct": 20.361,
+        "site_factor": 2.0958,
+        "lat": 27.99,
+        "lon": 35.25
+      },
+      "Riyadh": {
+        "region": "central",
+        "physics_simulated_annual_loss_pct": 28.02,
+        "ml_loso_predicted_annual_loss_pct": 62.21,
+        "site_factor": 0.1968,
+        "lat": 24.71,
+        "lon": 46.67
+      },
+      "Sakaka": {
+        "region": "north",
+        "physics_simulated_annual_loss_pct": 24.024,
+        "ml_loso_predicted_annual_loss_pct": 34.458,
+        "site_factor": 0.7408,
+        "lat": 29.97,
+        "lon": 40.2
+      },
+      "Shaqra": {
+        "region": "central",
+        "physics_simulated_annual_loss_pct": 28.041,
+        "ml_loso_predicted_annual_loss_pct": 28.364,
+        "site_factor": 0.8087,
+        "lat": 25.25,
+        "lon": 45.25
+      },
+      "Sudair": {
+        "region": "central",
+        "physics_simulated_annual_loss_pct": 28.034,
+        "ml_loso_predicted_annual_loss_pct": 29.649,
+        "site_factor": 0.8123,
+        "lat": 25.55,
+        "lon": 45.55
+      },
+      "Tabuk": {
+        "region": "northwest",
+        "physics_simulated_annual_loss_pct": 22.975,
+        "ml_loso_predicted_annual_loss_pct": 19.509,
+        "site_factor": 2.1707,
+        "lat": 28.38,
+        "lon": 36.57
+      },
+      "Yanbu": {
+        "region": "west",
+        "physics_simulated_annual_loss_pct": 14.957,
+        "ml_loso_predicted_annual_loss_pct": 24.85,
+        "site_factor": 1.1141,
+        "lat": 24.09,
+        "lon": 38.06
+      }
+    }
+  },
+  "dataset": {
+    "rows_in_table": 30672,
+    "features": 37,
+    "sites": 12,
+    "date_min": "2019-01-01",
+    "date_max": "2025-12-30",
+    "targets": [
+      "soiling_loss_pct",
+      "deposition_g_m2_day"
+    ],
+    "label_provenance": "physics_soiling.py literature-calibrated labels -- SYNTHETIC w.r.t. field soiling; NOT measured inverter/soiling data",
+    "measured_inputs": "Open-Meteo ERA5 meteorology 2019-2025 (measured/assimilated); CAMS aerosol pm10/pm2.5/dust/AOD 2024-2025 measured, pre-2024 backfilled from a per-site seasonal climatology fitted to that site's own 2024-25 CAMS data",
+    "time_split_cutoff_date": "2024-08-06",
+    "time_split_train_rows": 24528,
+    "time_split_test_rows": 6144
+  },
+  "wall_clock_seconds": 1495.2,
+  "generated_utc": "2026-10-07T12:54:14Z"
+}

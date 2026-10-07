@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SolarGuard · real-map test harness</title>
+<meta name="description" content="Standalone harness for sg-realmaps.js — real Leaflet basemap + NASA GIBS overlay.">
+<style>
+  :root{
+    --bg:#04060c; --bg-2:#070b14; --panel:rgba(10,15,26,.72); --line:rgba(148,180,255,.14);
+    --line-2:rgba(148,180,255,.22); --ink:#eaf1ff; --ink-2:#b6c4de; --ink-3:#7f8dab; --ink-4:#5d6a86;
+    --sand:#f3a72b; --sand-2:#ffcd6b; --cyan:#37e0ff; --green:#3ddc97; --red:#ff5f6d;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:
+      radial-gradient(1200px 600px at 80% -10%,rgba(55,224,255,.07),transparent 60%),
+      radial-gradient(900px 500px at 10% 110%,rgba(243,167,43,.07),transparent 60%),
+      var(--bg);
+    color:var(--ink);font:400 14px/1.55 var(--sans);-webkit-font-smoothing:antialiased;
+    min-height:100vh;padding:18px clamp(10px,3vw,34px) 40px}
+  a{color:var(--cyan)}
+  .top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:2px 0 16px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.02em}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--sand-2);
+    box-shadow:0 0 14px rgba(243,167,43,.9)}
+  .brand b{color:var(--sand-2)}
+  h1{font-size:clamp(17px,2.4vw,22px);margin:0;font-weight:700;letter-spacing:-.01em}
+  .sub{color:var(--ink-3);font-size:.8rem;font-family:var(--mono)}
+  .badge{font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:999px;
+    border:1px solid var(--line);background:rgba(148,180,255,.06);color:var(--ink-2);white-space:nowrap}
+  .badge.live{border-color:rgba(61,220,151,.4);color:var(--green)}
+  .badge.warn{border-color:rgba(255,205,107,.4);color:var(--sand-2)}
+  .badge.err{border-color:rgba(255,95,109,.4);color:var(--red)}
+
+  .grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start}
+  @media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    box-shadow:0 18px 50px rgba(0,0,0,.45)}
+  .panel .hd{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:11px 14px;border-bottom:1px solid var(--line)}
+  .panel .hd h2{margin:0;font-size:.82rem;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+  .panel .bd{padding:12px 14px}
+
+  .map-shell{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+    background:#04070e;box-shadow:0 18px 50px rgba(0,0,0,.5)}
+  #map{display:block;width:100%;height:clamp(330px,60vh,660px);background:#04070e}
+  @media (max-width:900px){#map{height:clamp(300px,46vh,460px)}}
+  .map-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+    font-size:.68rem;color:var(--ink-4);padding:7px 12px;border-top:1px solid var(--line);
+    background:rgba(4,7,14,.6)}
+  #coords{font-family:var(--mono);color:var(--ink-2)}
+
+  .btns{display:flex;flex-wrap:wrap;gap:7px}
+  button.b{appearance:none;border:1px solid var(--line-2);background:rgba(148,180,255,.07);
+    color:var(--ink);font:500 12px/1 var(--sans);padding:0 12px;min-height:38px;border-radius:9px;cursor:pointer}
+  @media (pointer:coarse){button.b{min-height:44px}}
+  button.b:hover{background:rgba(148,180,255,.14);border-color:rgba(148,180,255,.4)}
+  button.b:active{transform:translateY(1px)}
+  button.b.sand{border-color:rgba(243,167,43,.5);background:rgba(243,167,43,.14);color:var(--sand-2)}
+  button.b.cy{border-color:rgba(55,224,255,.45);background:rgba(55,224,255,.12);color:#bff0ff}
+  button.b.ghost{background:transparent;color:var(--ink-3)}
+  .lbl{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin:14px 0 7px}
+  .lbl:first-child{margin-top:0}
+
+  #log{font-family:var(--mono);font-size:11.5px;line-height:1.6;height:230px;overflow:auto;
+    margin:0;padding:10px 12px;background:rgba(2,4,9,.7);border:1px solid var(--line);border-radius:10px;
+    color:var(--ink-2);white-space:pre-wrap;word-break:break-word}
+  #log .t{color:var(--ink-4)}
+  #log .p{color:var(--sand-2)}   /* onPlace */
+  #log .h{color:var(--cyan)}     /* onHover */
+  #log .s{color:var(--green)}    /* onSelect */
+  #log .l{color:#c9a6ff}         /* onLayerChange */
+  #log .a{color:#9fb4d8}         /* action */
+  #log .e{color:var(--red)}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    font-size:.72rem;color:var(--ink-3);padding:4px 0;border-bottom:1px dashed rgba(148,180,255,.08)}
+  .row:last-child{border-bottom:0}
+  .row b{color:var(--ink-2);font-weight:600;font-family:var(--mono);font-size:11px}
+  code{font-family:var(--mono);font-size:11.5px;background:rgba(148,180,255,.08);
+    padding:1px 5px;border-radius:5px;color:#cfe0ff}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="brand"><span class="dot"></span>Solar<b>Guard</b></div>
+  <h1>real-map test harness</h1>
+  <span class="badge" id="impl-badge">booting…</span>
+  <span class="badge" id="api-badge">api: …</span>
+</div>
+<div class="sub" style="margin-bottom:14px">
+  sg-realmaps.js · Leaflet 1.9.4 basemap + NASA GIBS overlay via <code>api/satellite/tile</code> ·
+  live API at <code>space-marines.aimaher.com/solarguard</code>
+</div>
+
+<div class="grid">
+  <div>
+    <div class="map-shell">
+      <div id="map"></div>
+      <div class="map-foot">
+        <span id="coords">click anywhere to place a site · hover for coordinates</span>
+        <span>basemap © OpenStreetMap contributors © CARTO · overlay NASA GIBS/EOSDIS</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="panel" style="margin-bottom:16px">
+      <div class="hd"><h2>Exercise the API</h2><span class="badge" id="sites-count">0 sites</span></div>
+      <div class="bd">
+        <div class="lbl">sites &amp; markers</div>
+        <div class="btns">
+          <button class="b cy" data-act="sites">setSites(API)</button>
+          <button class="b" data-act="mk-sudair">setMarker Sudair</button>
+          <button class="b ghost" data-act="mk-clear">setMarker(null)</button>
+        </div>
+        <div class="lbl">satellite layer</div>
+        <div class="btns">
+          <button class="b sand" data-act="layer-aod">setLayer MODIS AOD</button>
+          <button class="b sand" data-act="layer-maiac">setLayer MAIAC</button>
+          <button class="b sand" data-act="layer-dust">setLayer AIRS dust</button>
+          <button class="b ghost" data-act="layer-none">setLayer(null)</button>
+          <button class="b" data-act="layer-toggle">toggle dust layer</button>
+        </div>
+        <div class="lbl">camera</div>
+        <div class="btns">
+          <button class="b cy" data-act="focus-sudair">focus Sudair z7</button>
+          <button class="b cy" data-act="focus-dammam">focus Dammam z8</button>
+          <button class="b cy" data-act="focus-ksa">focus KSA z5</button>
+        </div>
+        <div class="lbl">basemap (UI switch also works)</div>
+        <div class="btns">
+          <button class="b" data-act="bm-dark">Esri dark + labels</button>
+          <button class="b" data-act="bm-osm">OSM standard</button>
+          <button class="b" data-act="bm-carto">Carto dark_all</button>
+        </div>
+        <div class="lbl">lifecycle</div>
+        <div class="btns">
+          <button class="b ghost" data-act="destroy">destroy()</button>
+          <button class="b ghost" data-act="rebuild">rebuild</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="hd"><h2>Callback log</h2><button class="b ghost" id="clear-log" style="min-height:28px;padding:0 9px">clear</button></div>
+      <div class="bd" style="padding-top:6px">
+        <pre id="log"></pre>
+        <div style="margin-top:10px">
+          <div class="row"><span>tile requests seen</span><b id="st-tiles">—</b></div>
+          <div class="row"><span>failed (&ge;400)</span><b id="st-fail">—</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+/* ------------------------------------------------------------------ config */
+/* Absolute API base so this page can be opened from any local server. */
+const API = "https://space-marines.aimaher.com/solarguard/";
+const BASE = location.pathname.replace(/[^/]*$/, "");   // works at "/" or "/public/"
+
+const logEl = document.getElementById("log");
+/* capture console.warn/error so the harness can report them */
+window.__sgConsole = [];
+for (const lvl of ["warn", "error"]) {
+  const orig = console[lvl].bind(console);
+  console[lvl] = (...a) => { try { window.__sgConsole.push(lvl + ": " + a.map(String).join(" ")); } catch (_) {} orig(...a); };
+}
+const pad = (n) => String(n).padStart(2, "0");
+function log(kind, msg) {
+  const d = new Date();
+  const t = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  const line = document.createElement("span");
+  line.innerHTML = `<span class="t">${t}</span> <span class="${kind}">${msg
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;")}</span>\n`;
+  logEl.appendChild(line);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+window.addEventListener("error", (e) => log("e", "window error: " + e.message));
+/* let an external driver press the harness buttons */
+window.sgAct = (name) => { const b = document.querySelector('[data-act="' + name + '"]'); if (b) { b.click(); return "clicked " + name; } return "no such action: " + name; };
+
+/* --------------------------------------------------------------- build map */
+let map = null;
+let siteCache = [];
+
+function build() {
+  map = window.__sgRealmaps.createRealMap(document.getElementById("map"), {
+    apiBase: API,               // absolute → tiles + layer catalogue come from the live API
+    center: { lat: 24.2, lon: 45.2 },
+    zoom: 5,
+    basemap: "dark",
+    autoLayer: true,
+    onPlace: (lat, lon) => {
+      log("p", `onPlace(${lat.toFixed(4)}, ${lon.toFixed(4)})`);
+      map.setMarker(lat, lon, `Test point ${lat.toFixed(3)}°N ${lon.toFixed(3)}°E`);
+    },
+    onHover: (lat, lon) => {          // arity-2 form → gets (lat, lon)
+      document.getElementById("coords").textContent =
+        `${lat.toFixed(3)}°N  ${lon.toFixed(3)}°E`;
+      throttleHover(lat, lon);
+    },
+    onSelect: (site) => log("s", `onSelect(${site.id}) — ${site.name}`),
+    onLayerChange: (l) => log("l", l ? `onLayerChange(${l.id} @ ${l.date || "—"})`
+                                      : "onLayerChange(null)"),
+  });
+
+  map.ready.then((impl) => {
+    window.__sgMapImpl = impl;
+    const kind = impl && impl.map ? "Leaflet 1.9.4 · real tiles" : "canvas fallback (sg-map.js)";
+    const b = document.getElementById("impl-badge");
+    b.textContent = kind;
+    b.className = "badge " + (impl && impl.map ? "live" : "warn");
+    log("a", "ready — renderer: " + kind);
+    if (!(impl && impl.map)) log("e", "WARNING: Leaflet did not load; running the canvas fallback");
+  });
+}
+
+let lastHover = 0;
+function throttleHover(lat, lon) {
+  const now = performance.now();
+  if (now - lastHover < 400) return;
+  lastHover = now;
+  log("h", `onHover(${lat.toFixed(3)}, ${lon.toFixed(3)})`);
+}
+
+/* --------------------------------------------------------------- live API */
+async function loadSites() {
+  try {
+    const r = await fetch(API + "api/sites", { mode: "cors" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const j = await r.json();
+    siteCache = j.sites || [];
+    map.setSites(siteCache);
+    document.getElementById("sites-count").textContent = siteCache.length + " sites";
+    log("a", `setSites(${siteCache.length}) — ${siteCache.map((s) => s.id).join(", ")}`);
+  } catch (e) {
+    log("e", "GET /api/sites failed: " + e.message);
+    document.getElementById("api-badge").className = "badge err";
+  }
+}
+
+async function boot() {
+  log("a", "page loaded, loading module…");
+  try {
+    const mod = await import(BASE + "assets/js/sg-realmaps.js");
+    window.__sgRealmaps = mod;
+    log("a", "module loaded: " + Object.keys(mod).join(", "));
+  } catch (e) {
+    log("e", "module import failed: " + e.message);
+    return;
+  }
+  build();
+  try {
+    const r = await fetch(API + "api/sites", { mode: "cors" });
+    document.getElementById("api-badge").textContent = "api: " + (r.ok ? "live" : "HTTP " + r.status);
+    document.getElementById("api-badge").className = "badge " + (r.ok ? "live" : "err");
+  } catch (_) {
+    document.getElementById("api-badge").textContent = "api: unreachable";
+    document.getElementById("api-badge").className = "badge err";
+  }
+  await loadSites();
+}
+
+/* ------------------------------------------------------------- buttons */
+const SITES = { sudair: [25.55, 45.55], dammam: [26.43, 50.10], ksa: [24.2, 45.2, 5] };
+const ACTIONS = {
+  "sites": loadSites,
+  "mk-sudair": () => map.setMarker(SITES.sudair[0], SITES.sudair[1], "Sudair Solar PV"),
+  "mk-clear": () => map.setMarker(null),
+  "layer-aod": () => map.setLayer({ id: "MODIS_Terra_Aerosol", label: "MODIS AOD (Terra)", date: "" }),
+  "layer-maiac": () => map.setLayer({ id: "MODIS_Combined_MAIAC_L2G_AerosolOpticalDepth", label: "MAIAC AOD 1km", date: "" }),
+  "layer-dust": () => map.setLayer({ id: "AIRS_L2_Dust_Score_Day", label: "AIRS Dust Score", date: "" }),
+  "layer-none": () => map.setLayer(null),
+  "layer-toggle": () => map.setLayerVisible(!map.showLayer),
+  "focus-sudair": () => map.focus(SITES.sudair[0], SITES.sudair[1], 7),
+  "focus-dammam": () => map.focus(SITES.dammam[0], SITES.dammam[1], 8),
+  "focus-ksa": () => map.focus(SITES.ksa[0], SITES.ksa[1], 5),
+  "bm-dark": () => map.setBasemap("dark"),
+  "bm-osm": () => map.setBasemap("osm"),
+  "bm-carto": () => map.setBasemap("carto"),
+  "destroy": () => { map.destroy(); log("a", "destroy() — map torn down"); },
+  "rebuild": () => { log("a", "rebuild — createRealMap() again"); build(); loadSites(); },
+};
+document.querySelectorAll("[data-act]").forEach((b) => {
+  b.addEventListener("click", () => {
+    const act = b.dataset.act;
+    log("a", "▶ " + act);
+    try { ACTIONS[act]?.(); } catch (e) { log("e", act + " threw: " + e.message); }
+  });
+});
+document.getElementById("clear-log").addEventListener("click", () => { logEl.textContent = ""; });
+
+/* ------------------------------------------------- network self-report */
+window.sgFailures = () => performance.getEntriesByType("resource")
+  .filter((r) => r.responseStatus >= 400)
+  .map((r) => `${r.responseStatus} ${r.name}`);
+window.sgTileStats = () => {
+  const all = performance.getEntriesByType("resource");
+  const tiles = all.filter((r) => /\/api\/satellite\/tile\//.test(r.name));
+  const fails = all.filter((r) => r.responseStatus >= 400);
+  const el1 = document.getElementById("st-tiles"), el2 = document.getElementById("st-fail");
+  if (el1) el1.textContent = tiles.length;
+  if (el2) el2.textContent = fails.length;
+  const impl = window.__sgMapImpl;
+  const imgs = Array.from(document.querySelectorAll("img.leaflet-tile"));
+  return {
+    tiles: tiles.length,
+    failed: fails.map((r) => `${r.responseStatus} ${r.name}`),
+    gibsLoad: impl && impl.stats ? impl.stats.load : null,
+    gibsMiss: impl && impl.stats ? impl.stats.miss : null,
+    gibsLayerUrl: impl && impl.gibs ? impl.gibs._url : null,
+    gibsImgs: imgs.length,
+    gibsPainted: imgs.filter((i) => /\/api\/satellite\/tile\//.test(i.src) && i.naturalWidth > 0).length,
+    basemapPainted: imgs.filter((i) => !/\/api\/satellite\/tile\//.test(i.src) && i.naturalWidth > 0).length,
+  };
+};
+
+/* layout probe — kept in the page so the shell driver stays simple */
+window.sgLayout = () => JSON.stringify({
+  impl: document.getElementById("impl-badge").textContent,
+  api: document.getElementById("api-badge").textContent,
+  leafletLoaded: !!(window.L && window.L.map),
+  markers: document.querySelectorAll(".sg-mk").length,
+  mapW: document.getElementById("map").clientWidth,
+  mapH: document.getElementById("map").clientHeight,
+  tapTargets: Array.from(document.querySelectorAll(".sg-ctrls button,.sg-ctrls select,.sg-ctrls input"))
+    .map((e) => Math.round(e.getBoundingClientRect().height)),
+  ctrl: (() => {
+    const c = document.querySelector(".sg-ctrls");
+    if (!c) return null;
+    const r = c.getBoundingClientRect();
+    return { h: Math.round(r.height), top: Math.round(r.top), left: Math.round(r.left),
+             scrollW: c.scrollWidth, clientW: c.clientWidth, singleRowScroll: c.scrollWidth > c.clientWidth + 2 };
+  })(),
+  tileStats: window.sgTileStats(),
+  failures: window.sgFailures(),
+  console: window.__sgConsole,
+});
+setInterval(() => { try { window.sgTileStats(); } catch (_) {} }, 1500);
+
+boot();
+</script>
+</body>
+</html>

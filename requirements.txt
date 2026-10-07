@@ -1,0 +1,18 @@
+# SolarGuard Space — runtime dependencies.
+#
+# Only packages actually imported by backend/, ml/ and harvest/ are listed, pinned to the
+# versions installed on this box (python3 -c "import fastapi,numpy;print(...)").
+# Standard library only otherwise (json, math, datetime, asyncio, csv, urllib, pathlib,
+# io, re, collections, xml).
+#
+# build_dataset.py / physics_soiling.py / train.py use numpy; harvest/ uses urllib only.
+# data/extract_pdfs.py and data/build_corpus.py use pymupdf, but they are one-off corpus
+# build tools outside backend/, ml/ and harvest/, so pymupdf is not a runtime requirement.
+
+fastapi==0.133.1
+starlette==1.3.1
+uvicorn==0.41.0
+httpx==0.28.1
+pydantic==2.13.4
+numpy==2.4.6
+pillow==12.3.0

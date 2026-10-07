@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SolarGuard Space — know when to clean your solar plant</title>
+<meta name="description" content="SolarGuard Space turns satellite dust data into a simple answer for Saudi solar owners: how much the dust is costing you, and when cleaning pays. Live dashboard, forecasts per site, AI assistant.">
+<meta name="theme-color" content="#04060c">
+<meta property="og:title" content="SolarGuard Space">
+<meta property="og:description" content="You can't see the dust. We can. Know the day cleaning pays.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070b14'/%3E%3Cpath d='M16 6 L18 13 L25 16 L18 19 L16 26 L14 19 L7 16 L14 13 Z' fill='%23f3a72b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/solarguard.css">
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap inner">
+    <a class="brand" href="./">Solar<span>Guard</span></a>
+    <div class="links">
+      <a href="#product">Product</a>
+      <a href="#orbit">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="technology.html">Technology</a>
+      <a class="btn primary sm" href="dashboard.html">Try it live</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════ hero + animation 1 ══════════════════════════ -->
+<header class="stage" id="stage">
+  <div class="stage-sticky">
+    <canvas id="story" aria-label="Solar array as dust builds up and is cleaned"></canvas>
+    <div class="stage-veil"></div>
+    <div class="wrap stage-copy">
+      <p class="kicker reveal">Dust intelligence for solar</p>
+      <h1 class="reveal">You can't see the dust.<br>We can.</h1>
+      <p class="sub reveal">Satellite forecasts that tell Saudi solar owners how much dust is
+        costing them — and the day cleaning actually pays.</p>
+      <div class="row-btns reveal">
+        <a class="btn primary" href="dashboard.html">Try it live</a>
+        <a class="btn" href="#orbit">See how it works</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════ three short lines ══════════════════════════ -->
+<section class="band" id="product">
+  <div class="wrap narrow">
+    <p class="big-line reveal">Dust quietly takes up to <b>45&nbsp;%</b> of a Saudi plant's output.</p>
+    <p class="big-line reveal">Cleaning crews cost real money. Guessing costs more.</p>
+    <p class="big-line reveal">SolarGuard turns both into one number: <b>clean today, or wait.</b></p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ animation 2 + captions ══════════════════════ -->
+<section class="orbit" id="orbit">
+  <div class="orbit-sticky">
+    <canvas id="plume" aria-label="Satellite pass over Saudi Arabia as a dust front crosses the country"></canvas>
+    <div class="orbit-veil"></div>
+    <div class="wrap orbit-copy">
+      <p class="caption" id="orbit-caption">We watch the dust from orbit.</p>
+      <p class="orbit-sub" id="orbit-sub">Scroll to follow one front across the Kingdom.</p>
+    </div>
+  </div>
+  <div class="wrap orbit-steps">
+    <div class="step reveal"><span class="n">01</span><h3>We watch from orbit</h3>
+      <p>Satellites cover the whole country, including sites with nothing around them.</p></div>
+    <div class="step reveal"><span class="n">02</span><h3>We price the dust</h3>
+      <p>Whatever your tariff, crew cost and capacity, the loss becomes a number in riyals.</p></div>
+    <div class="step reveal"><span class="n">03</span><h3>You get one answer</h3>
+      <p>Clean now, or wait. With the money at stake and the day to send the crew.</p></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ what you get ══════════════════════════ -->
+<section class="band alt">
+  <div class="wrap">
+    <h2 class="reveal">What you get</h2>
+    <div class="cards">
+      <div class="card reveal">
+        <h3>Forecast</h3>
+        <p>How much dust lands on your site over the next two weeks, and what it costs in kWh and riyals.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Verdict</h3>
+        <p>One line, decided by your economics: clean today, or wait — and how urgent it is.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Proof</h3>
+        <p>The satellite view behind every call, so you can see the plume you are paying for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ agent ══════════════════════════════ -->
+<section class="band" id="agent">
+  <div class="wrap two-col">
+    <div class="reveal">
+      <p class="kicker">Included</p>
+      <h2>Ask your site a question.</h2>
+      <p>SolarGuard comes with an assistant that has your site's numbers. Ask it what to do, and it
+        answers with the data — then does the work on the dashboard.</p>
+      <div class="row-btns"><a class="btn" href="dashboard.html#agent">Try the assistant <span class="arw">→</span></a></div>
+    </div>
+    <div class="reveal">
+      <div class="chat" id="home-chat"></div>
+      <div class="ask-row">
+        <input id="home-ask" type="text" placeholder="Should we clean Dammam this week?" autocomplete="off">
+        <button class="btn primary sm" id="home-ask-go">Ask</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ impact ══════════════════════════════ -->
+<section class="band alt" id="impact">
+  <div class="wrap">
+    <h2 class="reveal">What it is worth</h2>
+    <p class="lead-narrow reveal">A 100&nbsp;MWp plant on the Gulf coast, cleaning every ten days the way most
+      operators do today — priced with our own model.</p>
+    <div class="tiles" style="margin-top:26px">
+      <div class="stat reveal"><span class="v" id="stat-sar">—</span><span class="k">saved per year vs a fixed calendar</span></div>
+      <div class="stat reveal"><span class="v" id="stat-mwh">—</span><span class="k">cleaning passes avoided each year</span></div>
+      <div class="stat reveal"><span class="v" id="stat-water">—</span><span class="k">litres of washing water avoided</span></div>
+      <div class="stat reveal"><span class="v" id="stat-feeds">—</span><span class="k">open satellite and weather feeds</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ pricing ══════════════════════════════ -->
+<section class="band" id="pricing">
+  <div class="wrap">
+    <h2 class="reveal">Pricing</h2>
+    <div class="cards cards-2">
+      <div class="card reveal">
+        <h3>Fleet &amp; utility</h3>
+        <p class="price">Priced per monitored MWp</p>
+        <p>Every site you run, one dashboard: forecast efficiency, cleaning schedule, sandstorm warnings and
+          the savings on the record.</p>
+        <a class="btn" href="dashboard.html">Open the dashboard</a>
+      </div>
+      <div class="card reveal">
+        <h3>Home, farm &amp; business</h3>
+        <p class="price">Simple monthly subscription</p>
+        <p>Your location and your panel size is all we need. Same forecast, same answer, without the crew
+          you did not need.</p>
+        <a class="btn" href="dashboard.html">Price my roof</a>
+      </div>
+    </div>
+    <p class="src reveal">Optional: connect inverter data and the forecasts learn from your real output.
+      No new hardware.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ closing ══════════════════════════════ -->
+<section class="band closing">
+  <div class="wrap narrow">
+    <h2 class="reveal">Stop guessing. Start cleaning on time.</h2>
+    <div class="row-btns reveal">
+      <a class="btn primary" href="dashboard.html">Try it live</a>
+      <a class="btn" href="technology.html">Technology &amp; data</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="brand" href="./">Solar<span>Guard</span></a>
+      <p class="small dim">Team space-Marines · Riyadh.</p>
+    </div>
+    <div>
+      <p class="kicker">Product</p>
+      <p class="small"><a href="dashboard.html">Live dashboard</a><br>
+        <a href="#pricing">Pricing</a><br>
+        <a href="technology.html">Technology &amp; data</a><br>
+        <a href="mission/">Original team page</a></p>
+    </div>
+    <div>
+      <p class="kicker">Live status</p>
+      <p class="small dim" id="foot-status">checking feeds…</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="assets/js/sg-home.js"></script>
+</body>
+</html>

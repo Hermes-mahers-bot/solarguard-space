@@ -1,0 +1,1225 @@
+
+<<<PAGE 1>>>
+Experimental and modeling study of dust composition impact on 
+photovoltaic performance in arid coastal environments
+Albandari Almarri a, Raghad AlMutairi a, Fatimah Alnass a, Norah Alghamdi a, 
+Mohamed Mohamady Ghobashy b,*, Mohamed S. Attia c, Mohamed Madani a,**
+a Department of Physics, College of Science and Humanities-Jubail, Imam Abdulrahman Bin Faisal University, Jubail, 35811, Saudi Arabia
+b Radiation Research of Polymer Chemistry Department, National Center for Radiation Research and Technology (NCRRT), Egyptian Atomic Energy Authority (EAEA), 
+Cairo, Egypt
+c Chemistry Department, Faculty of Science, Ain Shams University, Abbassia, Cairo, 11566, Egypt
+A R T I C L E I N F O
+Keywords:
+Photovoltaic efficiency
+Dust deposition effects
+Arid coastal
+Humidity
+Thermal impact
+A B S T R A C T
+This study examines the combined influence of dust composition, humidity, and air quality on the performance 
+of photovoltaic (PV) systems in Jubail, Saudi Arabia—an archetypal arid coastal region. Four dust types 
+(montmorillonite, kaolinite, bentonite, and natural dust) were systematically deposited on polycrystalline PV 
+modules at varying surface densities (1.0–7.0 g/m2) under controlled outdoor conditions in September 2025. 
+Concurrently, atmospheric parameters such as relative humidity, air quality index (AQI), and surface tempera­
+ture were continuously monitored. SEM-EDX analysis revealed distinct mineralogical compositions: natural dust 
+was rich in silica (25.37 %) and calcium oxide (30.52 %), whereas montmorillonite contained high iron content 
+(62.67 %), influencing both optical transmittance and heat accumulation. Experimental results showed that 
+natural dust caused the greatest power loss (48 % at 6 g/m2), while montmorillonite produced the highest 
+thermal stress (surface temperature reaching 40.4 ◦C). Elevated humidity (>60 %) further exacerbated efficiency 
+losses (15–30 %) due to enhanced dust adhesion and moisture-induced conductive paths. A modified Kaldel­
+lis–Kapsali exponential model (R2 > 0.95) accurately predicted the nonlinear efficiency decline relative to dust 
+density and composition. Diurnal analysis indicated peak generation during low-humidity morning hours 
+(8:00–12:00), with afternoon efficiency dropping by 20–25 % owing to increased moisture and AQI. Correlation 
+analysis identified AQI (R = −0.83) as a stronger predictor of performance degradation than humidity (R =
+−0.77). These findings establish critical maintenance thresholds (4.0 g/m2 dust density) and support the 
+development of tailored mitigation strategies, including hydrophobic coatings and thermally resistant materials, 
+for sustainable PV operation in harsh desert climates.
+1. Introduction
+Photovoltaic (PV) systems have emerged as a cornerstone of global 
+renewable energy strategies, providing a sustainable alternative to fossil 
+fuels by directly converting sunlight into electricity [1,2]. Their adop­
+tion has surged in regions with high solar irradiance, such as arid and 
+semi-arid areas, where sunlight is abundant and consistent. However, 
+these regions also present unique environmental challenges that 
+significantly impair PV performance. Among these challenges, dust 
+accumulation, humidity, and fluctuating air quality stand out as critical 
+factors that degrade efficiency and reduce longevity. The potential of 
+solar energy is enormous, with the Earth receiving approximately 3,400, 
+000 EJ of solar energy annually. The total solar flux reaching the Earth’s 
+surface amounts to 1.08 × 108 W, while the solar constant is measured 
+at 1367 W/m2 (see Schemes 1 and 2).
+While extensive research has explored individual stressors, the syn­
+ergistic effects of these factors, particularly in coastal arid environments 
+like Jubail, Saudi Arabia, remain understudied. This introduction re­
+views past literature on PV performance degradation, identifies gaps in 
+understanding, and outlines the objectives of the current study to 
+address these lacunae. The transition to solar energy is driven by its 
+potential to mitigate climate change and meet increasing energy 
+* Corresponding author.
+** Corresponding author.
+E-mail addresses: Mohamed_ghobashy@yahoo.com (M. Mohamady Ghobashy), mmadani@iau.edu.sa (M. Madani). 
+Contents lists available at ScienceDirect
+Journal of Materials Research and Technology
+journal homepage: www.elsevier.com/locate/jmrt
+https://doi.org/10.1016/j.jmrt.2025.10.169
+Received 24 May 2025; Received in revised form 9 October 2025; Accepted 20 October 2025 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+Available online 24 October 2025 
+2238-7854/© 2025 The Authors. Published by Elsevier B.V. This is an open access article under the CC BY-NC-ND license ( http://creativecommons.org/licenses/by- 
+nc-nd/4.0/ ). 
+
+<<<PAGE 2>>>
+demands.
+Between 2005 and 2018 alone, global greenhouse gas emissions 
+increased by 23 %, leading to environmental problems such as rising 
+temperatures on the Earth’s surface. This is one of the reasons why many 
+countries are turning to renewable energy sources that emit no emis­
+sions after they are installed [3].
+By 2022, global solar capacity exceeded 1 TW, with desert regions in 
+the Middle East, North Africa, and Asia leading large-scale installations 
+due to their high solar potential [4]. However, arid and coastal envi­
+ronments, while rich in sunlight, expose PV systems to harsh conditions 
+[5–7]. Dust storms, high humidity, and temperature extremes are 
+frequent in these regions, creating a paradox: optimal solar resources 
+coexist with environmental stressors that drastically reduce energy 
+output. For instance, in Saudi Arabia, dust deposition can reduce PV 
+efficiency by 20–40 % within weeks [8–10], while humidity levels 
+exceeding 60 % exacerbate dust adhesion, compounding losses [11,12]. 
+Saudi Arabia, with its abundant solar resources, represents a prime 
+example of this solar energy potential. The Kingdom receives some of 
+the world’s highest levels of solar irradiation, with annual direct normal 
+irradiance (DNI) values ranging from 1900 to 2500 kWh/m2/year across 
+different regions. The country’s Vision 2030 program has set ambitious 
+renewable energy targets, aiming to generate 50 % of its electricity from 
+renewable sources by 2030, with solar energy playing a pivotal role in 
+this transformation.
+Solar energy plays a key role in providing sustainable and renewable 
+energy solutions, reducing dependence on fossil fuels and contributing 
+to environmental protection [13].
+Early studies by El-Shobokshy and Hussein [14] demonstrated that 
+dust composition—such as silica, calcite, or organic matter—affects 
+light transmittance differently. For example, calcium carbonate (CaCO3) 
+reflects ultraviolet light, while iron oxide (Fe2O3) absorbs infrared ra­
+diation, increasing panel temperature. These findings were corroborated 
+by Sarver et al. [15], who classified dust into “reflective” (e.g., silica) 
+and “absorptive” (e.g., iron-rich) types, each with distinct degradation 
+mechanisms. In desert regions, natural dust often contains high pro­
+portions of silica (SiO2) and calcium oxide (CaO), as shown in studies 
+from the Arabian Peninsula [16]. These minerals form cohesive layers in 
+the presence of humidity, creating a cement-like film that is difficult to 
+remove. For example, Al-Hasan et al. [16] reported that calcium-rich 
+dust reduced PV efficiency by 35 % in Kuwait due to its hygroscopic 
+nature, which enhances adhesion. Similarly, work in Arizona by Sayigh 
+et al. [17] found that silica-dominated dust caused a 50 % decline in 
+output over a six-week period. These studies highlight the importance of 
+analyzing dust mineralogy when developing mitigation strategies. Hu­
+midity exacerbates dust-related degradation by acting as a binding 
+agent. When relative humidity exceeds 60 %, capillary forces between 
+dust particles and the PV surface strengthen, creating durable layers that 
+resist wind or manual cleaning [18]. This phenomenon was quantified 
+by Maghami et al. [19], who observed that humidity levels above 70 % 
+in Malaysia increased dust adhesion by 30 %, resulting in a 25 % drop in 
+power output. The interplay between humidity and dust composition 
+further complicates this issue. For instance, Bentonite clay—a common 
+dust component in arid regions—swells under moisture, increasing its 
+light-blocking capacity [20]. Moreover, adsorbed water molecules on 
+PV surfaces create parasitic electrical pathways, reducing charge carrier 
+mobility and increasing recombination rates [21]. A study in coastal 
+India by Rao et al. [22] demonstrated that humidity-induced surface 
+moisture reduced open-circuit voltage (Voc) by 12 %, independent of 
+dust accumulation. These findings highlight the dual role of humidity: it 
+enhances dust adhesion and directly impairs electrical performance.
+Air quality, often measured by the Air Quality Index (AQI), in­
+fluences PV efficiency through light scattering and soiling. High con­
+centrations of PM2.5 and PM10 particles—common in regions with 
+industrial activity or frequent dust storms—attenuate incoming solar 
+irradiance before it reaches the panel surface. Anna et al. [23] modeled 
+this effect in Beijing, showing that PM2.5 levels above 150 μg/m3 
+reduced irradiance by 18 %, correlating with a 15 % decline in PV 
+output. Similarly, in Cairo, Elminir et al. [24] found that airborne 
+particulates from urban pollution compounded dust-related losses, 
+resulting in a 22 % reduction in annual energy yield. The combined 
+impact of dust deposition and airborne particulates creates a “double 
+penalty” for PV systems. For example, in a study combining experi­
+mental and computational approaches, Darwish et al. [25] demon­
+strated that soiling and aerosol scattering synergistically reduced 
+efficiency by 35 % in Dubai. These results emphasize the importance of 
+integrating air quality monitoring into PV performance assessments.
+Arid and coastal environments, while rich in sunlight, expose PV 
+systems to harsh conditions. Dust storms, high humidity, and tempera­
+ture extremes are frequent in these regions, creating a paradox: optimal 
+solar resources coexist with environmental stressors that drastically 
+reduce energy output [26–28]. For instance, while Javed et al. [20] 
+explored humidity’s role in dust adhesion, they did not consider how 
+Scheme 1. Dust samples for current study.
+A. Almarri et al. 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+5456 
+
+<<<PAGE 3>>>
+mineral-specific dust behaviors interact with seasonal humidity 
+changes. Second, regional dust compositions—such as the iron-rich 
+montmorillonite prevalent in Saudi Arabia—are rarely analyzed for 
+their unique thermal and optical impacts. Third, few studies provide 
+actionable thresholds for maintenance, such as the dust density at which 
+cleaning becomes critical (e.g., 4.0 g/m2, as suggested by recent work).
+This study addresses these gaps by examining how four dust type­
+s—montmorillonite, kaolinite, bentonite, and natural dust—affect PV 
+performance under Jubail’s fluctuating humidity and air quality. Using 
+SEM/EDX analysis, controlled deposition experiments, and environ­
+mental monitoring, we aim to. 
+1. Quantify efficiency losses caused by mineral-specific dust 
+compositions.
+2. Identify thresholds for humidity and dust density that trigger 
+nonlinear degradation.
+3. Correlate air quality (AQI) with irradiance attenuation and power 
+loss.
+4. Propose region-specific mitigation strategies based on dust miner­
+alogy and climatic patterns.
+The findings of this study hold practical implications for optimizing 
+PV maintenance in arid coastal regions. By linking dust composition to 
+degradation mechanisms, stakeholders can prioritize cleaning schedules 
+or select coatings tailored to dominant minerals. For example, hydro­
+phobic coatings may mitigate humidity-driven adhesion in calcium-rich 
+environments, while iron-rich regions might benefit from thermal- 
+resistant materials. The subsequent sections detail the experimental 
+setup in Jubail, Saudi Arabia, including dust characterization, deposi­
+tion methodologies, and environmental monitoring protocols. Results 
+are analyzed through the lens of past literature, with discussions 
+emphasizing the interplay between mineralogy, humidity, and air 
+quality. The conclusion synthesizes these insights into actionable rec­
+ommendations, advancing the goal of sustainable solar energy in envi­
+ronmentally vulnerable regions.
+2. Experimental
+2.1. Materials
+Four distinct dust samples were used to evaluate their impact on PV 
+performance: montmorillonite, kaolinite, bentonite, and natural dust. 
+The montmorillonite, kaolinite, and bentonite clays were sourced from 
+Bata India Limited, Patnagar, India, as commercially available mineral 
+powders in industrial and academic research. Each was certified for ≥99 
+% purity and sieved to a particle size of ≤45 μm for uniform application. 
+The natural dust sample was manually collected from glass surfaces 
+exposed to ambient conditions in Jubail, Saudi Arabia, to represent 
+realistic particulate fallout in an arid urban environment. Dust mass per 
+unit area was precisely controlled using an analytical digital balance 
+with a sensitivity of ±0.001 g. Sterilized quartz glass slides (dimensions: 
+75 × 25 × 1 mm) were used as substrates for thermal measurements. The 
+uniformity and granulometry of all dusts were confirmed using SEM 
+imaging, ensuring representative and reproducible surface coverage 
+across all test stages.
+2.2. Experimental setup and location
+This study was conducted in Jubail, Saudi Arabia—an arid, high-dust 
+coastal city—where environmental stressors such as windblown dust, 
+high humidity, and temperature fluctuations frequently affect photo­
+voltaic (PV) systems. The study was conducted at two primary locations, 
+with one being a field testing site located in Jubail Industrial City, Saudi 
+Arabia, at geographic coordinates 27◦00′N and 49◦40′E. This site is 
+located at an elevation of 6 m above sea level and is classified as BWh 
+(Hot Desert Climate) according to the K¨oppen climate classification. 
+Characterized by its coastal urban setting, the site frequently experi­
+ences dust events, which are significant for the environmental condi­
+tions under investigation. A 20W polycrystalline PV panel was selected 
+for outdoor performance testing (Table 1) and installed on a rooftop at a 
+fixed 30◦tilt, facing south, to maximize solar irradiance exposure. The 
+investigation was conducted over two distinct periods: September 
+15–29, 2025, and September 9–24, 2025, to capture the variability in 
+atmospheric conditions. The panel was exposed to open-sky conditions 
+without shade obstructions to reflect real-world operating scenarios. 
+This location allowed for natural dust accumulation and direct inter­
+action with sunlight, ambient temperature, and humidity. The goal of 
+the setup was to simulate operational PV systems commonly found in the 
+region and evaluate how naturally occurring environmental conditions 
+degrade efficiency over time, with a particular focus on the impact of air 
+quality and particulate matter on energy production.
+Scheme 2. PV module setup at Jubail.
+Table 1 
+Solar panel specifications (outdoor).
+Cell 1 (BEST-20W)
+Cell 2 (RTM005P)
+Max. Power (Pmax)
+20 W
+5 W
+Current at Pmax
+1.14 A
+0.55 A
+Voltage at Pmax
+17.6 V
+9.1 V
+Open Circuit Voltage
+21.1 V
+10.8 V
+Short Circuit Current
+1.29 A
+0.62 A
+Irradiation
+1000 W/m2
+1000 W/m2
+A. Almarri et al. 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+5457 
+
+<<<PAGE 4>>>
+2.3. Dust deposition methodology
+Four dust types—natural dust, bentonite, kaolinite, and montmor­
+illonite—were deposited in stages on the PV panel to simulate real dust 
+accumulation. Natural dust was collected from local surfaces exposed to 
+environmental fallout, while synthetic dust samples were prepared to 
+represent standard clay particles with different mineral properties. The 
+deposition was conducted in seven stages, starting with a surface density 
+of ~1.0 g/m2 and incrementally increasing to ~7.0 g/m2 using a high- 
+precision electronic balance. The dust deposition density can be calcu­
+lated from the relationship. 
+ρdep = Δm
+A , g
+/
+m2
+(1) 
+where Δm is the mass of the deposited dust and A is the area of the PV 
+panel. After each stage, the PV panel is open-circuit voltage (Voc), short- 
+circuit current (Isc), and real-time surface temperature were measured 
+using a GM320 infrared thermometer. Light intensity was simulta­
+neously recorded using a lux meter. These parameters were used to 
+recalculate power and efficiency at each stage. This method enabled the 
+controlled assessment of how increasing dust loads affected photovoltaic 
+behavior, particularly in terms of light attenuation and temperature rise.
+2.4. Parameters and measurement protocol
+Measurements were recorded daily at 12:30 p.m., coinciding with 
+solar noon, to ensure peak irradiance for consistent comparison. The 
+parameters observed included ambient temperature (◦F), relative hu­
+midity (%), and air quality index (AQI). Electrical parameters—voltage 
+(V) and current (A)—were measured using a calibrated digital multi­
+meter, and solar irradiance (W/m2) was inferred via a lux meter 
+(PeakTech 5165). The power output (PP) was calculated as the product 
+of current and voltage, while efficiency (η\eta) was determined using 
+the standard photovoltaic formula:
+Solar panel efficiency (η) is calculated using the following formula 
+[29]: 
+η = Pmax
+E × A %
+(2) 
+where E is the solar irradiance and A is the surface area of the PV panel. 
+These calculations were repeated for each day across both study periods, 
+allowing for a detailed performance comparison under fluctuating 
+environmental conditions. This consistent protocol ensured accurate 
+tracking of efficiency loss due to environmental stressors. While theo­
+retical limits, such as the Shockley-Queisser limit, set boundaries for 
+maximum efficiency, real-world factors, including temperature fluctu­
+ations, shading, and air quality, often cause deviations from these ideal 
+values [30]. In this context, the Fill Factor becomes an essential tool for 
+evaluating a panel’s true operational efficiency under varying environ­
+mental conditions. This consistent protocol ensured accurate tracking of 
+efficiency loss due to environmental stressors.
+The power reduction (ΔP) due to deposited dust were calculated from 
+the relation: 
+ΔP = Pc −Pd
+Pc
+%
+(3) 
+where, Pc = Power of the clean module, Pd = Power of the soiled unit.
+The reduction of efficiency was calculated from 
+Δη = ηc −ηd %
+(4) 
+Power Calculation. 
+P = Voc × Isc × FF
+(5) 
+where FF is the fill factor calculated as: 
+FF =
+Pmax
+Voc x Isc
+(6) 
+Efficiency Model 
+η = Pmax
+E x A x 100
+(7) 
+Modified Kaldellis-Kapsali Model 
+FF = ηd
+ηc = ηo
+(
+1 + Be−Aρdep )
+(8) 
+2.5. Temperature measurement protocol
+Sterilized quartz glass slides were used as test substrates to evaluate 
+the thermal effects induced by dust. Each slide was uniformly coated 
+with 1.0 g/m2 of a specific dust type, then exposed to direct sunlight for 
+1 h during midday. Temperature measurements were taken from the top 
+(dust-exposed) and bottom (shaded) surfaces using a GM320 infrared 
+thermometer to isolate thermal contributions from the dust. The slides 
+were elevated slightly above ground level to prevent heat transfer from 
+the ground, maintaining focus on solar-induced heating. This experi­
+mental design minimized confounding variables and accurately 
+measured the heat retention properties of each dust type. Temperature 
+measurements were taken five times and then averaged. Data revealed 
+how dust composition influenced panel surface temperatures, which are 
+known to correlate inversely with solar efficiency. This protocol helped 
+isolate the thermal mechanisms behind dust-induced performance losses 
+in solar panels by identifying which dust types contribute to more sig­
+nificant heating.
+2.6. Dust characterization
+The physical and chemical compositions of the dust samples were 
+analyzed using Scanning Electron Microscopy (SEM) coupled with En­
+ergy Dispersive X-ray Spectroscopy (EDX) via the JEOL JSM-6610 sys­
+tem, operated at 30 kV under vacuum. Montmorillonite, kaolinite, 
+bentonite, and natural dust samples were prepared and mounted on 
+aluminum stubs with carbon adhesive. SEM imaging provided infor­
+mation on surface morphology and particle size, while EDX analysis 
+revealed the elemental composition. Results showed that natural dust 
+was rich in silica (SiO2), calcium (CaO), and trace amounts of iron (Fe), 
+indicating a high light-scattering potential. In contrast, montmorillonite 
+exhibited elevated iron content (62.67 % Fe), suggesting enhanced 
+thermal absorption. These compositional differences helped explain 
+variations in the optical and thermal performance of each dust type 
+when deposited on PV surfaces. Understanding these properties was 
+essential for correlating physical characteristics of airborne particulates 
+with their impact on solar panel efficiency.
+2.7. Equipment specifications
+Various precise instruments were used to measure electrical, ther­
+mal, and environmental parameters. Electrical output was measured 
+using a PeakTech P2015A digital multimeter, capable of measuring up 
+to 1000 V AC and 10 A, with ±0.5–2.0 % accuracy. A GM320 infrared 
+thermometer measured PV surface temperatures with ±1.5 ◦C accuracy 
+and a range of −50 ◦C–380 ◦C. Solar irradiance was estimated using the 
+PeakTech 5165 digital lux meter, which measures 0–200,000 lux with 
+±3 % accuracy. Airborne particle concentration was measured using the 
+LKC-1000S + laser particle counter, which is capable of detecting PM2.5 
+and PM10 with a resolution of 0.1 μg/m3. The 20W BEST-20W poly­
+crystalline solar panel had a rated open-circuit voltage of 21.1 V, short- 
+circuit current of 1.29 A, and a tolerance of ±5 %. These high-accuracy 
+tools ensured reliable data acquisition across all test conditions and 
+environmental variables.
+A. Almarri et al. 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+5458 
+
+<<<PAGE 5>>>
+2.8. Environmental monitoring
+Continuous environmental monitoring was essential for linking 
+performance changes to ambient conditions. An LKC-1000S + air quality 
+detector was employed to measure particulate matter concentrations 
+(PM2.5 and PM10), which were used to calculate the AQI. The sensor 
+was positioned near the PV array to capture representative local air 
+quality data. Ambient temperature and humidity were logged using 
+onboard meteorological sensors at each measurement interval, ensuring 
+synchronized data for all performance metrics. This environmental data 
+was then correlated with daily variations in voltage, current, and effi­
+ciency. By analyzing trends across the two study periods, the research 
+evaluated how atmospheric changes, such as dust storms or humidity 
+spikes, directly influenced PV output. This approach provided a real- 
+world perspective on how external stressors cumulatively impact solar 
+panel performance, offering valuable insights for optimizing solar en­
+ergy systems in environments characterized by high dust and fluctuating 
+air quality.
+3. Results and discussion
+3.1. Impact of dust deposition on power output and efficiency
+The effect of different dust types on the power output of solar panels 
+under outdoor conditions was investigated and illustrated in Fig. 1. The 
+figure illustrates the inverse relationship between the surface density of 
+dust and the power output of solar cells. As dust accumulation increased, 
+power output consistently declined for all tested dust types—bentonite, 
+kaolinite, montmorillonite, and natural dust. This decline is primarily 
+due to dust obstructing incoming sunlight, which limits the photons 
+from reaching the active surface of the photovoltaic cell and reduces the 
+generation of electrical energy. Natural dust had the most pronounced 
+impact among the four types, reducing output power from around 5 W to 
+nearly 1 W at the highest dust concentration (approximately 6 g/m2). 
+This suggests that natural dust, likely comprising a range of particle sizes 
+and compositions, has a greater capacity to block solar radiation. 
+Kaolinite and bentonite resulted in moderate power losses, while 
+montmorillonite caused the least decline, preserving a relatively higher 
+power output even as dust density increased. At 6 g/m2, kaolinite caused 
+the highest power reduction (52.6 %), while natural dust reached 48 % 
+at just 5 g/m2. However, natural dust showed the most rapid decline at 
+lower densities (<4 g/m2), making it the dominant threat in real-world 
+operation, where dust loads are typically moderate. These results un­
+derscore that the type of dust and its characteristics, such as particle size, 
+shape, and composition, significantly impact solar panel performance. 
+Therefore, understanding regional dust composition is crucial in eval­
+uating and maintaining photovoltaic system efficiency in arid and semi- 
+arid environments.
+3.2. Efficiency vs. dust density (exponential decline)
+Fig. 2 illustrates the variation in solar panel efficiency as a function 
+of increasing dust density for four different dust types: bentonite, 
+kaolinite, montmorillonite, and natural dust. The study found an 
+apparent degradation in solar panel efficiency with rising dust accu­
+mulation, with the maximum efficiency of 11.57 % recorded under clean 
+surface conditions. As dust density reached higher values (up to 6 g/m2), 
+a gradual but noticeable decrease in efficiency was observed. Among the 
+tested dust types, kaolinite resulted in the sharpest efficiency drop, 
+reaching a minimum of 5.47 %, which represents a decline of approxi­
+mately 6.1 percentage points. This suggests kaolinite’s fine particle size 
+or high opacity significantly impedes sunlight transmission. Montmo­
+rillonite demonstrated better performance stability, maintaining effi­
+ciency above 10 % at a dust density of 1.3 g/m2 and only dropping by 
+about 3.1 % at higher densities, indicating its relatively less obstructive 
+nature. Bentonite and natural dust exhibited intermediate effects, with 
+efficiencies decreasing to approximately 5.64 % and 6.1 %, respectively. 
+These trends further emphasize the importance of dust characteristics in 
+determining photovoltaic efficiency. The physical and chemical prop­
+erties of dust, including particle size, morphology, mineral composition, 
+and surface adhesion, influence light transmittance and absorption. The 
+data also reinforce that dust accumulation remains a significant chal­
+lenge for solar energy harvesting, particularly in regions susceptible to 
+frequent dust exposure. Regular cleaning or anti-soiling technologies 
+could be essential to maintain system performance in such areas.
+3.3. Impact of dust deposition on PV efficiency using the Kaldellis–Kapsali 
+exponential function and its modifications
+The Kaldellis and Kapsali exponential function is considered one of 
+the best-suited functions for describing the relationship between effi­
+ciency changes and dust accumulation [31]. 
+Δηd = ηd
+ηc
+= Be−A⋅ρdep
+(9) 
+where A and B are the model constants, and ρdep is the dust density, g/ 
+m2.
+This model has been used in the literature to describe the nonlinear 
+decrease in efficiency with dust accumulation [31–34]. The correlation 
+Fig. 1. The relationship between Power output and dust density.
+Fig. 2. Efficiency decreased exponentially with dust accumulation, high­
+lighting a critical threshold at ρ > 4.0 g/m2.
+A. Almarri et al. 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+5459 
+
+<<<PAGE 6>>>
+of the processing line (R2) with the results must be considered. This 
+model does not account for certain environmental factors that impact 
+solar panel performance, such as the photovoltaic rating reduction fac­
+tor, which is influenced by dust accumulation on the surface.
+This model was modified [34] as follows: 
+Δηd = η0
+(
+1 −Be−A⋅ρdep)
+(10) 
+where η0, A and B are the model constants. This model considers mod­
+erate dust deposition values of approximately 5 g/m2. Several studies 
+have presented experimental measurements using monocrystalline [32] 
+and polycrystalline [34] panels, and this model was used in data fitting. 
+A theoretical correlation was found between the type of panels and the 
+parameters used in this model. Case studies of monocrystalline panels 
+showed that efficiency decreased rapidly at dust concentrations of up to 
+0.92 g/m2. For polycrystalline panels, efficiency decreased significantly 
+between 0.95 and 0.97 at dust concentrations of 1 g/m2.
+This model did not appear consistent with the experimental results in 
+this work, so an attempt was made to modify this model to reflect the 
+results. The suggested modified model in the form: 
+ηd
+ηc
+= η0
+(
+1 + Be−A⋅ρdep)
+(11) 
+In the case of polycrystalline solar cells used in this research, the effi­
+ciency ratio (derating factor) decreases gradually with increasing dust 
+weight, depending on the type of dust. The proposed model was applied 
+to these results up to a dust concentration of 7 g, and the results were 
+agreed upon. The model constant values η0, A, and B were determined 
+and presented in Table 2 for each dust type. It was found that the effi­
+ciency loss depends not only on dust density, but also on the type of 
+photovoltaic cells and the type and size of dust.
+Fig. 3 illustrates the nonlinear relationship between dust deposition 
+density (ρa, g/m2) and the efficiency ratio (ηs/ηᵣ) of photovoltaic (PV) 
+panels, comparing three exponential models: the original Kaldel­
+lis–Kapsali model (Eq. (5)), the Jaszczur et al. [35] modification (Eq. 
+(6)), and the proposed model (Eq. (7)). Experimental data points, rep­
+resenting diverse dust types (e.g., silica, limestone), demonstrate that 
+the proposed model better captures the gradual efficiency decline in 
+polycrystalline panels, particularly at higher dust densities (up to 6 
+g/m2), achieving strong correlation (R2 > 0.95). The model constants 
+(η0, A, B) highlight dependencies on dust composition (e.g., fine vs. 
+coarse particles) and PV cell type, with finer particulates causing steeper 
+efficiency losses. This underscores the need for dust-specific and 
+technology-tailored models to optimize PV performance in dusty 
+environments.
+3.4. Analysis of the effect of dust deposition on normalized efficiency
+Fig. 4 illustrates the decrease in normalized efficiency Δη Δη/ηηc 
+with varying deposition density on the PV module surface. As explained 
+above, Δη/ηc increases with increasing dust deposition from 0 to 6 g/m2. 
+This indicates that the efficiency decreases in response to increasing dust 
+deposition, significantly impacting solar cell performance. It is well 
+known that the natural accumulation of dust on solar panels is a random 
+process and varies depending on several factors, including the climate of 
+the measurement area, the type of solar cell, and the type of dust [36]. 
+This randomness leads to an inhomogeneous distribution of dust on the 
+surface. Fig. 4 shows that the correlation between the change in 
+normalized efficiency and the density of the settled dust is a linear 
+relationship and can be represented by the relationship [36]: 
+Δη
+ηc
+= k ρdep + C
+(12) 
+where k is the fitting factor, which depends on the dust type, and C is the 
+relation constant.
+Jiang et al. [37] studied the effect of natural dust accumulation on 
+three types of solar panels: monocrystalline silicon (mono-c), poly­
+crystalline silicon (poly-c), and amorphous silicon (a-Si). The fitting 
+parameter k for fine dust (ISO 12103-1 A2, Powder Technology Co., 
+Ltd.) was used. The fitting parameter k was 0.0115, 0.015, and 0.0139 
+for monocrystalline silicon (mono-c), polycrystalline silicon (poly-c), 
+and amorphous silicon (a-Si), respectively. This study showed that 
+polycrystalline solar cells experienced the most significant relative ef­
+ficiency reduction, while amorphous solar panels showed the least 
+reduction in efficiency due to dust deposition.
+3.5. Diurnal variation of PV power output and humidity
+Fig. 5: Weather factors such as humidity, ambient temperature, and 
+solar radiation intensity affect solar panel performance. Solar radiation 
+intensity changes throughout the day as the sun’s angle of incidence 
+changes, in addition to weather factors, most notably humidity [38]. 
+Fig. 5 shows the variation in power output (in watts) and humidity (%) 
+over the solar time on 24 and September 25, 2025, for a clean solar panel 
+system, in Fig. 5a and b, respectively.
+Fig. 5a shows the diurnal variation of solar panel power output (W) 
+in relation to ambient humidity (%) on September 24, 2025. Humidity 
+decreases sharply in the morning from 52.3 % at 6:00 a.m. to 21.1 % at 
+10:00 a.m., while the power output rises steeply from 0.91 W to 17.48 W 
+by 9:30 a.m. This clear inverse correlation between humidity and power 
+is consistent with findings by Tripathi et al. [39], who observed a power 
+loss of up to 28 % as humidity rose by 40 % due to the absorption and 
+scattering of solar radiation through water vapor layers. In addition, it 
+was reported that the panel output degrades up to 28.77 % due to an 
+increase of 42.07 % in relative humidity [40]. Next study on panel 
+performance under humid zone showed that its efficacy reduces up to 
+32.42 % when the humidity level increases to 6 % and the panel was 
+operating at 58 ◦C [41].
+Between 10:00 a.m. and 1:00 p.m., the humidity remains nearly 
+constant (≈20–25 %), while the power output stabilizes around 15–17 
+W, confirming that solar irradiance dominates generation during 
+midday. As humidity begins to increase again after 2:00 p.m.—from 
+25.8 % to 63.2 % by 5:00 p.m.—power output drops sharply from 13.32 
+W to 0.56 W. This trend agrees with Mekhilef et al [42], who found that 
+elevated afternoon humidity reduces output by lowering irradiance 
+transmittance. The data therefore indicate that both humidity and solar 
+altitude jointly govern daily PV yield, matching the findings of Fes­
+haraki et al. [43] that dry, clear conditions produce peak efficiency.
+Fig. 5b displays the same diurnal pattern on September 25, 2025, but 
+with higher ambient humidity levels and a slightly lower peak power 
+output. The day begins at 65.2 % RH (vs. 52.3 % on 24 Sep), with hu­
+midity reaching its minimum of 22.4 % at 10:30 a.m., while the 
+maximum power (16.79 W) occurs around 7:30–9:00 a.m. The slight 
+(~4 %) reduction in peak output compared with the previous day likely 
+results from an elevated water vapor content, consistent with Huang et 
+al. [44], who showed that increased atmospheric humidity reduces PV 
+voltage and current through a reduced photon flux.
+In the afternoon, humidity rises faster—reaching 56.6 % by 5:00 p. 
+m.—and the power declines steeply to 0.68 W, suggesting a higher 
+aerosol–water interaction or partial cloud formation. This observation 
+supports Njok et al., who reported significant afternoon power attenu­
+ation near humid riverine sites [45]. The temporal shift in humidity 
+Table 2 
+Evaluated model constants.
+Model constant (eqn. 
+(7))
+kaolinite
+bentonite
+montmorillonitee
+natural 
+dust
+ηo
+0.51
+0.62
+0.53
+0.61
+A
+0.45
+0.42
+0.51
+0.35
+B
+0.81
+0.63
+0.64
+0.95
+A. Almarri et al. 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+5460 
+
+<<<PAGE 7>>>
+Fig. 3. Efficiency ratio (ηs/ηᵣ) versus dust deposition density (ρs, g/m2) for polycrystalline PV panels, comparing the Kaldellis–Kapsali model.
+Fig. 4. Variation of normalized efficiency with dust types of different dust deposition densities.
+A. Almarri et al. 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+5461 
+
+<<<PAGE 8>>>
+increase (earlier than on 24 Sep) also corresponds to greater moisture 
+accumulation, as described by Ogolo et al. [46], which diminishes 
+irradiance penetration.
+Comparison between humidity and power in two days (24 Sep vs 25 
+Sep) in Fig. 5c Comparing both figures, the average humidity on 25 
+September (≈38.7 %) was approximately 8 % higher than on 24 
+September (≈30.2 %), and this corresponded to a roughly 5 % decrease 
+in average power output (13.25 W vs. 13.94 W). The resulting negative 
+correlation (R ≈−0.87) between humidity and PV power aligns with 
+global experimental analyses. Fig. 5 confirm that low-humidity, high- 
+irradiance periods (8:00–11:30 a.m.) yield the greatest output, while 
+rising humidity and declining solar altitude lead to a loss of efficiency in 
+the afternoon. The data affirm that humidity is a critical meteorological 
+variable influencing real-time PV performance in subtropical climates.
+3.6. Mid-day performance analysis under variable environmental 
+conditions
+Fig. 6a depicts the variation in photovoltaic (PV) power output (in 
+watts) at solar noon (12:00 p.m.) from 17 to September 30, 2025, in 
+relation to ambient humidity (%) and air quality index (AQI). The 
+dataset shows that PV power fluctuates between 13.91 W (lowest, on 
+September 30) and 19.08 W (highest, on September 17). The overall 
+trend indicates that higher humidity and higher AQI levels are generally 
+associated with lower power output, confirming a dual attenuation ef­
+fect of both water vapor and airborne particulates on solar irradiance.
+For instance, on 17 September, when humidity and AQI were mod­
+erate (44.3 % and 70, respectively), the system achieved its maximum 
+power (19.08 W). However, on 25 September, humidity decreased to 
+20.1 %, but AQI sharply increased to 88, and power output dropped to 
+15.69 W. This demonstrates that while low humidity supports irradiance 
+transmission, dust and pollutants (high AQI) can significantly reduce 
+Fig. 5. Temporal dynamics of photovoltaic power generation and relative hu­
+midity over consecutive days in September 2025. (a) Power output and hu­
+midity fluctuations on September 24, 2025, (b) Corresponding measurements 
+on September 25, 2025, and (c) Comparative analysis of power-humidity re­
+lationships across both observation periods.
+Fig. 6. Influence of atmospheric parameters on solar noon photovoltaic per­
+formance throughout September 2025. (a) Daily power output at 12:00 p.m. as 
+modulated by concurrent humidity and air quality index measurements, (b) 
+Corresponding conversion efficiency trends.
+A. Almarri et al. 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+5462 
+
+<<<PAGE 9>>>
+light penetration through scattering and absorption processes. This 
+observation is consistent with Zhao et al and Mekhilef et al, who 
+confirmed that both humidity and particulate loading have cumulative 
+effects on PV attenuation [42,47].
+Furthermore, when comparing 22 Sep (20.1 % RH, AQI 56, 15.95 W) 
+and 26 Sep (37 % RH, AQI 82, 14.33 W), the reduction in power despite 
+only moderate humidity highlights that high AQI contributes domi­
+nantly to power loss, supporting Sun et al who emphasized the role of 
+suspended aerosols in reducing panel transmissivity [48]. Therefore, 
+Fig. 6a establishes that both atmospheric moisture and particulate 
+matter synergistically decrease PV power by limiting effective solar ra­
+diation at the cell surface.
+Fig. 6b shows the corresponding PV conversion efficiency (%) over 
+the same period, . The results range from 9.46 % (30 September) to 
+12.98 % (17 September), mirroring the pattern of power output in 
+Fig. 6a. Efficiency declines as the AQI and humidity rise, suggesting the 
+presence of both optical and thermal degradation mechanisms.
+The highest efficiency (12.98 %) occurs on 17 September, when the 
+AQI was moderate (70) and the humidity was 44.3 %. Conversely, from 
+September 26 to 30, a consistent efficiency drop occurred below 10 %, 
+coinciding with AQI values between 63 and 82. High AQI levels are 
+associated with increased dust deposition and scattering, reducing 
+incoming irradiance, as reported by Ezekwem et al. [49]. Similarly, 
+Channa et al. noted that high humidity contributes to film condensation 
+on module glass, reducing optical transmittance and increasing cell 
+temperature, thus lowering efficiency [50].
+A closer look at 24 Sep (11.46 %) vs. 25 Sep (10.68 %) further reveals 
+the interaction between humidity and air quality: although humidity 
+dropped slightly (33.8 % → 20.1 %), the AQI rose (78 →88), and effi­
+ciency decreased. Comparing both figures reveals that PV efficiency 
+follows the same downward pattern as power output, indicating a direct 
+coupling between optical loss and conversion performance. The average 
+power output over the 14 days was ≈approximately 15.99 W, and the 
+average efficiency was ≈approximately 10.96 %, both declining as the 
+AQI increased from 56 to 88 and humidity fluctuated between 20 % and 
+45 %. Statistical analysis reveals a strong inverse correlation (R ≈
+−0.83) between AQI and efficiency, which is slightly stronger than the 
+correlation between humidity and efficiency (R ≈−0.77), confirming 
+the greater impact of airborne particulates on midday solar energy yield.
+These results validate prior experimental findings that combined 
+effects of humidity and dust pollution significantly reduce photovoltaic 
+efficiency through radiative scattering, optical shading, and surface 
+heating. Thus, Fig. 6a and 6b collectively illustrate how maintaining 
+clean module surfaces and controlling environmental pollution are 
+essential for optimizing PV performance under humid and dusty atmo­
+spheric conditions.
+3.7. Morning PV performance sensitivity
+Fig. 7a presents the relationship between photovoltaic (PV) power 
+output (W), relative humidity (%), and air quality index (AQI) measured 
+at 9:00 a.m. during September 2025. The data show considerable vari­
+ability in power output (14.39 W–19.61 W), strongly modulated by both 
+humidity and air quality conditions. The highest power output (19.61 
+W) occurs on 24 September, corresponding to a moderate humidity of 
+71.1 % and an AQI of 115. Conversely, the lowest power (14.39 W) was 
+recorded on 19 September, when both humidity and AQI were high (88 
+% and 161, respectively). This inverse relationship indicates that 
+elevated atmospheric water vapor and particulate concentration reduce 
+the transmittance of solar radiation reaching the PV surface, as sup­
+ported by Sun et al and L´opez et al [48,51].
+Interestingly, on 21 September, the power output rises to 17.09 W, 
+despite a relatively high humidity (82.6 %) but a low AQI (58), sug­
+gesting that the improvement in air clarity compensates for moisture- 
+induced attenuation. This confirms the finding by Elminir et al. [24] 
+that particulate pollution exerts a more pronounced effect on solar 
+irradiance loss than humidity alone. Finally, Fig. 7a demonstrates that 
+PV power output is not solely humidity-dependent, but rather the result 
+of interacting atmospheric factors, where both high RH and high AQI 
+jointly suppress energy conversion through the absorption, scattering, 
+and surface shading of light particles.
+Fig. 7b displays the corresponding PV efficiency (%) over the same 
+observation period, revealing a similar trend to power output but with 
+sharper responses to environmental changes. Efficiency values range 
+from 9.79 % (19 Sep) to 13.34 % (24 Sep), again reflecting the combined 
+influence of humidity and AQI. During days 17–19 September, both 
+humidity (88–94 %) and AQI (161–197) were elevated, resulting in the 
+lowest efficiencies (9.8–10.4 %). These conditions suggest strong optical 
+degradation of irradiance and potential condensation on the module 
+surface, which reduces photon absorption and increases resistive losses. 
+Sohani et al [52] linked such moisture accumulation to a rise in module 
+temperature and a reduction in open-circuit voltage.
+In contrast, 24 September shows the peak efficiency (13.34 %) under 
+moderate humidity (71.1 %) and AQI (115), indicating an optimal at­
+mospheric transparency window. By 28 September, efficiency remained 
+high (12.93 %) even though humidity reached 91.5 %, because the AQI 
+was moderately lower (163 vs. 197 earlier), again emphasizing the 
+greater influence of air clarity.
+The data also show that rapid efficiency losses accompany AQI spikes 
+(e.g., 175–197) even when humidity changes are small. Comparatively, 
+Fig. 7a and b reveal parallel declining trends in both power and effi­
+ciency as environmental quality deteriorates. The average PV power 
+over the studied period was ≈approximately 16.6 W, and the average 
+efficiency was approximately 11.2 %. Statistical analysis reveals a 
+stronger negative correlation between AQI and efficiency (R ≈−0.86) 
+Fig. 7. Early-hour (9:00 a.m.) photovoltaic response to simultaneous humidity 
+and air quality variations during September 2025. (a) non-linear relationships 
+with both humidity content and (AQI), (b) Efficiency measurements.
+A. Almarri et al. 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+5463 
+
+<<<PAGE 10>>>
+than between humidity and efficiency (R ≈−0.78), indicating that dust 
+and pollutants have a greater impact on energy attenuation compared to 
+the effects of water vapor.
+The simultaneous rise in humidity and AQI during mid-September 
+(17–20 Sep) corresponds with the lowest performance, while periods 
+of clearer air (21–24 Sep) show maximum energy output. Therefore, the 
+combination of dust control and anti-fog surface coatings is recom­
+mended to sustain PV efficiency under high-humidity, polluted 
+conditions.
+3.8. Surface and rear temperature variations across dust types
+Table 3 presents the front and rear surface temperatures of quartz 
+substrates coated with different dust types. It is important to note that 
+the measured temperature differences between samples are within the 
+±1.5 ◦C accuracy range of the infrared thermometer. Therefore, while 
+observed trends are discussed below, these temperature data alone 
+cannot be presented as statistically significant proof of differential 
+heating. This pattern is attributed to montmorillonite’s high iron content 
+(62.67 % Fe, as confirmed by EDX analysis), which enables efficient 
+solar absorption and high thermal conductivity, allowing heat to 
+transfer through the substrate. In contrast, while exhibiting a similarly 
+high front surface temperature (40.3 ◦C), kaolinite maintains a lower 
+rear temperature (39.1 ◦C), indicating surface-level heat retention due 
+to its aluminosilicate composition and relatively poor thermal conduc­
+tivity. Bentonite, which contains moderate levels of sodium, magne­
+sium, and calcium, exhibits balanced thermal behavior with front and 
+rear temperatures of 39.9 ◦C and 39.2 ◦C, respectively. Natural dust, 
+though compositionally heterogeneous, achieves moderate heating 
+(front: 39.8 ◦C; rear: 39.7 ◦C), likely due to its dominant silica and cal­
+cium oxide content, which reflects some radiation but retains heat 
+within its particulate matrix. The clean substrate consistently records 
+the lowest thermal profile, underscoring the thermal burden imposed by 
+dust layers. These findings are crucial because elevated surface tem­
+peratures degrade PV performance by increasing electron-hole recom­
+bination rates, lowering open-circuit voltage, and accelerating material 
+aging.
+Fig. 8 presents SEM images and EDX spectra of four materials: (a) 
+natural dust, (b) bentonite, (c) montmorillonite, and (d) kaolinite. The 
+SEM images reveal distinct morphological features. Natural dust (a) 
+exhibits irregular, heterogeneous particles, consistent with its environ­
+mental origin. Bentonite (b) and montmorillonite (c), both smectite 
+clays, display characteristic platy or layered structures with fine, 
+aggregated particles, as indicated by the 1 μm scale bars. Kaolinite (d), a 
+1:1 layered clay, exhibits larger, more defined hexagonal platelets, as 
+noted in the 5 μm scale bar, suggesting coarser particle sizes or aggre­
+gated stacks. The EDX spectra (Spectra 6–9) share a full-scale intensity of 
+285 counts, implying comparable detection conditions. Typical clay 
+mineral compositions are evident, with bentonite and montmorillonite 
+spectra likely highlighting Al, Si, and O peaks, and possible traces of Mg 
+or Fe in montmorillonite. Kaolinite is spectrum aligns with its simpler 
+Al–Si–O structure. Depending on its source, natural dust may show 
+additional elements (e.g., C, Ca, or Fe). The combined SEM-EDX data 
+underscores the link between morphology (e.g., platy vs. irregular) and 
+composition (elemental signatures), which is critical for differentiating 
+these materials in environmental or industrial contexts. The results 
+showed that covering surfaces with different types of dust resulted in 
+higher temperatures than the clean film. This effect is attributed to the 
+differences in the chemical and physical properties of each dust type, 
+such as color, absorption, mineral content, and particle size. Soil surface 
+temperature depends on the intensity of solar radiation, which causes 
+temperature variations. Temperature changes depend on factors such as 
+air temperature, humidity, albedo, soil color, and soil specific heat [53]. 
+Soil has a moderate specific heat value, depending on its composition, 
+which enables it to absorb and store thermal energy. Kaolinite and 
+montmorillonite films were observed to have the highest temperatures, 
+suggesting that clay-rich dust may have a greater capacity to absorb 
+thermal energy from solar radiation than other types of dust. On the 
+other hand, natural dust and bentonite showed relatively moderate 
+temperature increases, suggesting that the diverse composition may 
+reduce direct energy absorption compared to other minerals. The 
+composition details of the dust were determined using energy-dispersive 
+X-ray (EDX) analysis, and the results are presented in Table 4.
+3.9. Comparative analysis of dust and humidity impacts on PV 
+performance
+The experimental results demonstrate that natural dust deposition 
+causes a 48 % reduction in PV panel efficiency at the maximum tested 
+concentration (6 g/m2). This finding aligns closely with recent work by 
+Al-Sharafi et al. [9] who reported 45–50 % efficiency losses for 
+silica-rich dust under similar deposition conditions in Riyadh. The 
+comparable results between coastal and inland sites suggest that 
+silica-dominated dust maintains its light-blocking properties across 
+different arid environments, regardless of specific local conditions.
+However, our observed 15–30 % efficiency reductions under high 
+humidity conditions (>60 % RH) exceed the 10–20 % range reported by 
+Javed et al. [20] for inland desert locations. This discrepancy likely 
+stems from Jubail’s coastal environment, where the combination of 
+marine aerosols and hygroscopic dust components (particularly calcium 
+oxide) creates stronger moisture adsorption and cementation effects. 
+The presence of chloride ions (5.16 wt% as determined by EDX analysis) 
+in our natural dust samples further supports this coastal-specific 
+behavior, as these salts are known to enhance water absorption.
+Regarding thermal effects, the measured 1.0 ◦C temperature increase 
+for montmorillonite-coated panels corroborates Kazem’s findings for 
+iron-rich dusts. However, our values are notably lower than the 2–3 ◦C 
+increases reported in desert interior studies [7]. We attribute this dif­
+ference to Jubail’s coastal wind patterns (average 4.2 m/s sea breezes), 
+which provide additional convective cooling absent in inland locations. 
+This thermal moderation effect, while beneficial for PV efficiency, may 
+be offset by the increased dust adhesion from salt-laden winds.
+4. Conclusion
+This comprehensive study elucidates the complex interplay between 
+dust composition, humidity, and air quality in governing photovoltaic 
+performance degradation within arid coastal environments, using 
+Jubail, Saudi Arabia, as a representative case study. The experimental 
+findings establish that environmental stressors operate synergistically 
+rather than independently, with dust mineralogy serving as the primary 
+determinant of both optical obstruction and thermal loading mecha­
+nisms. Mineralogical analysis via SEM-EDX revealed distinct composi­
+tional profiles that directly correlate with performance degradation 
+patterns. Natural dust, characterized by high silica (25.37 %) and cal­
+cium oxide (30.52 %) content, emerged as the most detrimental 
+contaminant, inducing a 48 % power loss at a deposition density of 6 g/ 
+m2 through combined light scattering and hygroscopic cementation. The 
+calcium-rich fraction proved particularly problematic in coastal settings, 
+where elevated ambient humidity (40–65 % RH) transforms loose 
+Table 3 
+Front and rear surface temperatures (◦C) of quartz substrates coated with 
+different dust types under solar exposure. Note: Differences between samples are 
+within the instrument’s stated accuracy of ±1.5◦C; values indicate a trend but are not 
+statistically conclusive.
+Dust Type
+Front Surface Temp (◦C)
+Rear Surface Temp (◦C)
+Clean (Control)
+39.4
+39.2
+Bentonite
+39.9
+39.2
+Kaolinite
+40.3
+39.1
+Montmorillonite
+40.4
+39.9
+Natural Dust
+39.8
+39.7
+A. Almarri et al. 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+5464 
+
+<<<PAGE 11>>>
+Fig. 8. SEM image and EDX of (a) Natural dust. (b) Bentonite, (c) Montmorillonite and (d) Kaolinite.
+A. Almarri et al. 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+5465 
+
+<<<PAGE 12>>>
+particulates into adherent layers resistant to natural removal 
+mechanisms.
+In contrast, montmorillonite’s elevated iron content (62.67 %) pri­
+marily manifested through thermal degradation, which elevated panel 
+surface temperatures to 40.4 ◦C and thereby reduced open-circuit 
+voltage through enhanced electron-hole recombination rates. Humidi­
+ty emerged as a critical amplification factor rather than an independent 
+stressor, reducing efficiency by 15–30 % when relative humidity 
+exceeded 60 %. This threshold marks a transition from reversible soiling 
+to cemented adhesion, where capillary forces bind dust particles to the 
+PV surface with sufficient strength to resist wind-driven removal. The 
+diurnal analysis revealed that optimal power generation occurs during 
+low-humidity morning hours (8:00–11:30 a.m., efficiency ~12–13 %), 
+while afternoon periods experience 20–25 % efficiency losses as rising 
+moisture levels enhance both dust adhesion and parasitic electrical 
+pathways through surface condensation. This temporal pattern high­
+lights the importance of adaptive cleaning strategies that are synchro­
+nized with daily humidity cycles.
+Air quality assessment revealed that particulate pollution has a 
+dominant influence on performance degradation, with AQI exhibiting a 
+stronger negative correlation with efficiency (R ≈−0.86) than humidity 
+alone (R ≈−0.78). At AQI levels exceeding 160, the combined effects of 
+light scattering by airborne aerosols and surface soiling reduced con­
+version efficiency below 10 %, even under moderate dust deposition 
+densities (3–4 g/m2). This finding highlights a “double penalty” mech­
+anism wherein atmospheric particulates attenuate incident irradiance 
+before it reaches the panel surface, while simultaneously depositing as 
+soiling layers that further obstruct transmission. The combined analysis 
+indicates that while both humidity and air pollution negatively influ­
+ence photovoltaic efficiency, the impact of AQI is more dominant 
+because it operates through both atmospheric attenuation and physical 
+soiling of the PV surface. These results reinforce global findings 
+emphasizing that environmental control—through regular cleaning and 
+monitoring of ambient air quality—can mitigate output losses and 
+improve long-term system reliability in humid and polluted.
+Declaration of competing interest
+The authors declare that they have no known competing financial 
+interests or personal relationships that could have appeared to influence 
+the work reported in this paper.
+Data availability
+The datasets used and/or analyzed during the current study are 
+available from the corresponding author on reasonable request.
+References
+[1] Ebhota WS, Jen T-C. Fossil fuels environmental challenges and the role of solar 
+photovoltaic technology advances in fast tracking hybrid renewable energy system. 
+International Journal of Precision Engineering and Manufacturing-Green 
+Technology 2020;7:97.
+[2] Izam NSMN, Itam Z, Sing WL, Syamsir A. Sustainable development perspectives of 
+solar energy technologies with focus on solar Photovoltaic—A review. Energies 
+2022;15(8):2790.
+[3] Aksoy MH, Ispir M. Techno-economic feasibility of different photovoltaic 
+technologies. Appl Eng Lett 2023;8:1.
+[4] Irena G. Renewable capacity statistics 2020. International renewable energy 
+agency 2020.
+[5] Mussard M, Amara M. Performance of solar photovoltaic modules under arid 
+climatic conditions: a review. Sol Energy 2018;174:409.
+[6] Hasan K, Yousuf SB, Tushar MSHK, Das BK, Das P, Islam MS. Effects of different 
+environmental and operational factors on the PV performance: a comprehensive 
+review. Energy Sci Eng 2022;10(2):656.
+[7] Kazem HA, Chaichan MT, Al-Waeli AH, Al-Badi R, Fayad MA, Gholami A. Dust 
+impact on photovoltaic/thermal system in harsh weather conditions. Sol Energy 
+2022;245:308.
+[8] Saw WL, Guo P, van Eyk PJ, Nathan GJ. Approaches to accommodate resource 
+variability in the modelling of solar driven gasification processes for liquid fuels 
+synthesis. Sol Energy 2017;156:101.
+[9] Al-Sharafi A, Ahmadullah AB, Hassan G, Al-Qahtani H, Abubakar AA, Yilbas BS. 
+Influence of environmental dust accumulation on the performance and economics 
+of solar energy systems: a comprehensive review. Cleaner Energy Systems 2024: 
+100125.
+[10] Fountoukis C, Figgis B, Ackermann L, Ayoub MA. Effects of atmospheric dust 
+deposition on solar PV energy production in a desert environment. Sol Energy 
+2018;164:94.
+[11] Achten WM, Almeida J, Fobelets V, Bolle E, Mathijs E, Singh VP, Tewari DN, 
+Verchot LV, Muys B. Life cycle assessment of Jatropha biodiesel as transportation 
+fuel in rural India. Appl Energy 2010;87(12):3652.
+[12] Borah P, Micheli L, Sarmah N. Analysis of soiling loss in Photovoltaic modules: a 
+review of the Impact of Atmospheric parameters, Soil Properties, and Mitigation 
+Approaches. Sustainability 2023;15(24):16669.
+[13] Bunda Ș, Dzitac S. Feasibility study on powering cathodic protection systems with 
+solar energy. Advanced Engineering Letters 2025;4:21.
+[14] El-Shobokshy MS, Hussein FM. Effect of dust with different physical properties on 
+the performance of photovoltaic cells. Sol Energy 1993;51(6):505.
+[15] Sarver T, Al-Qaraghuli A, Kazmerski LL. A comprehensive review of the impact of 
+dust on the use of solar energy: history, investigations, results, literature, and 
+mitigation approaches. Renew Sustain Energy Rev 2013;22:698.
+[16] Al-Hasan AY. A new correlation for direct beam solar radiation received by 
+photovoltaic panel with sand dust accumulated on its surface. Sol Energy 1998;63 
+(5):323.
+[17] Sayigh A, Al-Jandal S, Ahmed H. Dust effect on solar flat surfaces devices in 
+Kuwait. In: Proceedings of the workshop on the physics of non-conventional energy 
+sources and materials science for energy. ICTP Triest, Italy, City; 1985. p. 353.
+[18] Isaifan RJ, Johnson D, Ackermann L, Figgis B, Ayoub M. Evaluation of the adhesion 
+forces between dust particles and photovoltaic module surfaces. Sol Energy Mater 
+Sol Cell 2019;191:413.
+[19] Maghami M, Hizam H, Gomes C. Impact of dust on solar energy generation based 
+on actual performance. In: 2014 IEEE international conference on power and 
+energy (PECon). City: IEEE; 2014. p. 388.
+[20] Javed W, Wubulikasimu Y, Figgis B, Guo B. Characterization of dust accumulated 
+on photovoltaic panels in Doha, Qatar. Sol Energy 2017;142:123.
+[21] Mani M, Pillai R. Impact of dust on solar photovoltaic (PV) performance: research 
+status, challenges and recommendations. Renew Sustain Energy Rev 2010;14(9): 
+3124.
+[22] Rao A, Pillai R, Mani M, Ramamurthy P. Influence of dust deposition on 
+photovoltaic panel performance. Energy Proc 2014;54:690.
+[23] Herman-Czezuch A, Mekeng AZ, Meilinger S, Barry J, Kimiaie N. Impact of aerosols 
+on photovoltaic energy production using a spectrally resolved model chain: case 
+study of southern West Africa. Renew Energy 2022;194:321.
+[24] Elminir HK, Ghitas AE, Hamid R, El-Hussainy F, Beheary M, Abdel-Moneim KM. 
+Effect of dust on the transparent cover of solar collectors. Energy Convers Manag 
+2006;47(18–19):3192.
+[25] Enrichi F, Quandt A, Righini GC. Plasmonic enhanced solar cells: summary of 
+possible strategies and recent results. Renew Sustain Energy Rev 2018;82:2433.
+[26] Kazem HA. The influence of dust on photovoltaic performance: past, present, and 
+future perspectives. In: Transition towards a carbon free future: selected papers 
+from the World Renewable Energy Congress (WREC) 2023. City: Springer; 2024. 
+p. 117.
+[27] Said SA, Hassan G, Walwil HM, Al-Aqeeli N. The effect of environmental factors 
+and dust accumulation on photovoltaic modules and dust-accumulation mitigation 
+strategies. Renew Sustain Energy Rev 2018;82:743.
+[28] Kazem HA. Dust impact on the performance of solar photovoltaic module: a new 
+prospect. Energy Sources, Part A Recovery, Util Environ Eff 2023;45(2):4087.
+[29] Sundaram S, Babu JSC. Performance evaluation and validation of 5 MWp grid 
+connected solar photovoltaic plant in South India. Energy Convers Manag 2015; 
+100:429.
+[30] Zanatta AR. The Shockley–Queisser limit and the conversion efficiency of silicon- 
+based solar cells. Results in optics 2022;9:100320.
+Table 4 
+EDX analysis of dusts.
+Bentonite
+Kaolinite
+Montmorillonite
+Natural dust
+Element
+Wt %
+Na
+5.34
+0.04
+0.41
+2.54
+C
+​
+30.06
+28.84
+​
+O
+19.6
+10.25
+11.00
+12.00
+Mg
+1.11
+1.00
+2.98
+5.14
+K
+0.24
+16.40
+0.06
+1.91
+Al
+9.15
+11.24
+​
+7.24
+Si
+40.25
+30.81
+​
+25.37
+Fe
+​
+​
+62.67
+​
+P
+​
+0.20
+​
+​
+Cl
+0.73
+​
+​
+5.16
+S
+​
+​
+​
+4.40
+Ca
+16.85
+​
+​
+30.52
+Ti
+1.63
+​
+​
+1.54
+Ni
+0.4
+​
+​
+0.48
+Cu
+0.53
+​
+​
+0.84
+Zn
+4.15
+​
+​
+2.85
+​
+​
+​
+​
+​
+A. Almarri et al. 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+5466 
+
+<<<PAGE 13>>>
+[31] Kaldellis J, Fragos P, Kapsali M. Systematic experimental study of the pollution 
+deposition impact on the energy yield of photovoltaic installations. Renew Energy 
+2011;36(10):2717.
+[32] Ali HM, Zafar MA, Bashir MA, Nasir MA, Ali M, Siddiqui AM. Effect of dust 
+deposition on the performance of photovoltaic modules in Taxila, Pakistan. Therm 
+Sci 2017;21(2):915.
+[33] Gholami A, Khazaee I, Eslami S, Zandi M, Akrami E. Experimental investigation of 
+dust deposition effects on photo-voltaic output performance. Sol Energy 2018;159: 
+346.
+[34] Jaszczur M, Teneta J, Styszko K, Hassan Q, Burzy´nska P, Marcinek E, Łopian N. 
+The field experiments and model of the natural dust deposition effects on 
+photovoltaic module efficiency. Environ Sci Pollut Control Ser 2019;26:8402.
+[35] Jaszczur M, Koshti A, Nawrot W, Sędor P. An investigation of the dust 
+accumulation on photovoltaic panels. Environ Sci Pollut Control Ser 2020;27(2): 
+2001.
+[36] Darwish ZA, Kazem HA, Sopian K, Alghoul M, Alawadhi H. Experimental 
+investigation of dust pollutants and the impact of environmental parameters on PV 
+performance: an experimental study. Environ Dev Sustain 2018;20:155.
+[37] Jiang H, Lu L, Sun K. Experimental investigation of the impact of airborne dust 
+deposition on the performance of solar photovoltaic (PV) modules. Atmos Environ 
+2011;45(25):4299.
+[38] Fouad M, Shihata LA, Morgan EI. An integrated review of factors influencing the 
+perfomance of photovoltaic panels. Renew Sustain Energy Rev 2017;80:1499.
+[39] Tripathi AK, Ray S, Aruna M, Prasad S. Evaluation of solar PV panel performance 
+under humid atmosphere. Mater Today Proc 2021;45:5916.
+[40] Kazem HA, Chaichan MT, Al-Shezawi IM, Al-Saidi HS, Al-Rubkhi HS, Al-Sinani JK, 
+Al-Waeli AHA. Effect of humidity on the PV performance in Oman. Asian Trans Eng 
+2012;2(4):29.
+[41] Hamdi RTA, Hafad SA, Kazem HA, Chaichan MT. Humidity impact on photovoltaic 
+cells performance: a review. Int J Recent Eng Res Dev 2018;3(11):27.
+[42] Mekhilef S, Saidur R, Kamalisarvestani M. Effect of dust, humidity and air velocity 
+on efficiency of photovoltaic cells. Renew Sustain Energy Rev 2012;16(5):2920.
+[43] V.J. Fesharaki, M. Dehghani, J.J. Fesharaki and H. Tavasoli: The effect of 
+temperature on photovoltaic cell efficiency, (vol. 20, City), pp. 20.
+[44] Huang J, Lin C, Li Y, Huang B. Effects of humidity, aerosol, and cloud on 
+subambient radiative cooling. Int J Heat Mass Tran 2022;186:122438.
+[45] Njok AO, Ogbulezie JC. The effect of relative humidity and temperature on 
+polycrystalline solar panels installed close to a river. Physical Science International 
+Journal 2018;20(4):1.
+[46] Fred O, Ukagwu KJ, Abdulkarim A, Eze VHU. Reliability and maintainability 
+analysis of Solar Photovoltaic Systems in rural regions: a narrative review of 
+challenges, strategies, and policy implications for sustainable electrification. KIU 
+Journal of Science, Engineering and Technology 2024;3(2):103.
+[47] Zhao W, Lv Y, Zhou Q, Yan W. Investigation on particle deposition criterion and 
+dust accumulation impact on solar PV module performance. Energy 2021;233: 
+121240.
+[48] Sun K, Lu L, Jiang Y, Wang Y, Zhou K, He Z. Integrated effects of PM2. 5 deposition, 
+module surface conditions and nanocoatings on solar PV surface glass 
+transmittance. Renew Sustain Energy Rev 2018;82:4107.
+[49] Ezekwem C, Muthusamy S. Feasibility study of integrating the renewable energy 
+system for increased electricity access: a case study of Choba community in 
+Nigeria. Sci Afr 2023;21:e01781.
+[50] Channa IA, Distler A, Scharfe B, Feroze S, Forberich K, Lipovˇsek B, Brabec CJ, 
+Egelhaaf H-J. Solution processed oxygen and moisture barrier based on glass flakes 
+for encapsulation of organic (opto-) electronic devices. Flexible and printed 
+electronics 2021;6(2):025006.
+[51] L´opez G, Gueymard CA, Bosch JL, Rapp-Arraras I, Alonso-Montesinos J, Pulido- 
+Calvo I, Ballestrín J, Polo J, Barbero J. Modeling water vapor impacts on the solar 
+irradiance reaching the receiver of a solar tower plant by means of artificial neural 
+networks. Sol Energy 2018;169:34.
+[52] Sohani A, Sayyaadi H. Providing an accurate method for obtaining the efficiency of 
+a photovoltaic solar module. Renew Energy 2020;156:395.
+[53] Abu-Hamdeh NH. Simulation study of solar air heater. Sol Energy 2003;74(4):309.
+A. Almarri et al. 
+Journal of Materials Research and Technology 39 (2025) 5455–5467 
+5467 

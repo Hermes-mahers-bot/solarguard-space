@@ -1,0 +1,242 @@
+{
+  "sites": [
+    {
+      "site": "Riyadh",
+      "region": "central",
+      "rows": 2557,
+      "met_error": "",
+      "aq_error": "",
+      "measured_aq_days": 731,
+      "modelled_aq_days": 1826,
+      "pm10_climatology": [
+        6.3139569228711405,
+        0.22261721634214335,
+        0.036547017774731363,
+        -0.025941688570510185,
+        -0.03196384228856204
+      ],
+      "median_pm10_measured": 583.2916666666666
+    },
+    {
+      "site": "Jeddah",
+      "region": "west",
+      "rows": 2557,
+      "met_error": "",
+      "aq_error": "",
+      "measured_aq_days": 731,
+      "modelled_aq_days": 1826,
+      "pm10_climatology": [
+        5.003126270591955,
+        0.38771937286298175,
+        1.291873476166219,
+        -0.19669234421219248,
+        -0.2604878090296573
+      ],
+      "median_pm10_measured": 120.19999999999999
+    },
+    {
+      "site": "Dammam",
+      "region": "east",
+      "rows": 2557,
+      "met_error": "",
+      "aq_error": "",
+      "measured_aq_days": 731,
+      "modelled_aq_days": 1826,
+      "pm10_climatology": [
+        4.783203560025521,
+        -0.35586904049816437,
+        -0.028825730388329317,
+        0.0823034045324885,
+        0.1560767776964714
+      ],
+      "median_pm10_measured": 114.25416666666666
+    },
+    {
+      "site": "AlJubail",
+      "region": "east",
+      "rows": 2557,
+      "met_error": "",
+      "aq_error": "",
+      "measured_aq_days": 731,
+      "modelled_aq_days": 1826,
+      "pm10_climatology": [
+        4.877518345273517,
+        -0.3989469264369109,
+        -0.08777596343559355,
+        0.062142522242585596,
+        0.170435975195501
+      ],
+      "median_pm10_measured": 125.96249999999999
+    },
+    {
+      "site": "Yanbu",
+      "region": "west",
+      "rows": 2557,
+      "met_error": "",
+      "aq_error": "",
+      "measured_aq_days": 731,
+      "modelled_aq_days": 1826,
+      "pm10_climatology": [
+        4.131445552023786,
+        0.14113070696316202,
+        0.3673302623004095,
+        -0.08410404673128317,
+        0.04160975141730955
+      ],
+      "median_pm10_measured": 61.8125
+    },
+    {
+      "site": "NEOM",
+      "region": "west",
+      "rows": 2557,
+      "met_error": "",
+      "aq_error": "",
+      "measured_aq_days": 731,
+      "modelled_aq_days": 1826,
+      "pm10_climatology": [
+        3.5946345155798527,
+        0.012841072753829397,
+        0.12340108869402822,
+        -0.09286881673351839,
+        -0.025153652241317787
+      ],
+      "median_pm10_measured": 34.32916666666667
+    },
+    {
+      "site": "AlUla",
+      "region": "northwest",
+      "rows": 2557,
+      "met_error": "",
+      "aq_error": "",
+      "measured_aq_days": 731,
+      "modelled_aq_days": 1826,
+      "pm10_climatology": [
+        4.300035567720055,
+        -0.03955268482713334,
+        0.3598051859854302,
+        -0.2522810632997248,
+        -0.0652355119087317
+      ],
+      "median_pm10_measured": 70.53333333333335
+    },
+    {
+      "site": "Tabuk",
+      "region": "northwest",
+      "rows": 2557,
+      "met_error": "",
+      "aq_error": "",
+      "measured_aq_days": 731,
+      "modelled_aq_days": 1826,
+      "pm10_climatology": [
+        4.0141791776756435,
+        -0.08560554455568326,
+        0.23173734290570305,
+        -0.08174131783354811,
+        -0.003721112819172781
+      ],
+      "median_pm10_measured": 54.84583333333334
+    },
+    {
+      "site": "Abha",
+      "region": "southwest_highland",
+      "rows": 2557,
+      "met_error": "",
+      "aq_error": "",
+      "measured_aq_days": 731,
+      "modelled_aq_days": 1826,
+      "pm10_climatology": [
+        3.9818523992553323,
+        -0.4213140813120399,
+        0.07824570270582469,
+        0.05113184110860092,
+        0.0013859967429044526
+      ],
+      "median_pm10_measured": 54.09583333333334
+    },
+    {
+      "site": "Shaqra",
+      "region": "central",
+      "rows": 2557,
+      "met_error": "",
+      "aq_error": "",
+      "measured_aq_days": 731,
+      "modelled_aq_days": 1826,
+      "pm10_climatology": [
+        5.104766444850864,
+        -0.012128719007539535,
+        0.25992264212259203,
+        -0.21179954749391816,
+        0.046021164124486244
+      ],
+      "median_pm10_measured": 164.225
+    },
+    {
+      "site": "Sakaka",
+      "region": "north",
+      "rows": 2557,
+      "met_error": "",
+      "aq_error": "",
+      "measured_aq_days": 731,
+      "modelled_aq_days": 1826,
+      "pm10_climatology": [
+        4.960279598094535,
+        -0.3049548260178003,
+        0.08022357170819443,
+        -0.2302746303603356,
+        -0.0055109054033964915
+      ],
+      "median_pm10_measured": 151.31250000000003
+    },
+    {
+      "site": "Sudair",
+      "region": "central",
+      "rows": 2557,
+      "met_error": "",
+      "aq_error": "",
+      "measured_aq_days": 731,
+      "modelled_aq_days": 1826,
+      "pm10_climatology": [
+        5.112946210498791,
+        -0.024743872986323828,
+        0.24077271073463946,
+        -0.16176414608835424,
+        0.03576199604386949
+      ],
+      "median_pm10_measured": 164.6625
+    }
+  ],
+  "met_ok": 12,
+  "aq_ok": 12,
+  "met_failed": [],
+  "aq_failed": [],
+  "generated_utc": "2026-10-07T12:09:23Z",
+  "rows": 30684,
+  "columns": [
+    "site",
+    "date",
+    "lat",
+    "lon",
+    "elevation_m",
+    "region",
+    "source",
+    "aq_source",
+    "tmax_c",
+    "tmin_c",
+    "tmean_c",
+    "rh_mean_pct",
+    "wind_max_kmh",
+    "gust_max_kmh",
+    "precip_mm",
+    "radiation_mj_m2",
+    "et0_mm",
+    "pm10_mean_ugm3",
+    "pm10_max_ugm3",
+    "pm2_5_mean_ugm3",
+    "dust_mean_ugm3",
+    "dust_max_ugm3",
+    "aod_mean",
+    "aod_max",
+    "aq_hours_valid"
+  ],
+  "csv": "/home/hermes2/solarguard-space/data/soiling_dataset.csv"
+}

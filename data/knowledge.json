@@ -1,0 +1,855 @@
+{
+  "schema_version": "1.0",
+  "project": "SolarGuard Space",
+  "generated_utc": "2026-10-07T12:13:20Z",
+  "purpose": "Curated, cited structured facts for the DeepSeek RAG assistant and the dashboard. Every fact carries a source_url; facts that could not be verified against the retrieved source text are marked verified=false with a verification note.",
+  "citation_policy": "Quote 'claim' directly; always surface 'source_url' alongside. Prefer verified=true facts. For verified=false facts, state the source and the caveat.",
+  "sandbox_note": "Corpus built 2026-10-07 from open PDFs + open-access abstracts. nrel.gov was unreachable from the build host (DNS); repository.kaust.edu.sa and sciencedirect.com block the build host's IP (metrics via a public reader / open mirror).",
+  "facts": [
+    {
+      "id": "soiling-pitch-kaust",
+      "topic": "soiling_loss",
+      "claim": "Project pitch cites a KAUST study reporting ~15% soiling loss on the west coast and ~45% on the east coast of Saudi Arabia with weekly cleaning.",
+      "source_url": "https://repository.kaust.edu.sa/handle/10754/665153",
+      "source_title": "Soiling loss rate measurements of PV modules in a hot and humid desert environment (Abdallah et al., KAUST/Saudi Aramco; J. Solar Energy Engineering 2020, DOI 10.1115/1.4048406)",
+      "value": {
+        "west_coast_pct": 15,
+        "east_coast_pct": 45
+      },
+      "unit": "% soiling loss",
+      "region": "Saudi Arabia",
+      "verified": false,
+      "verification": "PITCH FIGURE — not directly quotable from the retrieved source text. The KAUST study we could read (Abdallah et al. 2020) measures 15 months of soiling at different tilt angles in the WESTERN Region and reports strong humidity/wind correlation, but the abstract does not state '15% west / 45% east'. Cite the pitch number only as 'KAUST soiling research' or use the verified figures below.",
+      "source_quote": "We analyze the soiling loss rates of PV modules for different tilt angles measured during a period of 15 months in the Western Region of Saudi Arabia."
+    },
+    {
+      "id": "soiling-kaust-arabian-peninsula",
+      "topic": "soiling_loss",
+      "claim": "Soiling over the Arabian Peninsula accumulates at about 12% per week of exposure; on the east coast it reaches 30-35%.",
+      "source_url": "https://repository.kaust.edu.sa/handle/10754/696394",
+      "source_title": "Coarse Dust Soiling and Fine Dust Dimming Effects on PV Panels Over the Arabian Peninsula (Stenchikov et al., MENA-SC 2023, DOI 10.1109/mena-sc54044.2023.10374528)",
+      "value": {
+        "avg_pct_per_week": 12,
+        "east_coast_pct": 35
+      },
+      "unit": "% soiling loss",
+      "region": "Arabian Peninsula / Saudi east coast",
+      "verified": true,
+      "source_quote": "The average soiling losses over the Arabian Peninsula are accumulating at about 12% per week, while on the east coast, it reaches 30-35%."
+    },
+    {
+      "id": "soiling-kaust-attenuation",
+      "topic": "dust_attenuation",
+      "claim": "Airborne dust also dims sunlight before it reaches the panel: average daily atmospheric attenuation loss is 3-4%, locally reaching 10-12% over the Arabian Peninsula (>10 W/m2 average, >40 W/m2 locally).",
+      "source_url": "https://repository.kaust.edu.sa/handle/10754/696394",
+      "source_title": "Coarse Dust Soiling and Fine Dust Dimming Effects on PV Panels Over the Arabian Peninsula (Stenchikov et al., MENA-SC 2023)",
+      "value": {
+        "avg_daily_attenuation_pct": "3-4",
+        "local_max_pct": "10-12"
+      },
+      "unit": "% irradiance loss",
+      "region": "Arabian Peninsula",
+      "verified": true,
+      "source_quote": "the average daily attenuation loss is about 3-4%, but locally reaches 10-12%."
+    },
+    {
+      "id": "soiling-middle-east-range",
+      "topic": "soiling_loss",
+      "claim": "Middle East / Arabian-desert range: uncleaned monthly power losses of about 12-24% (Qatar), with an average monthly energy-yield reduction of ~15%; upper-range monthly soiling 11-18%.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-19-04373/article_deploy/energies-19-04373.pdf",
+      "source_title": "Seasonal Soiling Rates and Cleaning Optimization for PV Systems in Saudi Arabia: Arar Desert Climate (Alharbi, Energies 2026, 19(18), 4373)",
+      "value": {
+        "monthly_low_pct": 12,
+        "monthly_high_pct": 24
+      },
+      "unit": "% monthly loss",
+      "region": "Arabian desert (Qatar per cited data)",
+      "page": 6,
+      "verified": true,
+      "source_quote": "The upper ranges (11-18%) are consistent with measurements from Arabian desert in Qatar, where uncleaned monthly power losses of approximately 12-24% and an average monthly energy yield reduction of about 15% have been reported."
+    },
+    {
+      "id": "soiling-morocco-daily",
+      "topic": "soiling_rate",
+      "claim": "Measured daily soiling rates in Morocco: ~0.083-0.36%/day, i.e. roughly 2.5-10.8% loss over 30 dry days without cleaning.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-19-04373/article_deploy/energies-19-04373.pdf",
+      "source_title": "Seasonal Soiling Rates and Cleaning Optimization ... Arar Desert Climate (Energies 2026, 19(18), 4373)",
+      "value": {
+        "rate_pct_per_day": "0.083-0.36",
+        "over_30_days_pct": "2.5-10.8"
+      },
+      "unit": "% / day",
+      "region": "Morocco (arid benchmark)",
+      "page": 10,
+      "verified": true,
+      "source_quote": "Measurements from Morocco indicate PV soiling rates of approximately 0.083-0.36% day-1, corresponding to approximately 2.5-10.8% over 30 dry days."
+    },
+    {
+      "id": "soiling-global-average",
+      "topic": "soiling_rate",
+      "claim": "Global multi-site average soiling loss is 0.051%/day; 26% of monitored sites lose more than 0.1%/day.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "avg_pct_per_day": 0.051,
+        "sites_over_0.1pct_pct": 26
+      },
+      "unit": "% / day",
+      "region": "Global",
+      "page": 8,
+      "verified": true,
+      "source_quote": "Overall, soiling losses averaged 0.051% per day, with 26% of the sites experiencing losses greater than 0.1% per day."
+    },
+    {
+      "id": "soiling-performance-range",
+      "topic": "soiling_loss",
+      "claim": "Depending on local environment, PV performance is reduced by somewhere between 2% and 50% due to soiling.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "low_pct": 2,
+        "high_pct": 50
+      },
+      "unit": "% performance reduction",
+      "region": "Global",
+      "page": 1,
+      "verified": true,
+      "source_quote": "Depending on the local environment and other factors, the PV performance has been reduced by somewhere between 2% and 50%."
+    },
+    {
+      "id": "soiling-6-month-drop",
+      "topic": "soiling_loss",
+      "claim": "If a PV module is left uncleaned for 6 months in outdoor desert conditions, power output can drop by more than 50%.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "drop_pct_gt": 50,
+        "period_months": 6
+      },
+      "unit": "% power drop",
+      "region": "Saudi Arabia / desert",
+      "page": 12,
+      "verified": true,
+      "source_quote": "if the PV module is exposed to outdoor conditions and not cleaned for 6 months, the power output will experience a drop of more than 50%."
+    },
+    {
+      "id": "soiling-saudi-seasonal",
+      "topic": "dust_seasonality",
+      "claim": "Saudi dust seasonality: strong seasonal pattern in dust-accumulation loss, around 16% in April (dustiest month) versus only around 2% in July (least dusty).",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "peak_month": "April",
+        "peak_pct": 16,
+        "min_month": "July",
+        "min_pct": 2
+      },
+      "unit": "% accumulation loss",
+      "region": "Saudi Arabia",
+      "page": 10,
+      "verified": true,
+      "source_quote": "there is a strong seasonal pattern with losses of around 16% in April (dustiest) versus only around 2% in July (least dusty)."
+    },
+    {
+      "id": "dust-storm-peaks",
+      "topic": "dust_seasonality",
+      "claim": "In Saudi Arabia the major spread of dust storms occurs in spring and summer. Al Ahsa (eastern province) reported summer (90 events) and winter (60 events) storm peaks.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "seasons": [
+          "spring",
+          "summer"
+        ],
+        "al_ahsa_summer_events": 90,
+        "al_ahsa_winter_events": 60
+      },
+      "unit": "dust-storm events",
+      "region": "Saudi Arabia",
+      "page": 7,
+      "verified": true,
+      "source_quote": "the major spread of dust storms is observed during the spring and summer seasons ... Al Ahsa, which lies in the east, reported the summer (90 events) and winter (60 events) storm peaks."
+    },
+    {
+      "id": "dust-storm-impact",
+      "topic": "dust_seasonality",
+      "claim": "A single March sandstorm reduced PV module power output by 20%; in November, rainfall raised output to its highest values of the year.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "sandstorm_drop_pct": 20
+      },
+      "unit": "% power output",
+      "region": "Saudi Arabia",
+      "page": 11,
+      "verified": true,
+      "source_quote": "In March, a single sandstorm reduced the module power output of solar PV modules by 20% whereas in November, due to rainfall the power output for all the modules increased to their highest values."
+    },
+    {
+      "id": "dust-storm-soiling-rate",
+      "topic": "dust_seasonality",
+      "claim": "Dust storms cut solar radiation reaching panels by 8% and raised annual-average soiling rates by 23% compared with non-dust-storm days.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-19-04373/article_deploy/energies-19-04373.pdf",
+      "source_title": "Seasonal Soiling Rates and Cleaning Optimization ... Arar Desert Climate (Energies 2026, 19(18), 4373)",
+      "value": {
+        "radiation_drop_pct": 8,
+        "soiling_rate_increase_pct": 23
+      },
+      "unit": "%",
+      "region": "Desert (dust events)",
+      "page": 2,
+      "verified": true,
+      "source_quote": "dust storms reduced solar radiation reaching PV panels by 8% and increased annual average soiling rates by 23% compared to non-dust storm days."
+    },
+    {
+      "id": "soiling-arar-rate",
+      "topic": "soiling_rate",
+      "claim": "Field exposure in Arar, northern Saudi Arabia: short-circuit current fell 2.78%/day and open-circuit voltage 0.863%/day due to dust deposition.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "isc_pct_per_day": 2.78,
+        "voc_pct_per_day": 0.863
+      },
+      "unit": "% / day",
+      "region": "Arar, northern Saudi Arabia",
+      "page": 13,
+      "verified": true,
+      "source_quote": "Through field exposure of solar modules in Arar, north of Saudi Arabia, the author has reported a decrease in both the short circuit current and the open circuit voltage by 2.78% and 0.863% per day respectively due to dust deposition."
+    },
+    {
+      "id": "deposition-45-days",
+      "topic": "dust_deposition",
+      "claim": "After 45 days of outdoor exposure, dust deposition reached 5 g/m2 and reduced glass transmittance by 35%.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "deposition_g_m2": 5,
+        "transmittance_reduction_pct": 35,
+        "days": 45
+      },
+      "unit": "g/m2, %",
+      "region": "Desert",
+      "page": 8,
+      "verified": true,
+      "source_quote": "After 45 days of outdoor exposure, the results exhibited that the dust deposition was 5 g/m2, the transmittance reduction was 35% ..."
+    },
+    {
+      "id": "soiling-iea-benchmark",
+      "topic": "soiling_rate",
+      "claim": "IEA-PVPS benchmark: measured soiling rates of 0.45%/day have been reported at a desert site (0.32%/day for a second module type), consistent with multi-year measurements since 2013.",
+      "source_url": "https://iea-pvps.org/wp-content/uploads/2023/01/IEA-PVPS-T13-21-2022-REPORT-Soiling-Losses-PV-Plants.pdf",
+      "source_title": "IEA-PVPS Task 13 Report T13-21:2022 — Soiling Losses: Impact on the Performance of Photovoltaic Power Plants",
+      "value": {
+        "rate_pct_per_day": 0.45
+      },
+      "unit": "% / day",
+      "region": "Desert test site",
+      "page": 69,
+      "verified": true,
+      "source_quote": "The soiling rate is seen to be 0.45%/day for the LM, and this is consistent with the experiments we had conducted at the same location since 2013 ... The soiling rate is seen to be 0.32%/day for LB."
+    },
+    {
+      "id": "soiling-weekly-cleaning-gain",
+      "topic": "cleaning",
+      "claim": "Weekly cleaning gives roughly a 6% performance improvement over an uncleaned control panel in high-soiling desert conditions; microfiber wipers (and microfiber + vacuum) are the most effective manual techniques.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-19-04373/article_deploy/energies-19-04373.pdf",
+      "source_title": "Seasonal Soiling Rates and Cleaning Optimization ... Arar Desert Climate (Energies 2026, 19(18), 4373)",
+      "value": {
+        "weekly_improvement_pct": 6
+      },
+      "unit": "% improvement",
+      "region": "Desert",
+      "page": 3,
+      "verified": true,
+      "source_quote": "the microfiber-based wiper and the microfiber and vacuum cleaner combination are the most effective cleaning techniques, with a weekly improvement of almost 6% over the control panel."
+    },
+    {
+      "id": "cleaning-optimal-interval",
+      "topic": "cleaning",
+      "claim": "For the Arar desert climate the economically optimal baseline cleaning interval is 60-90 days, derived by balancing energy-yield recovery against O&M cost.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-19-04373/article_deploy/energies-19-04373.pdf",
+      "source_title": "Seasonal Soiling Rates and Cleaning Optimization ... Arar Desert Climate (Energies 2026, 19(18), 4373)",
+      "value": {
+        "interval_days_low": 60,
+        "interval_days_high": 90
+      },
+      "unit": "days",
+      "region": "Arar, Saudi Arabia",
+      "page": 1,
+      "verified": true,
+      "source_quote": "resulting in a conditional base case range of 60-90 days."
+    },
+    {
+      "id": "mechanism-arid-particles",
+      "topic": "soiling_mechanism",
+      "claim": "Dust particles that soil PV panels in Saudi Arabia are typically smaller than 500 um; composition and size depend strongly on site location and are mostly natural desert minerals (silica, calcite, clays).",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "max_particle_size_um": 500
+      },
+      "unit": "um",
+      "region": "Saudi Arabia",
+      "page": 4,
+      "verified": true,
+      "source_quote": "The dust particle size has a diameter smaller than 500 um."
+    },
+    {
+      "id": "mechanism-electrostatic",
+      "topic": "soiling_mechanism",
+      "claim": "Airborne dust particles collide, acquire electric charge, and the charge causes additional dust to accumulate on PV panel surfaces.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "region": "Arid climates",
+      "page": 5,
+      "verified": true,
+      "source_quote": "In the atmosphere, the dust particle hits each other and generates an electric charge that results in the accumulation of more dust on the PV panels."
+    },
+    {
+      "id": "mechanism-fine-vs-coarse",
+      "topic": "soiling_mechanism",
+      "claim": "Dust impacts PV two ways: fine particles (radius < 3 um) mainly dim incoming sunlight, while dust mass that actually deposits on the panel is dominated by coarse particles (radius > 3 um).",
+      "source_url": "https://repository.kaust.edu.sa/handle/10754/696394",
+      "source_title": "Coarse Dust Soiling and Fine Dust Dimming Effects on PV Panels Over the Arabian Peninsula (Stenchikov et al., MENA-SC 2023)",
+      "value": {
+        "fine_radius_um": 3,
+        "coarse_radius_um": 3
+      },
+      "unit": "um",
+      "region": "Arabian Peninsula",
+      "verified": true,
+      "source_quote": "Fine dust particles with radii r<3 um are mainly responsible for significantly reducing the downward solar flux. However, dust mass deposition on PV panels is primarily linked to coarse particles with r>3 um."
+    },
+    {
+      "id": "mechanism-dust-composition-jubail",
+      "topic": "soiling_mechanism",
+      "claim": "In Jubail (arid coastal Saudi Arabia) natural dust is rich in silica (25.37%) and calcium oxide (30.52%); the clay mineral montmorillonite is high in iron (62.67%), which raises panel surface temperature (up to 40.4 C).",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S2238785425027103",
+      "source_title": "Experimental and modeling study of dust composition impact on photovoltaic performance in arid coastal environments (Almarri et al., J. Materials Research and Technology, 2025)",
+      "value": {
+        "silica_pct": 25.37,
+        "calcium_oxide_pct": 30.52,
+        "montmorillonite_iron_pct": 62.67,
+        "max_surface_temp_C": 40.4
+      },
+      "unit": "%, C",
+      "region": "Jubail, Saudi Arabia",
+      "page": 1,
+      "verified": true,
+      "source_quote": "natural dust was rich in silica (25.37 %) and calcium oxide (30.52 %), whereas montmorillonite contained high iron content (62.67 %), influencing both optical transmittance and heat accumulation."
+    },
+    {
+      "id": "mechanism-jmrt-loss",
+      "topic": "soiling_mechanism",
+      "claim": "Dust-type matters: natural dust caused the greatest power loss (48% at 6 g/m2 dust density) in Jubail experiments; efficiency declines exponentially with dust density above a critical threshold of 4.0 g/m2.",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S2238785425027103",
+      "source_title": "Experimental and modeling study of dust composition impact on photovoltaic performance in arid coastal environments (Almarri et al., JMRT 2025)",
+      "value": {
+        "max_power_loss_pct": 48,
+        "dust_density_g_m2": 6,
+        "critical_threshold_g_m2": 4.0
+      },
+      "unit": "% , g/m2",
+      "region": "Jubail, Saudi Arabia",
+      "page": 1,
+      "verified": true,
+      "source_quote": "natural dust caused the greatest power loss (48 % at 6 g/m2) ... These findings establish critical maintenance thresholds (4.0 g/m2 dust density)."
+    },
+    {
+      "id": "mechanism-aqi-humidity",
+      "topic": "soiling_mechanism",
+      "claim": "Air Quality Index is a stronger predictor of PV performance degradation (R = -0.83) than relative humidity (R = -0.77); afternoon efficiency drops 20-25% as moisture and AQI rise.",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S2238785425027103",
+      "source_title": "Experimental and modeling study of dust composition impact on photovoltaic performance in arid coastal environments (Almarri et al., JMRT 2025)",
+      "value": {
+        "aqi_corr": -0.83,
+        "humidity_corr": -0.77,
+        "afternoon_drop_pct": "20-25"
+      },
+      "unit": "correlation / %",
+      "region": "Jubail, Saudi Arabia",
+      "page": 1,
+      "verified": true,
+      "source_quote": "Correlation analysis identified AQI (R = -0.83) as a stronger predictor of performance degradation than humidity (R = -0.77)."
+    },
+    {
+      "id": "dew-capillary-adhesion",
+      "topic": "dew_cementation",
+      "claim": "Even without cementation, dew/surface condensation causes capillary adhesion that binds dust to the glass — so humidity alone makes soil harder to remove.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "region": "Arid climates",
+      "page": 6,
+      "verified": true,
+      "source_quote": "Even in the absence of the cementation mechanism, the surface condensation causes capillary adhesion."
+    },
+    {
+      "id": "dew-cementation-crust",
+      "topic": "dew_cementation",
+      "claim": "Repeated dew cycles cement dust into a hard crust; cemented soil requires wet cleaning because dry/wind-based methods are ineffective on cemented particles.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "region": "Arid climates",
+      "page": 15,
+      "verified": true,
+      "source_quote": "This approach is effective in removing the hard soiling and cementations. ... it has been demonstrated that it is ineffective for wet or cemented dust particles."
+    },
+    {
+      "id": "dew-humidity-voc",
+      "topic": "dew_cementation",
+      "claim": "Humidity-induced surface moisture alone reduced open-circuit voltage (Voc) by about 12%, independent of dust accumulation.",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S2238785425027103",
+      "source_title": "Experimental and modeling study of dust composition impact on photovoltaic performance in arid coastal environments (Almarri et al., JMRT 2025)",
+      "value": {
+        "voc_reduction_pct": 12
+      },
+      "unit": "%",
+      "region": "Arid coastal",
+      "page": 2,
+      "verified": true,
+      "source_quote": "humidity-induced surface moisture reduced open-circuit voltage (Voc) by 12 %, independent of dust accumulation."
+    },
+    {
+      "id": "dew-high-humidity-loss",
+      "topic": "dew_cementation",
+      "claim": "At relative humidity above 60%, efficiency losses are exacerbated to 15-30% because of enhanced dust adhesion and moisture-induced conductive paths.",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S2238785425027103",
+      "source_title": "Experimental and modeling study of dust composition impact on photovoltaic performance in arid coastal environments (Almarri et al., JMRT 2025)",
+      "value": {
+        "humidity_threshold_pct": 60,
+        "efficiency_loss_pct": "15-30"
+      },
+      "unit": "%",
+      "region": "Jubail, Saudi Arabia",
+      "page": 1,
+      "verified": true,
+      "source_quote": "Elevated humidity (>60 %) further exacerbated efficiency losses (15-30 %) due to enhanced dust adhesion and moisture-induced conductive paths."
+    },
+    {
+      "id": "dew-rh-arar",
+      "topic": "dew_cementation",
+      "claim": "Arar (northern Saudi Arabia) has average annual relative humidity around 29%, ranging from 15% in hot summer months to more than 50% in winter — seasonal RH drives dew/cementation risk.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-19-04373/article_deploy/energies-19-04373.pdf",
+      "source_title": "Seasonal Soiling Rates and Cleaning Optimization ... Arar Desert Climate (Energies 2026, 19(18), 4373)",
+      "value": {
+        "annual_avg_rh_pct": 29,
+        "summer_rh_pct": 15,
+        "winter_rh_pct": 50
+      },
+      "unit": "% RH",
+      "region": "Arar, Saudi Arabia",
+      "page": 4,
+      "verified": true,
+      "source_quote": "the average yearly relative humidity is around 29%, ranging from 15% during the hot summer months to more than 50% in the winter."
+    },
+    {
+      "id": "cleaning-taxonomy",
+      "topic": "cleaning",
+      "claim": "Cleaning methods fall into four families: manual, natural (rain, wind, gravity), automated (water-based and mechanized), and self-cleaning (super-hydrophobic plane, super-hydrophilic plane, electrodynamic screen).",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "region": "General",
+      "page": 15,
+      "verified": true,
+      "source_quote": "The cleaning techniques including manual, natural, automated, and self-cleaning are illustrated in Figure 16."
+    },
+    {
+      "id": "cleaning-mechanized-types",
+      "topic": "cleaning",
+      "claim": "Mechanized automated cleaning includes mechanical wiping, robotic cleaning, drone brushing, blowing and vibrating; at large-scale plants robotic cleaners move autonomously across the array.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "region": "Utility-scale PV",
+      "page": 16,
+      "verified": true,
+      "source_quote": "A variety of mechanical automated cleaning methods which include mechanical wiping, robotic cleaning, drone brushing, blowing, and vibrating are utilized to clean the PV module surface. ... robotic cleaning devices can move on their own to clean solar panels."
+    },
+    {
+      "id": "cleaning-drone",
+      "topic": "cleaning",
+      "claim": "Drones are an emerging inspection and cleaning technology: brush and microfiber-cloth wipers are best suited for drone-based dry cleaning because of their low weight and small size; drones also give long-range monitoring and reliable data logging.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "region": "Utility-scale PV",
+      "page": 17,
+      "verified": true,
+      "source_quote": "Drones are an emerging technology in the solar PV sector due to their long-range monitoring, efficient data logging, inspection reliability, and ease to control and access. ... brush and microfiber based-cloth wipers are the best-suited options for drone-based solar PV cleaning."
+    },
+    {
+      "id": "cleaning-robot-economics",
+      "topic": "cleaning",
+      "claim": "Machine-assisted (robotic) cleaning has an LCOE about 50% lower than manual cleaning, improving the overall project LCOE by more than 1%.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "cost_reduction_vs_manual_pct": 50,
+        "lcoe_improvement_pct": 1
+      },
+      "unit": "%",
+      "region": "Saudi Arabia (Rumah site study)",
+      "page": 21,
+      "verified": true,
+      "source_quote": "They found that the LCOE for machine-assisted cleaning is 50% less than for manual cleaning which improves the overall LCOE by more than 1%."
+    },
+    {
+      "id": "cleaning-waterless-need",
+      "topic": "cleaning",
+      "claim": "Water scarcity is a critical constraint for PV cleaning in arid and semi-arid high-irradiance regions — manual cleaning is expensive largely because of intensive labour and large water demand, which motivates waterless/dry and robotic approaches.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "region": "Arid / semi-arid regions",
+      "page": 16,
+      "verified": true,
+      "source_quote": "However, water scarcity is an issue, especially in arid and semiarid areas where solar irradiation is high. ... this technique is considered an expensive method mainly due to intensive labor requirements and a large amount of water necessity."
+    },
+    {
+      "id": "cleaning-eds",
+      "topic": "cleaning",
+      "claim": "An electrodynamic screen (EDS, a waterless self-cleaning method) reduced power loss due to soiling by 36% versus an uncleaned reference module, at low energy cost.",
+      "source_url": "https://iea-pvps.org/wp-content/uploads/2023/01/IEA-PVPS-T13-21-2022-REPORT-Soiling-Losses-PV-Plants.pdf",
+      "source_title": "IEA-PVPS Task 13 Report T13-21:2022 — Soiling Losses: Impact on the Performance of Photovoltaic Power Plants",
+      "value": {
+        "power_loss_reduction_pct": 36
+      },
+      "unit": "%",
+      "region": "General",
+      "page": 77,
+      "verified": true,
+      "source_quote": "the EDS reduced power loss due to soiling by 36% when compared to an uncleaned reference module, while the energy consumption to operate the EDS is less t"
+    },
+    {
+      "id": "cleaning-coatings-caveat",
+      "topic": "cleaning",
+      "claim": "Self-cleaning coatings (super-hydrophobic / super-hydrophilic) still rely on water to actually remove soil, so they reduce but do not eliminate cleaning frequency; hydrophobic coatings are recommended for arid coastal sites.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "region": "Arid climates",
+      "page": 21,
+      "verified": true,
+      "source_quote": "self-cleaning techniques like superhydrophobic planes and superhydrophilic planes rely on water to adequately clean the PV module."
+    },
+    {
+      "id": "dustiq-specs",
+      "topic": "sensor",
+      "claim": "Kipp & Zonen DustIQ soiling sensor (product 386915): measures transmission loss on PV modules using an internal light source rather than a pyranometer; measurement range Soiling Ratio (SR) 100-50% and Transmission Loss (TL) 0-50%.",
+      "source_url": "https://www.kippzonen.com/products/dustiq-soiling-monitoring-system",
+      "source_title": "Kipp & Zonen DustIQ Soiling Monitoring System",
+      "value": {
+        "soiling_ratio_range_pct": "100-50",
+        "transmission_loss_range_pct": "0-50"
+      },
+      "unit": "%",
+      "region": "Commercial sensor",
+      "verified": true,
+      "source_quote": "Soiling Ratio (SR) 100 to 50% and Transmission Loss (TL) 0 to 50% ... it uses an internal light source to measure scattered and reflected light that is directly proportional to soiling accumulation on the surface of the DustIQ."
+    },
+    {
+      "id": "dustiq-accuracy",
+      "topic": "sensor",
+      "claim": "DustIQ transmission-loss accuracy is +/- 0.1 of reading +/- 1% after local dust calibration; it reports percentage of sunlight blocked or scattered before reaching the cells (0-50%).",
+      "source_url": "https://www.kippzonen.com/products/dustiq-soiling-monitoring-system",
+      "source_title": "Kipp & Zonen DustIQ Soiling Monitoring System",
+      "value": {
+        "accuracy": "+/-0.1 of reading +/-1%"
+      },
+      "unit": "%",
+      "region": "Commercial sensor",
+      "verified": true,
+      "source_quote": "Transmission loss: +/-0.1 of reading +/-1% (after local dust calibration)"
+    },
+    {
+      "id": "dustiq-environment-power",
+      "topic": "sensor",
+      "claim": "DustIQ specs: operating temperature -20 to +80 C (sensor) / -20 to +60 C (full enclosure), power 12-30 VDC at 70-200 mA, 2-wire RS-485 Modbus RTU output, dimensions 990 x 160 x 35 mm, with an optional back-of-module temperature sensor (-20 to +100 C, +/-1 C).",
+      "source_url": "https://www.kippzonen.com/products/dustiq-soiling-monitoring-system",
+      "source_title": "Kipp & Zonen DustIQ Soiling Monitoring System",
+      "value": {
+        "op_temp_sensor_C": "-20 to +80",
+        "power_VDC": "12-30",
+        "current_mA": "70-200",
+        "comms": "Modbus RS-485 RTU",
+        "dimensions_mm": "990 x 160 x 35"
+      },
+      "unit": "mixed",
+      "region": "Commercial sensor",
+      "verified": true,
+      "source_quote": "12 to 30 VDC, 70 to 200 mA; ... 39 x 6 19/64 x 1 3/8 in (990 x 160 x 35 mm) ... 2-wire RS-485 RTU using Modbus ... Back of module temperature sensor: -4 to +212 F, +/-1.8 F (-20 to +100 C, +/-1 C)"
+    },
+    {
+      "id": "dustiq-decision",
+      "topic": "sensor",
+      "claim": "Clean-when-economical rule: module cleaning is most economically viable when the revenue losses and performance penalties caused by soiling exceed the operational cost of monitoring plus cleaning.",
+      "source_url": "https://www.kippzonen.com/products/dustiq-soiling-monitoring-system",
+      "source_title": "Kipp & Zonen DustIQ Soiling Monitoring System",
+      "region": "Operations",
+      "verified": true,
+      "source_quote": "Module cleaning is most economically viable when the revenue losses and performance penalties caused by soiling exceed the operational costs of monitoring and cleaning."
+    },
+    {
+      "id": "nrel-soiling-resource",
+      "topic": "resource",
+      "claim": "NREL maintains the PV soiling research hub (soiling mechanisms, mitigation, and the Soiling Loss Index) and the National Solar Radiation Database (NSRDB) for high-resolution solar resource data. NOTE: nrel.gov did not resolve from the build host (DNS failure), so these are recorded by URL only and could not be probed.",
+      "source_url": "https://www.nrel.gov/pv/soiling.html",
+      "source_title": "NREL PV Soiling research resources",
+      "verified": false,
+      "verification": "nrel.gov and nsrdb.nrel.gov failed DNS resolution on the build host (curl exit 6). Content not verified; retained as a documented resource with the NSRDB API requiring a free API key.",
+      "source_quote": "(unreachable from build host — DNS)"
+    },
+    {
+      "id": "saudi-vision2030",
+      "topic": "saudi_context",
+      "claim": "As part of Vision 2030, Saudi Arabia targets diversifying its electricity mix to reach roughly 50% renewable energy and 50% natural gas by 2030.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "renewable_share_2030_pct": 50
+      },
+      "unit": "%",
+      "region": "Saudi Arabia",
+      "page": 2,
+      "verified": true,
+      "source_quote": "as a part of Saudi Arabia's 2030 vision, the country is targeting to diversify the energy mix used in electricity generation and increase the share of renewable energy and natural gas to around 50% each by 2030."
+    },
+    {
+      "id": "saudi-sakaka",
+      "topic": "saudi_context",
+      "claim": "Sakaka 300 MW PV IPP (Al Jouf province, northern Saudi Arabia) was Saudi Arabia's first utility-scale solar plant; it set a then-world-record LCOE of 2.3417 US cents/kWh (Feb 2018) and uses single-axis east-west tracking.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "capacity_MW": 300,
+        "lcoe_us_cents_kwh": 2.3417
+      },
+      "unit": "MW, US cents/kWh",
+      "region": "Al Jouf, Saudi Arabia",
+      "page": 21,
+      "verified": true,
+      "source_quote": "Currently, the 300 MW Sakaka solar PV project which has an LCOE of US Cents 2.3417/kWh (a world record-breaking as in February 2018) has a single-axis automatic tracking system (from East to West)."
+    },
+    {
+      "id": "saudi-sudair",
+      "topic": "saudi_context",
+      "claim": "Sudair is a 1,500 MW (1.5 GW) grid-connected PV plant in central Saudi Arabia — one of the biggest solar facilities in the world and the largest of its kind in the country.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "value": {
+        "capacity_MW": 1500
+      },
+      "unit": "MW",
+      "region": "Sudair, Saudi Arabia",
+      "page": 2,
+      "verified": true,
+      "source_quote": "with an installed capacity of 1.5 GW, a grid-connected PV power plant in Sudair, Saudi Arabia's central area, is considered to be one of the biggest solar PV facilities in the world and the largest of its kind in the country."
+    },
+    {
+      "id": "saudi-neom",
+      "topic": "saudi_context",
+      "claim": "NEOM is a Vision 2030 flagship project on the Red Sea coast of northwest Saudi Arabia, renewables-powered and designed around solar/wind resources.",
+      "source_url": "https://www.vision2030.gov.sa/en/explore/projects/neom",
+      "source_title": "Saudi Vision 2030 — NEOM project page",
+      "region": "Tabuk Province, Saudi Arabia",
+      "verified": true
+    },
+    {
+      "id": "saudi-tariff",
+      "topic": "saudi_context",
+      "claim": "Saudi Electricity Company (SEC) residential tariff is about SAR 0.18/kWh up to 6,000 kWh/month, rising to SAR 0.30/kWh above that; commercial and industrial rates differ. (Pitch figure ~0.18 SAR/kWh matches the residential band.)",
+      "source_url": "https://ksacalc.com/sec/",
+      "source_title": "Saudi Arabia Electricity Tariff (SEC) — 0.18 SAR/kWh reference",
+      "value": {
+        "residential_low_SAR_kwh": 0.18,
+        "residential_high_SAR_kwh": 0.3
+      },
+      "unit": "SAR/kWh",
+      "region": "Saudi Arabia",
+      "verified": true,
+      "source_quote": "SEC residential tariff: SAR 0.18/kWh up to 6,000 kWh, then SAR 0.30/kWh."
+    },
+    {
+      "id": "saudi-water-scarcity",
+      "topic": "saudi_context",
+      "claim": "Water scarcity is a defining constraint for solar O&M in Saudi Arabia and the wider Gulf: arid/semi-arid high-irradiance regions cannot rely on water-heavy manual cleaning, favouring waterless, robotic and dry-brush methods.",
+      "source_url": "https://res.mdpi.com/d_attachment/energies/energies-15-08033/article_deploy/energies-15-08033.pdf",
+      "source_title": "The Impact of Soiling on PV Module Performance in Saudi Arabia (Al Garni, Energies 2022, 15, 8033)",
+      "region": "Saudi Arabia / Gulf",
+      "page": 16,
+      "verified": true,
+      "source_quote": "water scarcity is an issue, especially in arid and semiarid areas where solar irradiation is high."
+    },
+    {
+      "id": "saudi-solar-potential",
+      "topic": "saudi_context",
+      "claim": "Saudi Arabia has roughly three times the solar potential of Europe, making solar PV the cornerstone of its renewable strategy.",
+      "source_url": "https://theenergyyear.com/articles/positioning-saudi-arabia-at-the-forefront-of-low-carbon-expertise/",
+      "source_title": "The Energy Year — Saudi Arabia low-carbon expertise",
+      "region": "Saudi Arabia",
+      "verified": true,
+      "source_quote": "Solar PV is the cornerstone of Saudi Arabia's renewable energy strategy, as the country has three times the solar potential of Europe."
+    }
+  ],
+  "satellite_product_use_cases": [
+    {
+      "product": "NOAA Himawari-9 (AWS Open Data S3: noaa-himawari9)",
+      "use_case": "Geostationary satellite imagery (10-min full disk) for tracking dust plumes and haze over the Arabian Peninsula in near-real time; drives the dashboard dust-overlay animation.",
+      "access": "OPEN",
+      "url": "https://noaa-himawari9.s3.amazonaws.com/"
+    },
+    {
+      "product": "Himawari-8/9 (NICT real-time viewer)",
+      "use_case": "Ready-made Himawari colour/IR tiles (PNG) for quick visual dust context without processing; verified tile fetch returns image/png.",
+      "access": "OPEN",
+      "url": "https://himawari8.nict.go.jp/"
+    },
+    {
+      "product": "JAXA P-Tree (Himawari, GPM, AMSR)",
+      "use_case": "Full-resolution JAXA Himawari archive and near-real-time composites for dust-storm case studies; higher grade than the AWS mirror but needs a (free) account.",
+      "access": "KEY-GATED (free JAXA P-Tree registration)",
+      "url": "https://www.eorc.jaxa.jp/ptree/"
+    },
+    {
+      "product": "NOAA OSPO imagery products",
+      "use_case": "NOAA satellite imagery and derived products (including aerosol/dust relevant imagery) for cross-checking dust events.",
+      "access": "OPEN",
+      "url": "https://www.ospo.noaa.gov/Products/imagery/index.html"
+    },
+    {
+      "product": "CAMS Global Atmospheric Composition Forecast (Copernicus ADS)",
+      "use_case": "PRIMARY forecast driver: CAMS provides 5-day global forecasts of dust aerosol optical depth, PM10/PM2.5 and aerosol species — the input to the soiling-risk forecast.",
+      "access": "KEY-GATED (Copernicus ADS API key)",
+      "url": "https://ads.atmosphere.copernicus.eu/datasets/cams-global-atmospheric-composition-forecasts"
+    },
+    {
+      "product": "CAMS Radiation Service (SODA / CAMS McClear)",
+      "use_case": "Historical + forecasted irradiance (GHI/DNI/DHI) time series at the plant for expected-generation baselines.",
+      "access": "KEY-GATED (free SODA registration)",
+      "url": "https://www.soda-pro.com/web-services/radiation/cams-radiation-service"
+    },
+    {
+      "product": "CAMS Aerosol Alerts (Copernicus Atmosphere)",
+      "use_case": "Editorial/alert pages describing Saharan and Arabian dust episodes; useful for assistant narrative answers and context.",
+      "access": "OPEN",
+      "url": "https://atmosphere.copernicus.eu/cams-aerosol-alerts-atmospheric-aerosol-data-your-fingertips"
+    },
+    {
+      "product": "MERRA-2 reanalysis (NASA GES DISC)",
+      "use_case": "Long-term (1980-present) hourly reanalysis of aerosol, dust (DUEXTTAU), PM and wind — used to build the historical soiling-risk climatology and train the prediction model.",
+      "access": "KEY-GATED (NASA Earthdata login)",
+      "url": "https://disc.gsfc.nasa.gov/datasets?project=MERRA-2"
+    },
+    {
+      "product": "MODIS MAIAC AOD MCD19A2 (NASA LAADS)",
+      "use_case": "1 km daily MODIS aerosol optical depth — detects regional dust haze and validates CAMS/MERRA-2 aerosol fields.",
+      "access": "KEY-GATED (NASA Earthdata login)",
+      "url": "https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/products/MCD19A2/"
+    },
+    {
+      "product": "Sentinel-5P TROPOMI (Copernicus Data Space)",
+      "use_case": "UV Aerosol Index (UVAI) and NO2 at ~5 km — identifies airborne dust/absorbing aerosol plumes; key satellite layer for soiling spikes.",
+      "access": "PARTIAL — catalogue search OPEN, product download needs Copernicus Data Space account",
+      "url": "https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-5p"
+    },
+    {
+      "product": "AEMET dust.aemet.es (Barcelona Dust Forecast Center)",
+      "use_case": "Regional operational dust forecast (WMO SDS-WAS) for Saudi Arabia — directly comparable dust-load forecast for the advisory engine.",
+      "access": "OPEN",
+      "url": "https://dust.aemet.es/"
+    },
+    {
+      "product": "AERONET (NASA)",
+      "use_case": "Ground-truth Aerosol Optical Depth from sun photometers (incl. Saudi sites) — validation for satellite aerosol products and site calibration.",
+      "access": "OPEN (station list + direct data-download endpoint verified working)",
+      "url": "https://aeronet.gsfc.nasa.gov/aeronet_locations_v3.txt"
+    },
+    {
+      "product": "NASA GIOVANNI",
+      "use_case": "Web analysis/visualisation of NASA Earth-science products (aerosol, dust) for quick charts without local processing.",
+      "access": "KEY-GATED (NASA Earthdata login)",
+      "url": "https://giovanni.gsfc.nasa.gov/giovanni/"
+    },
+    {
+      "product": "NASA POWER (hourly API)",
+      "use_case": "Ready-to-use hourly meteorology for any site (T2M, WS10M, RH2M, ALLSKY_SFC_SW_DWN, PRECTOTCORR, T2MDEW) — the baseline met driver for the soiling model, no key needed.",
+      "access": "OPEN (verified live JSON)",
+      "url": "https://power.larc.nasa.gov/docs/services/api/temporal/hourly/"
+    },
+    {
+      "product": "NOAA GFS (aws noaa-gfs-bdp-pds)",
+      "use_case": "Free hourly global weather forecast (10 m wind, humidity) for the next 16 days — feeds wind-driven dust-deposition and cleaning-window logic.",
+      "access": "OPEN",
+      "url": "https://noaa-gfs-bdp-pds.s3.amazonaws.com/"
+    },
+    {
+      "product": "ECMWF Open Data (data.ecmwf.int)",
+      "use_case": "Free ECMWF real-time forecast products (IFS/AIFS) as an independent weather-model cross-check for the Gulf.",
+      "access": "OPEN",
+      "url": "https://data.ecmwf.int/forecasts/"
+    },
+    {
+      "product": "NREL NSRDB",
+      "use_case": "High-resolution (up to 5-min) typical-meteorological-year solar resource data for the Middle East — used for PV yield/expected-generation modelling.",
+      "access": "KEY-GATED (free NREL NSRDB API key) + unreachable from build host (DNS)",
+      "url": "https://nsrdb.nrel.gov/"
+    },
+    {
+      "product": "Global Solar Atlas (World Bank/Solargis)",
+      "use_case": "Instant PV potential, GHI/DNI and PVOUT for any coordinate; the public API works without a key — good default irradiance source for the dashboard.",
+      "access": "OPEN (API verified live)",
+      "url": "https://globalsolaratlas.info/"
+    },
+    {
+      "product": "pvlib-python",
+      "use_case": "Open-source Python library for irradiance transposition, PV performance modelling and soiling-loss models — the modelling backbone of the backend.",
+      "access": "OPEN",
+      "url": "https://pvlib-python.readthedocs.io/en/stable/"
+    },
+    {
+      "product": "Copernicus Data Space Ecosystem (portal + browser)",
+      "use_case": "Sentinel-1/2/3/5P discovery and download; the browser lets us inspect dust events over Saudi sites.",
+      "access": "PARTIAL — browsing OPEN, downloads need a Copernicus Data Space account",
+      "url": "https://dataspace.copernicus.eu/"
+    },
+    {
+      "product": "Copernicus Data Space Browser",
+      "use_case": "Interactive Sentinel scene viewer for visual dust/land checks over candidate plant sites.",
+      "access": "PARTIAL — needs account to download",
+      "url": "https://browser.dataspace.copernicus.eu/"
+    },
+    {
+      "product": "ASF DAAC (Alaska Satellite Facility)",
+      "use_case": "Sentinel-1 SAR search/download; SAR surface-change can reveal sand encroachment around arrays. Search API is open; data needs Earthdata login.",
+      "access": "PARTIAL — search API OPEN (verified), data KEY-GATED (Earthdata)",
+      "url": "https://search.asf.alaska.edu/"
+    },
+    {
+      "product": "Copernicus Emergency Management Service (EMS)",
+      "use_case": "Rapid mapping activations for dust storms / flooding / fires affecting energy infrastructure — context and post-event evidence.",
+      "access": "OPEN (site verified; some products need an account)",
+      "url": "https://emergency.copernicus.eu/"
+    },
+    {
+      "product": "IEA-PVPS Task 13 soiling report",
+      "use_case": "Authoritative handbook on soiling measurement, soiling-rate computation and mitigation — the reference for the corpus and for methodology citations.",
+      "access": "OPEN (PDF downloaded)",
+      "url": "https://iea-pvps.org/wp-content/uploads/2023/01/IEA-PVPS-T13-21-2022-REPORT-Soiling-Losses-PV-Plants.pdf"
+    },
+    {
+      "product": "Windy.com (dust layer)",
+      "use_case": "Unofficial visual dust-mass layer for manual spot checks and demo screenshots.",
+      "access": "OPEN (visual layer; not a data API)",
+      "url": "https://www.windy.com/?dustsm,24.7,46.6,6"
+    },
+    {
+      "product": "Ventusky (dust layer)",
+      "use_case": "Alternative visual dust/atmosphere layer for demo screenshots.",
+      "access": "OPEN (visual layer)",
+      "url": "https://www.ventusky.com/?p=24.7;46.6;5&l=dust"
+    },
+    {
+      "product": "Open-Meteo Air Quality API",
+      "use_case": "Free, keyless hourly 'dust' (ug/m3) and 'aerosol_optical_depth' forecasts for any coordinate — verified live and an excellent fallback for the dust forecast when CAMS is gated.",
+      "access": "OPEN (verified live JSON with dust + aerosol_optical_depth)",
+      "url": "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=24.71&longitude=46.67&hourly=dust,aerosol_optical_depth,pm10&forecast_days=1"
+    }
+  ]
+}
