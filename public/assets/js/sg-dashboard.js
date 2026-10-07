@@ -290,8 +290,11 @@ function render(rep) {
   $("#habits-note").innerHTML =
     `Tuned by scoring ${rep.report.policy.candidates_evaluated} policies over a simulated year.`
     + ` Versus your habit: <b style="color:var(--green)">${money(opp.sar_saved_year)}/yr</b> cheaper, `
-    + `${Math.abs(nf(opp.events_saved))} ${opp.events_saved >= 0 ? "fewer" : "more"} passes, `
-    + `${nf(opp.energy_kept_pct, 1)} % of the lost energy kept.`;
+    + `${Math.abs(nf(opp.events_saved))} ${opp.events_saved >= 0 ? "fewer" : "more"} passes.`
+    + (opp.energy_kept_pct >= 0
+        ? ` It also keeps ${nf(opp.energy_kept_pct, 1)} % of the energy that run would have lost.`
+        : ` It accepts ${nf(Math.abs(opp.energy_kept_pct), 1)} % more energy lost, and that trade is`
+          + ` still cheaper: cleaning costs more than the dust it removes at this site.`);
 
   const litresShort = (v) => (v >= 1e6 ? `${nf(v / 1e6, 1)} M` : `${nf(v / 1e3, 0)} k`);
   const wPer = 2500 * rep.capacity_kwp / 1000;
