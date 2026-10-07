@@ -19,172 +19,206 @@
   <div class="wrap inner">
     <a class="brand" href="./">Solar<span>Guard</span></a>
     <div class="links">
-      <a href="./">← Overview</a>
+      <a href="./">Overview</a>
+      <a href="technology.html">Technology</a>
       <span class="pill live" id="nav-status"><span class="dot"></span> live</span>
       <a class="btn primary sm" href="#agent">Ask the agent</a>
     </div>
   </div>
 </nav>
 
-<main class="wrap" style="padding-top:88px;padding-bottom:64px">
+<main class="wrap" style="padding-top:84px;padding-bottom:64px">
 
+  <!-- ─────────────────────────────────────────── site + controls ──────────── -->
   <div class="head" style="max-width:none">
-    <p class="kicker">Live dashboard</p>
-    <h1 id="site-title" style="font-size:clamp(1.5rem,5vw,2.2rem)">Loading sites…</h1>
+    <p class="kicker">Operator dashboard</p>
+    <h1 id="site-title" style="font-size:clamp(1.45rem,4.4vw,2rem)">Loading sites…</h1>
     <p class="small dim" id="site-sub" style="margin:0"></p>
   </div>
 
-  <!-- controls -->
-  <div class="panel" style="margin-top:18px">
-    <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
-      <label class="field" style="margin:0">
-        <span class="lbl">Site <b id="cap-interest">—</b></span>
-        <select id="site-select"></select>
-      </label>
-      <label class="field" style="margin:0">
-        <span class="lbl">Cleaning cost per pass</span>
-        <select id="cost-preset" title="Cost of one cleaning pass"></select>
-      </label>
-      <label class="field" style="margin:0">
-        <span class="lbl">Array size <b id="cap-val">100 MWp</b></span>
-        <input type="range" id="cap-range" min="100" max="400000" step="100" value="100000">
-      </label>
-      <label class="field" style="margin:0">
-        <span class="lbl">Your cleaning interval <b id="ci-val">10 d</b></span>
-        <input type="range" id="ci-range" min="2" max="60" step="1" value="10">
-      </label>
+  <div class="controls-inline">
+    <label class="field">
+      <span class="lbl">Site <b id="cap-interest">—</b></span>
+      <select id="site-select"></select>
+    </label>
+    <label class="field">
+      <span class="lbl">Cleaning cost <span class="small dim">per pass</span></span>
+      <select id="cost-preset"></select>
+    </label>
+    <label class="field">
+      <span class="lbl">Array size <b id="cap-val">100 MWp</b></span>
+      <input type="range" id="cap-range" min="100" max="400000" step="100" value="100000">
+    </label>
+    <label class="field">
+      <span class="lbl">Your interval <b id="ci-val">10 d</b></span>
+      <input type="range" id="ci-range" min="2" max="60" step="1" value="10">
+    </label>
+  </div>
+  <p class="small dim" id="param-error" style="margin:8px 0 0"></p>
+
+  <!-- ══════════════════════════════ 1. WHAT WE PREDICT ═══════════════════════ -->
+  <section class="band band-pred" id="predicted">
+    <div class="band-head">
+      <h2>What SolarGuard predicts</h2>
+      <span class="chip pred">modelled</span>
+      <span class="spacer"></span>
+      <span class="mono small dim" id="verdict-stamp"></span>
     </div>
-    <p class="small dim" id="param-error" style="margin:10px 0 0"></p>
+
+    <div class="verdict" id="verdict-box">
+      <div>
+        <div class="big" id="verdict-word">—</div>
+        <div class="small dim" id="verdict-sub">loading…</div>
+      </div>
+    </div>
+
+    <div class="urg">
+      <span>urgency</span><span id="urgency-val">—</span>
+    </div>
+    <div class="bar"><i id="urgency-bar" style="width:0%"></i></div>
+    <div id="verdict-reason" class="small dim" style="margin-top:10px"></div>
+
+    <div class="hero-nums">
+      <div class="num-tile">
+        <span class="k">soiling loss today</span>
+        <span class="v" id="k-loss">—</span>
+        <span class="u" id="k-mass">—</span>
+      </div>
+      <div class="num-tile">
+        <span class="k">generation lost today</span>
+        <span class="v" id="k-lost">—</span>
+        <span class="u" id="k-lost-sar">—</span>
+      </div>
+      <div class="num-tile">
+        <span class="k">money at risk, next 7 days</span>
+        <span class="v" id="k-risk">—</span>
+        <span class="u" id="k-cost">—</span>
+      </div>
+      <div class="num-tile">
+        <span class="k">since last clean</span>
+        <span class="v" id="k-exposure">—</span>
+        <span class="u" id="k-trigger">—</span>
+      </div>
+    </div>
+
+    <h3 class="sub">Predicted soiling loss and daily cost
+      <span class="spacer" id="proj-note"></span></h3>
+    <canvas id="chart-projection" style="width:100%;height:220px"></canvas>
+    <div class="legend">
+      <span><i style="background:#37e0ff"></i>soiling loss %</span>
+      <span><i style="background:#f3a72b"></i>value lost that day</span>
+      <span><i style="background:#3ddc97"></i>cleaning event</span>
+    </div>
+
+    <h3 class="sub">Energy predicted delivered vs lost to dust <span class="spacer" id="energy-note"></span></h3>
+    <canvas id="chart-energy" style="width:100%;height:150px"></canvas>
+    <div class="legend">
+      <span><i style="background:rgba(55,224,255,.55)"></i>delivered</span>
+      <span><i style="background:rgba(255,95,109,.72)"></i>lost to dust</span>
+    </div>
+
+    <p class="model-note" id="model-card">loading model card…</p>
+  </section>
+
+  <!-- ══════════════════════════════ 2. WHAT WE OBSERVE ═══════════════════════ -->
+  <section class="band" id="observed">
+    <div class="band-head">
+      <h2>What the satellites and stations measured</h2>
+      <span class="chip obs">observed</span>
+      <span class="spacer"></span>
+      <span class="mono small dim" id="obs-when">today</span>
+    </div>
+
+    <div class="obs-row">
+      <div class="obs-tile"><span class="k">PM10</span><span class="v" id="obs-pm10">—</span><span class="u">µg/m³ · CAMS</span></div>
+      <div class="obs-tile"><span class="k">dust</span><span class="v" id="obs-dust">—</span><span class="u">µg/m³ · MERRA-2/CAMS</span></div>
+      <div class="obs-tile"><span class="k">aerosol depth</span><span class="v" id="obs-aod">—</span><span class="u">AOD · MODIS MAIAC</span></div>
+      <div class="obs-tile"><span class="k">wind gust</span><span class="v" id="obs-gust">—</span><span class="u">m/s · ECMWF/NOAA</span></div>
+      <div class="obs-tile"><span class="k">rain</span><span class="v" id="obs-rain">—</span><span class="u">mm · Open-Meteo</span></div>
+    </div>
+
+    <h3 class="sub">Observed drivers, day by day</h3>
+    <canvas id="chart-series" style="width:100%;height:170px"></canvas>
+
+    <div id="feed-health" class="small dim" style="margin-top:14px">probing feeds…</div>
+  </section>
+
+  <!-- ══════════════════════════════ 3. THE INSTRUMENT ════════════════════════ -->
+  <section class="band" id="map-band">
+    <div class="band-head">
+      <h2>The view from orbit</h2>
+      <span class="chip obs">NASA GIBS</span>
+      <span class="spacer"></span>
+      <span class="mono small dim" id="map-mode"></span>
+    </div>
+    <div class="map-shell">
+      <div id="realmap"></div>
+      <canvas id="sg-map" style="display:none"></canvas>
+    </div>
+    <div class="map-tools" id="map-controls">
+      <select id="basemap">
+        <option value="dark">Basemap: dark labels</option>
+        <option value="osm">Basemap: streets</option>
+      </select>
+      <select id="layer-select"></select>
+      <input type="date" id="layer-date">
+      <button class="btn sm" id="layer-toggle">Hide dust</button>
+      <button class="btn sm" id="reset-view">Reset view</button>
+    </div>
+    <div class="map-hint">
+      <span id="map-coords">tap the map to test your own site</span>
+      <span>© OpenStreetMap · © CARTO · NASA GIBS</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ 4. THE MONEY ═════════════════════════════ -->
+  <div class="dash" style="margin-top:6px">
+    <section class="band">
+      <div class="band-head">
+        <h2>Predicted, day by day</h2>
+        <span class="chip pred">modelled</span>
+      </div>
+      <div class="table-wrap" style="max-height:400px;overflow:auto">
+        <table class="data" id="plan-table">
+          <thead><tr>
+            <th>Date</th><th>Dust risk</th><th class="num">PM10</th><th class="num">Gust</th>
+            <th class="num">kWh/m²</th><th class="num">Loss</th><th class="num">kWh lost</th>
+            <th class="num">SAR</th><th>Clean</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="small dim" style="margin-top:10px">Rows are our model's output. PM10, gust and
+        irradiation in each row are the driver values the prediction was made from.</p>
+    </section>
+
+    <section class="band">
+      <div class="band-head">
+        <h2>Your habit vs the tuned policy</h2>
+        <span class="chip pred">simulated year</span>
+      </div>
+      <div class="table-wrap">
+        <table class="data compact" id="habits-table">
+          <thead><tr><th>Policy</th><th class="num">Cleans</th><th class="num">Mean loss</th><th class="num">Net / yr</th></tr></thead>
+          <tbody><tr><td colspan="4" class="dim">computing…</td></tr></tbody>
+        </table>
+      </div>
+      <p class="small dim" id="habits-note" style="margin-top:10px"></p>
+
+      <div class="kv" style="margin-top:16px"><span class="k">water per wet pass</span><span class="v" id="w-pass">—</span></div>
+      <div class="kv"><span class="k">your habit, per year</span><span class="v" id="w-habit">—</span></div>
+      <div class="kv"><span class="k">tuned policy, per year</span><span class="v" id="w-tuned">—</span></div>
+      <div class="kv"><span class="k">avoided</span><span class="v" id="w-saved">—</span></div>
+    </section>
   </div>
 
-  <div class="dash" style="margin-top:16px">
-
-    <!-- ------------------------------------------------ left: map + charts -->
-    <div>
-      <div class="panel">
-        <h3>Map <span class="spacer" id="map-mode"></span></h3>
-        <div class="map-shell">
-          <div id="realmap"></div>
-          <canvas id="sg-map" style="display:none"></canvas>
-        </div>
-        <div class="map-tools" id="map-controls">
-          <select id="basemap">
-            <option value="dark">Basemap: dark labels</option>
-            <option value="osm">Basemap: streets</option>
-          </select>
-          <select id="layer-select"></select>
-          <input type="date" id="layer-date">
-          <button class="btn sm" id="layer-toggle">Hide dust</button>
-          <button class="btn sm" id="reset-view">Reset view</button>
-        </div>
-        <div class="map-hint">
-          <span id="map-coords">tap the map to test your own site</span>
-          <span>NASA GIBS · © OpenStreetMap · © CARTO</span>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h3>Soiling loss and money lost <span class="spacer" id="proj-note"></span></h3>
-        <canvas id="chart-projection" style="width:100%;height:230px"></canvas>
-        <div class="legend">
-          <span><i style="background:#37e0ff"></i>soiling loss %</span>
-          <span><i style="background:#f3a72b"></i>value lost that day</span>
-          <span><i style="background:#3ddc97"></i>cleaning event</span>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h3>Energy delivered vs lost to dust <span class="spacer" id="energy-note"></span></h3>
-        <canvas id="chart-energy" style="width:100%;height:160px"></canvas>
-        <div class="legend">
-          <span><i style="background:rgba(55,224,255,.55)"></i>delivered</span>
-          <span><i style="background:rgba(255,95,109,.72)"></i>lost to dust</span>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h3>Dust, wind and aerosol drivers</h3>
-        <canvas id="chart-series" style="width:100%;height:180px"></canvas>
-      </div>
-
-      <div class="panel">
-        <h3>Day by day <span class="spacer">scroll sideways on a phone</span></h3>
-        <div class="table-wrap" style="max-height:360px;overflow:auto">
-          <table class="data" id="plan-table">
-            <thead><tr>
-              <th>Date</th><th>Risk</th><th class="num">PM10</th><th class="num">Gust</th>
-              <th class="num">kWh/m²</th><th class="num">Loss</th><th class="num">kWh lost</th>
-              <th class="num">SAR</th><th>Clean</th>
-            </tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
+  <!-- ══════════════════════════════ 5. THE AGENT ═════════════════════════════ -->
+  <section class="band" id="agent">
+    <div class="band-head">
+      <h2>Ask it anything about this site</h2>
+      <span class="spacer"></span>
+      <span class="mono small dim" id="copilot-meta"></span>
     </div>
-
-    <!-- ------------------------------------------------ right -->
-    <div>
-      <div class="panel">
-        <h3>Verdict <span class="spacer" id="verdict-stamp"></span></h3>
-        <div class="verdict" id="verdict-box">
-          <div>
-            <div class="big" id="verdict-word">—</div>
-            <div class="small dim" id="verdict-sub">loading…</div>
-          </div>
-        </div>
-        <div style="margin-top:14px">
-          <div class="lbl" style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)">
-            <span>urgency</span><span id="urgency-val">—</span>
-          </div>
-          <div class="bar" style="margin-top:6px"><i id="urgency-bar" style="width:0%"></i></div>
-        </div>
-        <div id="verdict-reason" style="margin-top:14px"></div>
-      </div>
-
-      <div class="panel">
-        <h3>Key numbers</h3>
-        <div class="tiles">
-          <div class="livetile"><span class="k">soiling now</span><span class="v" id="k-loss">—</span><span class="u" id="k-mass">—</span></div>
-          <div class="livetile"><span class="k">lost today</span><span class="v" id="k-lost">—</span><span class="u" id="k-lost-sar">—</span></div>
-          <div class="livetile"><span class="k">7-day risk</span><span class="v" id="k-risk">—</span><span class="u" id="k-cost">—</span></div>
-          <div class="livetile"><span class="k">since clean</span><span class="v" id="k-exposure">—</span><span class="u" id="k-trigger">—</span></div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h3>Your habit vs the tuned policy <span class="spacer">one simulated year</span></h3>
-        <div class="table-wrap">
-          <table class="data" id="habits-table">
-            <thead><tr><th>Policy</th><th class="num">Cleans</th><th class="num">Mean loss</th><th class="num">Net / yr</th></tr></thead>
-            <tbody><tr><td colspan="4" class="dim">computing…</td></tr></tbody>
-          </table>
-        </div>
-        <p class="small dim" id="habits-note" style="margin-top:10px"></p>
-      </div>
-
-      <div class="panel">
-        <h3>Water</h3>
-        <div class="kv"><span class="k">wet pass</span><span class="v" id="w-pass">—</span></div>
-        <div class="kv"><span class="k">your habit, per year</span><span class="v" id="w-habit">—</span></div>
-        <div class="kv"><span class="k">tuned policy, per year</span><span class="v" id="w-tuned">—</span></div>
-        <div class="kv"><span class="k">avoided</span><span class="v" id="w-saved">—</span></div>
-      </div>
-
-      <div class="panel">
-        <h3>Model card</h3>
-        <div id="model-card" class="small dim">loading…</div>
-      </div>
-
-      <div class="panel">
-        <h3>Feed health <span class="spacer">live probe</span></h3>
-        <div id="feed-health" class="small dim">probing…</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================================================= agent -->
-  <div class="panel" id="agent" style="margin-top:16px">
-    <h3>The agent <span class="spacer" id="copilot-meta"></span></h3>
     <div class="dash">
       <div>
         <div class="chat" id="chat"></div>
@@ -194,26 +228,21 @@
         </div>
         <div class="suggestions" id="chat-suggestions"></div>
       </div>
-      <div class="panel" style="margin:0">
-        <h3 style="font-size:.8rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)">Capabilities</h3>
-        <ul class="small dim" style="padding-left:18px;margin:0">
-          <li>live forecast for any coordinate in the Kingdom</li>
-          <li>soiling and cleaning economics with a verdict</li>
-          <li>compare sites, e.g. Jeddah against Dammam</li>
-          <li>search the harvested soiling literature</li>
-          <li><b style="color:var(--ink-2)">act on this page</b>: move the map, switch the satellite layer</li>
-        </ul>
-        <div class="kv" style="margin-top:12px"><span class="k">retriever</span><span class="v" id="cm-retriever">—</span></div>
+      <div class="agent-side">
+        <p class="small dim" style="margin:0 0 12px">Ten tools, live data, cited sources — and it
+          <b>acts on this page</b>: move the map, switch the satellite layer, place your own site.</p>
+        <div class="kv"><span class="k">retriever</span><span class="v" id="cm-retriever">—</span></div>
         <div class="kv"><span class="k">chunks</span><span class="v" id="cm-chunks">—</span></div>
         <div class="kv"><span class="k">model</span><span class="v" id="cm-model">—</span></div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer class="site" style="margin-top:30px">
-    <p class="small dim">Every number here comes from a live pull or a stated assumption.
-      Data: NASA GIBS/EOSDIS, NASA POWER, AERONET, NOAA Himawari-9 &amp; GFS, ECMWF open data, Open-Meteo, AEMET SDS-WAS.
-      Basemap © OpenStreetMap contributors, © CARTO.</p>
+  <footer class="site" style="margin-top:26px">
+    <p class="small dim">Every number on this page is either a live measurement (marked
+      <b>observed</b>, with its source) or our model's output (marked <b>modelled</b>).
+      Feed data: NASA GIBS/EOSDIS, NASA POWER, AERONET, NOAA Himawari-9 &amp; GFS,
+      ECMWF open data, Open-Meteo, AEMET SDS-WAS.</p>
   </footer>
 </main>
 

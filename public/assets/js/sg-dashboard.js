@@ -231,8 +231,19 @@ function render(rep) {
   $("#k-lost-sar").textContent = `${money(d0.lost_sar)} today`;
   $("#k-risk").textContent = money(v.next_7d_money_at_risk_sar);
   $("#k-cost").textContent = `crew ${money(v.cleaning_cost_sar)}`;
-  $("#k-exposure").textContent = nf(d0.exposure_days, 1);
+  $("#k-exposure").textContent = `${nf(d0.exposure_days, 1)} days`;
   $("#k-trigger").textContent = `trigger ${pct(rep.report.policy.adaptive.threshold_pct)}`;
+
+  /* The observed strip. These are the measured inputs the prediction was built
+     from, and each tile names the feed it came from — so nothing on this page is
+     an anonymous number. */
+  const obs = (id, txt) => { const el = $(id); if (el) el.textContent = txt; };
+  obs("#obs-pm10", nf(d0.pm10_ugm3, 0));
+  obs("#obs-dust", nf(d0.dust_ugm3, 0));
+  obs("#obs-aod", nf(d0.aod, 2));
+  obs("#obs-gust", nf(d0.gust_max_ms, 1));
+  obs("#obs-rain", nf(d0.precip_mm, 1));
+  obs("#obs-when", `${dateShort(d0.date)} · measured`);
 
   drawProjection($("#chart-projection"), fs.rows);
   drawEnergy($("#chart-energy"), fs.rows);
@@ -267,11 +278,14 @@ function render(rep) {
     ["Never clean", a.habits.never],
   ];
   const best = Math.min(...habits.map(([, r]) => r.net_cost_sar));
+  // the policy table lives in a narrow column; full digit groups push the money
+  // column off-screen, so short form here (the exact figure is in the note below)
+  const sarShort = (v) => (Math.abs(v) >= 1e6 ? `${nf(v / 1e6, 1)}M` : `${nf(v / 1e3, 0)}k`);
   $("#habits-table tbody").innerHTML = habits.map(([label, r]) => `
     <tr><td>${label}${r.net_cost_sar === best ? ' <span class="pill live">best</span>' : ""}</td>
     <td class="num">${r.cleaning_events_per_year}</td>
     <td class="num">${pct(r.mean_soiling_loss_pct)}</td>
-    <td class="num"><b>${money(r.net_cost_sar)}</b></td></tr>`).join("");
+    <td class="num"><b>${sarShort(r.net_cost_sar)}</b> <span class="u">SAR</span></td></tr>`).join("");
   const opp = a.opportunity || {};
   $("#habits-note").innerHTML =
     `Tuned by scoring ${rep.report.policy.candidates_evaluated} policies over a simulated year.`
@@ -279,11 +293,12 @@ function render(rep) {
     + `${Math.abs(nf(opp.events_saved))} ${opp.events_saved >= 0 ? "fewer" : "more"} passes, `
     + `${nf(opp.energy_kept_pct, 1)} % of the lost energy kept.`;
 
+  const litresShort = (v) => (v >= 1e6 ? `${nf(v / 1e6, 1)} M` : `${nf(v / 1e3, 0)} k`);
   const wPer = 2500 * rep.capacity_kwp / 1000;
-  $("#w-pass").textContent = `${nf(wPer)} L`;
-  $("#w-habit").textContent = `${nf(a.habits.industry_today.water_litres)} L (${a.habits.industry_today.cleaning_events_per_year} passes)`;
-  $("#w-tuned").textContent = `${nf(a.habits.adaptive.water_litres)} L (${a.habits.adaptive.cleaning_events_per_year} passes)`;
-  $("#w-saved").textContent = `${nf(Math.max(0, a.habits.industry_today.water_litres - a.habits.adaptive.water_litres))} L/yr`;
+  $("#w-pass").textContent = `${litresShort(wPer)} L`;
+  $("#w-habit").textContent = `${litresShort(a.habits.industry_today.water_litres)} L  (${a.habits.industry_today.cleaning_events_per_year} passes)`;
+  $("#w-tuned").textContent = `${litresShort(a.habits.adaptive.water_litres)} L  (${a.habits.adaptive.cleaning_events_per_year} passes)`;
+  $("#w-saved").textContent = `${litresShort(Math.max(0, a.habits.industry_today.water_litres - a.habits.adaptive.water_litres))} L/yr`;
 }
 
 /* --------------------------------------------------------------- side panels */

@@ -290,7 +290,7 @@ footer.site a { display: inline-block; padding: 6px 0; }        /* 44px-ish touc
   .stage-copy h1 { max-width: 24ch; }
 }
 @media (min-width: 1080px) {
-  .dash { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); }
+  .dash { grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr); }
   body { font-size: 16.5px; }
 }
 
@@ -404,4 +404,66 @@ footer.site a { display: inline-block; padding: 6px 0; }        /* 44px-ish touc
   .caption { font-size: clamp(1.3rem, 7vw, 1.8rem); max-width: 100%; }
   .orbit-sub { max-width: 100%; }
   .big-line { max-width: 100%; }
+}
+
+/* ══════════════════════════════ dashboard bands ═════════════════════════════
+   The dashboard reads top to bottom in two colours of truth: "modelled" (our
+   model's output, sand) and "observed" (a measurement, cyan). Everything in a
+   band belongs to one of the two, so a reader can never mistake a prediction for
+   a measurement. */
+.band { padding: clamp(26px, 4.5vw, 40px) 0; border-top: 1px solid var(--line-soft); }
+.band:first-of-type { border-top: 0; }
+.band-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+.band-head h2 { font-size: clamp(1.02rem, 2.1vw, 1.28rem); margin: 0; letter-spacing: -0.01em; }
+.band-head .spacer { margin-left: auto; }
+.band h3.sub {
+  font-family: var(--mono); font-size: .67rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-3); font-weight: 500; margin: 26px 0 8px;
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; row-gap: 3px;
+}
+/* anchors shouldn't land under the fixed nav */
+section[id], .band[id] { scroll-margin-top: 78px; }
+.band-pred {
+  background: linear-gradient(180deg, rgba(243, 167, 43, 0.055), rgba(243, 167, 43, 0) 62%);
+  border-top: 1px solid rgba(243, 167, 43, 0.3);
+  margin-top: 18px; padding-left: clamp(14px, 2.4vw, 26px); padding-right: clamp(14px, 2.4vw, 26px);
+}
+
+.chip {
+  font-family: var(--mono); font-size: .64rem; font-weight: 600; letter-spacing: .13em;
+  text-transform: uppercase; padding: 4px 9px; border-radius: 999px; white-space: nowrap;
+}
+.chip.pred { background: var(--sand); color: #100c04; }
+.chip.obs { color: var(--cyan); border: 1px solid rgba(55, 224, 255, 0.42); }
+
+.hero-nums { display: grid; grid-template-columns: 1fr; gap: 1px; margin: 22px 0 8px; }
+.num-tile, .obs-tile { display: flex; flex-direction: column; gap: 4px; padding: 14px 0; }
+.num-tile .k, .obs-tile .k {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+}
+.num-tile .v { font-size: clamp(1.35rem, 3vw, 1.85rem); font-weight: 600; color: var(--ink); line-height: 1.05; }
+.num-tile .u, .obs-tile .u { font-size: .8rem; color: var(--ink-4); }
+.obs-tile .v { font-size: clamp(1.1rem, 2.3vw, 1.4rem); font-weight: 500; color: var(--cyan); }
+.obs-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 20px; }
+.controls-inline { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 20px; }
+.model-note {
+  font-size: .84rem; color: var(--ink-3); margin: 22px 0 0;
+  border-left: 2px solid rgba(243, 167, 43, 0.45); padding-left: 13px;
+}
+.data .u { color: var(--ink-4); font-size: .72rem; }
+
+.urg {
+  display: flex; justify-content: space-between; margin-top: 14px;
+  font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+}
+.agent-side { padding-top: 4px; }
+
+/* narrow tables must not inherit the wide table's min-width floor */
+.data.compact { min-width: 0; }
+
+@media (min-width: 620px) { .obs-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 760px) {
+  .hero-nums { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 26px; }
+  .controls-inline { grid-template-columns: 1fr 1.35fr 1fr 1fr; }
+  .obs-row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
