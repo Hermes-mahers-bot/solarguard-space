@@ -223,10 +223,46 @@ budget (it spends tokens thinking before answering).
 3. The model **does not answer yet**. It replies with **tool calls** — for example
    `site_report(site="dammam")`.
 4. **Our server runs those tools** against the live data and hands the results back.
-5. The model may call more tools (up to **3 rounds**, maximum **4 calls per round**;
-   duplicate calls are blocked).
+5. The model may call more tools (up to **3 rounds**, maximum **3 tool calls per
+   round**; a repeated call is served from cache and costs nothing).
 6. It writes the final answer, with the list of tools it used (**the tool trace**) and
    **citations** from the document search.
+
+## 3.2b Retrieval (RAG) — two paths, both real
+
+The agent has a document index of **672 chunks** (606 of them from the seven research
+papers, the rest from our own documentation), searched with **BM25 Okapi** (k1 = 1.5,
+b = 0.75), a keyword-ranking method: it scores how often your words appear in a chunk,
+weighted by how rare those words are across the whole index. Chunks are about 1,200
+characters with 150 characters of overlap.
+
+It is used in two ways:
+
+1. **Automatically, before the first call.** The user's question is searched and the
+   top **6** chunks are pasted into the model's context as
+   `RETRIEVED SOURCES (cite as [n])`, so a literature-grounded answer is possible even
+   if the model calls no tools at all.
+2. **On demand, by the model.** The `search_literature` tool lets the agent run its own
+   search with its own wording (default 5 hits) when the prefetched six are not enough,
+   for example after seeing a surprising number in the tool output.
+
+Answers come back with the citations that were actually used, and the response carries
+`rag: {retriever: BM25, chunks_considered: n}` so the retrieval is visible, not implied.
+
+## 3.2c How it waits for a tool
+
+The loop is synchronous on purpose. When the model asks for a tool:
+
+1. We parse the arguments, then **`await` the tool** — the HTTP request finishes and
+   the data exists before anything else happens.
+2. The JSON result (trimmed to 6,000 characters) is appended to the conversation as a
+   message with `role: "tool"` and the matching `tool_call_id`.
+3. Only then does the model get called again, now able to see that result.
+
+So the model never speaks from memory: it asks, **waits for the real answer**, and
+continues. If it keeps gathering instead of writing, after four tool results we inject
+"If you have enough data now, answer in prose and do not call any more tools", and if it
+still does not, one final clean call forces the written answer.
 
 ## 3.3 The 10 tools — exactly what it can use
 

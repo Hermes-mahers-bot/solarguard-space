@@ -44,7 +44,7 @@ Not for the submission. This is what to say if a judge presses on any wording.
 
 | Phrase | Why it holds |
 |---|---|
-| "agentic AI" | the copilot calls tools in a loop (up to 3 rounds, 4 calls each) and executes actions on the page. `place_site` moves the map, `show_satellite_layer` switches the layer. It is not a chat wrapper. |
+| "agentic AI" | the copilot calls tools in a loop (up to 3 rounds, 3 tool calls each), **waits for each tool's real output** before continuing, and executes actions on the page. `place_site` moves the map, `show_satellite_layer` switches the layer. It is not a chat wrapper. |
 | "satellite data" | inputs are NASA GIBS imagery, AERONET ground truth, CAMS dust and ERA5 meteorology. |
 | "we train our own AI models" | three forecasting models, trained by `ml/ai_train.py` and served by `backend/sg_ai.py`. |
 | "years of Saudi weather and dust records we collected ourselves" | `ml/harvest_ai_daily.py` downloads them. The result is `data/ai/daily.csv`. Coverage is in `data/ai/harvest_report.json`. |
