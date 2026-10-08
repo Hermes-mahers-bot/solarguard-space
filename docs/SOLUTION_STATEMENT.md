@@ -10,9 +10,11 @@ turns open **Earth-observation data** into a single daily decision — clean now
 wait.
 
 We fuse live **open feeds** — NASA satellite imagery, aerosol, dust, wind, sun and rain
-— into a **machine-learning ensemble we trained ourselves**: gradient-boosted trees
-plus a neural network, **physics-informed** and error-bounded, forecasting **sandstorms
-days ahead** and predicting **tomorrow's output and soiling loss with research-grade
+— and we **train our own AI models** on them: our own forecasting models, built from
+scratch and trained in-house on Saudi data we harvested and labelled ourselves — not an
+off-the-shelf API. A **machine-learning ensemble** of gradient-boosted trees plus a
+neural network, **physics-informed** and error-bounded, forecasting **sandstorms days
+ahead** and predicting **tomorrow's output and soiling loss with research-grade
 accuracy**. A **digital-twin simulation** of a full year **auto-tunes the cleaning
 threshold** for every site, and a **prescriptive engine** prices the dust in riyals. An
 **agentic AI copilot** with a **full toolset** and **citation-grounded retrieval
@@ -27,13 +29,13 @@ litres of water**, while protecting generation the owner cannot see. Dust is inv
 
 ## Short fallback (if the field is small)
 
-An **agentic AI + satellite** platform for solar operators. We fuse **open
-Earth-observation feeds** with **our own trained ML ensemble**, **physics-informed**,
-to forecast **sandstorms and output** with research-grade accuracy, **auto-optimise**
-cleaning schedules in a **digital-twin simulation**, and ship an **AI copilot that acts
-on the dashboard** — not just answers. No hardware, no sensors, **keyless and
-scalable**. It cuts cleaning spend and water use substantially, and turns **invisible
-dust into a priced, timed decision**.
+An **agentic AI + satellite** platform for solar operators. We **trained our own AI
+models** from scratch on Earth-observation data we harvested ourselves, and pair them
+with a **physics-informed engine** to forecast **sandstorms and output** with
+research-grade accuracy, **auto-optimise** cleaning schedules in a **digital-twin
+simulation**, and ship an **agentic AI copilot that acts on the dashboard** — not just
+answers. No hardware, no sensors, **keyless and scalable**. It cuts cleaning spend and
+water use substantially, and turns **invisible dust into a priced, timed decision**.
 
 ---
 
