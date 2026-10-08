@@ -1,101 +1,58 @@
 # Solution statement (submission copy)
 
-## ⬛ PASTE THIS — one box, no headings, no bullets
+**No numeric claims — qualitative throughout, so nothing needs defending and nothing
+can be disputed.**
 
-SolarGuard Space is an **agentic-AI, satellite-powered platform** for solar plants:
-it turns open **Earth-observation data** into one daily decision — clean now, or wait.
+## ⬛ PASTE THIS — one box
 
-We fuse **12 live open feeds** — NASA satellite imagery, aerosol, dust, wind, sun and
-rain — into a **machine-learning ensemble we trained ourselves**: gradient-boosted
-trees plus a neural network, **physics-informed** and error-bounded, forecasting
-**sandstorms three days ahead at AUC 0.95** and tomorrow's output to within **7.7 %**.
-A **digital-twin simulation** of a full year **auto-tunes the cleaning threshold** per
-site, and a **prescriptive engine** prices the dust in riyals. An **agentic AI
-copilot** with **10 tools** and **citation-grounded retrieval (RAG)** answers questions
-and **acts on the dashboard** — placing sites, switching satellite layers, and
-explaining every number it gives.
+SolarGuard Space is an **agentic-AI, satellite-powered platform** for solar plants: it
+turns open **Earth-observation data** into a single daily decision — clean now, or
+wait.
+
+We fuse live **open feeds** — NASA satellite imagery, aerosol, dust, wind, sun and rain
+— into a **machine-learning ensemble we trained ourselves**: gradient-boosted trees
+plus a neural network, **physics-informed** and error-bounded, forecasting **sandstorms
+days ahead** and predicting **tomorrow's output and soiling loss with research-grade
+accuracy**. A **digital-twin simulation** of a full year **auto-tunes the cleaning
+threshold** for every site, and a **prescriptive engine** prices the dust in riyals. An
+**agentic AI copilot** with a **full toolset** and **citation-grounded retrieval
+(RAG)** answers questions and **acts on the dashboard** — placing sites, switching
+satellite layers, and explaining its reasoning step by step.
 
 **Zero hardware, zero inverter retrofits, zero proprietary sensors**: satellite to
-decision in one dashboard, API-first and CPU-only, so it scales from a single rooftop
-to a 300 MW farm. At Dammam it cuts cleaning spend by **1.7M SAR a year** and saves
-**4.5M litres of water**. Dust is invisible — we made it measurable, predictable and
-priced.
+decision in a single dashboard, API-first and CPU-only, so it scales from a rooftop to
+a utility-scale farm. It **cuts cleaning spend substantially** and **saves millions of
+litres of water**, while protecting generation the owner cannot see. Dust is invisible
+— we made it **measurable, predictable and priced**.
 
-## Alternates (only if the form asks for a different length)
+## Short fallback (if the field is small)
 
-### ~150 words
-
-SolarGuard Space is an **agentic AI platform** that turns open **satellite data**
-into a daily cleaning decision for solar plants.
-
-We fuse **12 live feeds** — NASA satellite imagery, aerosol, dust and weather — with
-a **machine-learning ensemble we trained ourselves**: gradient-boosted trees plus a
-neural network, **physics-informed**, forecasting **sandstorms three days out at AUC
-0.95** and tomorrow's output to within **7.7 %**.
-
-A **digital-twin simulation** of a full year auto-tunes the cleaning threshold per
-site, then a **prescriptive engine** converts dust into riyals. An **agentic AI
-copilot** with 10 tools and **citation-grounded retrieval (RAG)** answers questions
-and **acts on the dashboard** — it places sites, switches satellite layers, and
-explains every number it gives.
-
-No hardware. No inverter retrofits. No proprietary sensors. **Satellite to decision,
-in one dashboard.** At Dammam it cuts cleaning spend by **1.7M SAR a year** and saves
-**4.5M litres of water**.
-
-## Short version — ~50 words
-
-An **agentic AI + satellite** platform for solar. We fuse 12 open Earth-observation
-feeds with **our own ML ensemble** (physics-informed; AUC 0.95 sandstorm forecast,
-7.7 % output error), auto-optimise cleaning in a **digital-twin year simulation**, and
-ship an **AI copilot that acts on the dashboard**. Saves 1.7M SAR and 4.5M litres a
-year.
-
-## One-liner — ~25 words
-
-**Satellite + agentic AI** that tells Saudi solar plants exactly when to clean —
-**our own trained model**, powered entirely by open **Earth-observation data**.
-
-## Bullet version (if the form allows a list)
-
-* **Multi-source data fusion** — 12 live open feeds: NASA satellite imagery, aerosol
-  optical depth, dust, wind, sun and rain.
-* **Our own trained models** — gradient-boosted trees + a neural network, written
-  from scratch (no ML library, no GPU), physics-informed and error-bounded.
-* **Predictive analytics** — P(sandstorm) at +1/+2/+3 days (AUC 0.95), tomorrow's
-  energy output (±7.7 %), tomorrow's soiling loss (±8.4 %).
-* **Digital-twin optimisation** — simulates a full year, auto-tunes the cleaning
-  threshold per site.
-* **Decision intelligence** — turns dust into riyals and returns one verdict:
-  clean now, or wait.
-* **Agentic AI copilot** — LLM with 10 tools + citation-grounded retrieval; it acts
-  on the dashboard, not just chats.
-* **Zero-hardware, keyless, scalable** — no sensors, no inverter retrofits,
-  API-first, runs on CPU.
-* **Impact** — 1.7M SAR/yr cheaper and 4.5M litres of water saved at one 100 MWp
-  site; 1.5M+ SAR of generation protected per site-year.
-
-## Closer (one line, for the end of a pitch)
-
-**Dust is invisible. We made it measurable, predictable, and priced.**
+An **agentic AI + satellite** platform for solar operators. We fuse **open
+Earth-observation feeds** with **our own trained ML ensemble**, **physics-informed**,
+to forecast **sandstorms and output** with research-grade accuracy, **auto-optimise**
+cleaning schedules in a **digital-twin simulation**, and ship an **AI copilot that acts
+on the dashboard** — not just answers. No hardware, no sensors, **keyless and
+scalable**. It cuts cleaning spend and water use substantially, and turns **invisible
+dust into a priced, timed decision**.
 
 ---
 
-## If a judge asks what each buzzword actually means
+## INTERNAL — not for the submission
 
-Keep this so no term is a bluff — every one is something we built and can show.
+These are the measured numbers behind the qualitative claims above. They are what the
+repository, the model card and the tests actually produced; keep them for questions,
+not for the form.
 
-| We say | What it really is |
+| We say | The measured fact behind it |
 |---|---|
-| **Satellite / Earth observation** | NASA GIBS imagery (MODIS aerosol, MERRA-2 dust), AERONET ground truth, ERA5/CAMS reanalysis |
-| **Data fusion** | 12 live feeds merged into one 37-number vector per site per day |
-| **Our own trained model** | Gradient-boosted trees + a 2-layer neural net, hand-written in numpy, trained on 18,348 site-days across 12 Saudi sites |
-| **Machine learning / ensemble** | Two model families blended with weights set by measured accuracy (42 % trees / 58 % net) |
-| **Physics-informed** | The output label is computed from a documented PV model on measured irradiance and air temperature; a calibrated physics engine sits alongside the AI and makes the decision |
-| **AUC 0.95** | Pick a storm day and a calm day at random — the model ranks the storm day higher 95 times in 100 |
-| **Forecasting at ±7.7 %** | Mean absolute error 0.234 kWh per kWp against a daily mean of about 3 kWh per kWp; the naive baseline is 11× worse |
-| **Digital-twin simulation** | A full-year simulation across ~21 candidate cleaning policies; it picks the best trigger per site |
-| **Prescriptive / decision intelligence** | It doesn't just show data — it returns one verdict and the day to send a crew |
-| **Agentic AI** | An LLM that calls tools in a loop (up to 3 rounds, 4 calls each) and executes actions: moving the map, switching the satellite layer |
-| **Citation-grounded retrieval (RAG)** | BM25 search over 676 chunks of harvested soiling research; answers come back with sources |
-| **Zero-hardware / keyless** | No sensors, no inverter integration, no API key for 12 of the 20 sources — and the 8 gated ones are coded and waiting |
+| "research-grade accuracy" | sandstorm AUC 0.952 / 0.929 / 0.931 at +1 / +2 / +3 days; recall 69 / 61 / 69 % |
+| "predicting tomorrow's output" | MAE 0.234 kWh per kWp = 7.7 % of the mean day, R² 0.949 (naive baseline is 11× worse) |
+| "soiling loss" | MAE 3.17 percentage points = 8.4 %, R² 0.974 |
+| "open feeds" | 12 live keyless sources + 8 key-gated ones already coded |
+| "our own trained ensemble" | gradient-boosted trees + a 2-layer neural net, hand-written in numpy, 18,348 site-days across 12 Saudi sites |
+| "full toolset" | 10 tools, including 2 that act on the dashboard |
+| "citation-grounded retrieval" | BM25 over 676 research chunks, sources returned with answers |
+| "cuts cleaning spend substantially" | 1,697,463 SAR/yr cheaper at a 100 MWp Dammam site |
+| "saves millions of litres of water" | 4,521,564 litres/yr avoided at the same site |
+| "days ahead" | 1, 2 and 3 days |
+| "scales from a rooftop to a utility-scale farm" | tested from 100 kWp to 300 MWp |
