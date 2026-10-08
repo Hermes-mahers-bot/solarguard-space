@@ -1,6 +1,29 @@
 # Solution statement (submission copy)
 
-## Main version — ~150 words
+## ⬛ PASTE THIS — one box, no headings, no bullets
+
+SolarGuard Space is an **agentic-AI, satellite-powered platform** for solar plants:
+it turns open **Earth-observation data** into one daily decision — clean now, or wait.
+
+We fuse **12 live open feeds** — NASA satellite imagery, aerosol, dust, wind, sun and
+rain — into a **machine-learning ensemble we trained ourselves**: gradient-boosted
+trees plus a neural network, **physics-informed** and error-bounded, forecasting
+**sandstorms three days ahead at AUC 0.95** and tomorrow's output to within **7.7 %**.
+A **digital-twin simulation** of a full year **auto-tunes the cleaning threshold** per
+site, and a **prescriptive engine** prices the dust in riyals. An **agentic AI
+copilot** with **10 tools** and **citation-grounded retrieval (RAG)** answers questions
+and **acts on the dashboard** — placing sites, switching satellite layers, and
+explaining every number it gives.
+
+**Zero hardware, zero inverter retrofits, zero proprietary sensors**: satellite to
+decision in one dashboard, API-first and CPU-only, so it scales from a single rooftop
+to a 300 MW farm. At Dammam it cuts cleaning spend by **1.7M SAR a year** and saves
+**4.5M litres of water**. Dust is invisible — we made it measurable, predictable and
+priced.
+
+## Alternates (only if the form asks for a different length)
+
+### ~150 words
 
 SolarGuard Space is an **agentic AI platform** that turns open **satellite data**
 into a daily cleaning decision for solar plants.
