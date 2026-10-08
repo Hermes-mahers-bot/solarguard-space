@@ -244,7 +244,7 @@ budget (it spends tokens thinking before answering).
 **Knowledge:**
 | Tool | What it does |
 |---|---|
-| `search_literature` | searches **676 text chunks** of harvested soiling research (KAUST, IEA-PVPS, MDPI…) using **BM25** — a keyword-ranking method: it scores how often your words appear in a chunk, weighted by how rare those words are (k1 = 1.5, b = 0.75). Every hit returns its source, so claims are cited. |
+| `search_literature` | searches **672 indexed chunks** of harvested soiling research (606 of them from the seven papers) (KAUST, IEA-PVPS, MDPI…) using **BM25** — a keyword-ranking method: it scores how often your words appear in a chunk, weighted by how rare those words are (k1 = 1.5, b = 0.75). Every hit returns its source, so claims are cited. |
 
 **Acting on the page (it doesn't just talk):**
 | Tool | What it does |
@@ -330,7 +330,7 @@ sentence". Everything above came back inside a single HTTP response
 | `models/ai/metrics.json` | the report card — every accuracy number |
 | `models/ai/site_thresholds.json` | each site's own storm threshold |
 | `data/ai/daily.csv` | the training table, 18,348 rows |
-| `data/corpus/chunks.jsonl` | 676 text chunks the agent can quote |
+| `data/corpus/chunks.jsonl` | 672 indexed chunks the agent can quote (606 research, the rest our own docs) |
 
 ## The tests
 | File | What it checks |

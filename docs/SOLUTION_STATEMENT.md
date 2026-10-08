@@ -54,7 +54,7 @@ Not for the submission. This is what to say if a judge presses on any wording.
 | "tomorrow's output and how much dirt will be sitting on the glass" | output MAE 0.234 kWh per kWp, which is 7.7 percent of the mean day, R2 0.949. Soiling MAE 3.17 points, R2 0.974. |
 | "year long simulation works out the best cleaning threshold" | `sg_soiling.py` scores about 21 cleaning policies over a simulated year and returns the best trigger for each site. |
 | "pricing engine turns the dust into riyals" | the report returns a verdict plus money at risk, crew cost, and payback in days. |
-| "agentic AI copilot", "which sources each answer came from" | 10 tools, and BM25 over 676 research chunks with sources returned for each answer. |
+| "agentic AI copilot", "which sources each answer came from" | 10 tools, and BM25 over 672 indexed chunks (606 of them research papers) with sources returned for each answer. |
 | "nothing is installed on site" | no hardware. 12 of the 20 feeds need no key at all. |
 | "fits a rooftop system or a utility scale farm" | the same endpoints are tested from 100 kWp to 300 MWp. Only the nameplate size changes. |
 | "lowers cleaning costs and uses less water" | written as "in our simulation", because no plant has deployed it yet. The finding is that at a dusty east coast site the tuned policy cleans less often and still costs less, so both cost and water fall. |
