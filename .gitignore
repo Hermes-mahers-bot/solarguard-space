@@ -53,3 +53,4 @@ Thumbs.db
 # Local scratch and probe output
 /tmp/
 *.bak
+deck/shots/
